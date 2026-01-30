@@ -1,0 +1,149 @@
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 3; @symbol_usingdef<0> = [Toybox,3,6,12]; @symbol_usingdef<1> = [Time,3,13,17]; ]
+using Toybox.Time;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 4; @symbol_usingdef<0> = [Toybox,4,6,12]; @symbol_usingdef<1> = [System,4,13,19]; ]
+using Toybox.System;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 6; @symbol_moduledef = [TimeUtils,6,7,16]; ]
+module TimeUtils {
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 9; @symbol_functiondef = [getDaySymbol,9,13,25]; @symbol_param<0> = [dayOfWeek,9,26,35]; @symbol_param<0>_type<0> = [Number,9,39,45]; @symbol_return<0> = [Symbol,9,50,56]; ]
+    function getDaySymbol(dayOfWeek as Number) as Symbol {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_9_57_19_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc" 10 8 ]
+        %tmp.1 = newd 7;
+        %tmp.2 = 1;
+        %tmp.4 = const :Sunday;
+        symbol [ Sunday %tmp.4 11 18 24 const ];
+        %tmp.5 = dup %tmp.1;
+        %tmp.6 = aputv %tmp.5 %tmp.2 %tmp.4;
+        %tmp.7 = 2;
+        %tmp.9 = const :Monday;
+        symbol [ Monday %tmp.9 12 18 24 const ];
+        %tmp.10 = dup %tmp.6;
+        %tmp.11 = aputv %tmp.10 %tmp.7 %tmp.9;
+        %tmp.12 = 3;
+        %tmp.14 = const :Tuesday;
+        symbol [ Tuesday %tmp.14 13 18 25 const ];
+        %tmp.15 = dup %tmp.11;
+        %tmp.16 = aputv %tmp.15 %tmp.12 %tmp.14;
+        %tmp.17 = 4;
+        %tmp.19 = const :Wednesday;
+        symbol [ Wednesday %tmp.19 14 18 27 const ];
+        %tmp.20 = dup %tmp.16;
+        %tmp.21 = aputv %tmp.20 %tmp.17 %tmp.19;
+        %tmp.22 = 5;
+        %tmp.24 = const :Thursday;
+        symbol [ Thursday %tmp.24 15 18 26 const ];
+        %tmp.25 = dup %tmp.21;
+        %tmp.26 = aputv %tmp.25 %tmp.22 %tmp.24;
+        %tmp.27 = 6;
+        %tmp.29 = const :Friday;
+        symbol [ Friday %tmp.29 16 18 24 const ];
+        %tmp.30 = dup %tmp.26;
+        %tmp.31 = aputv %tmp.30 %tmp.27 %tmp.29;
+        %tmp.32 = 7;
+        %tmp.34 = const :Saturday;
+        symbol [ Saturday %tmp.34 17 18 26 const ];
+        %tmp.35 = dup %tmp.31;
+        %tmp.36 = aputv %tmp.35 %tmp.32 %tmp.34;
+        %tmp.37 = lgetv %dayOfWeek;
+        symbol [ dayOfWeek %tmp.37 18 10 19 ];
+        %tmp.38 = agetv %tmp.36 %tmp.37;
+        ret %tmp.38;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_9_57_19_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 22; @symbol_functiondef = [getTimeData,22,13,24]; ]
+    function getTimeData() {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc" 23 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_stop" ]
+        %clock.1 = local;
+        symbol [ clock %clock.1 23 12 17 ];
+        symbol [ System %tmp.1 23 20 26 ];
+        %tmp.1 = getm $.Toybox.System;
+        symbol [ getClockTime %tmp.2 23 27 39 ];
+        %tmp.2 = getv function %tmp.1 :getClockTime;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %clock.1 %tmp.3;
+        symbol [ clock %clock.1 23 12 17 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc" 24 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_stop" ]
+        %now.2 = local;
+        symbol [ now %now.2 24 12 15 ];
+        symbol [ Time %tmp.4 24 20 24 ];
+        %tmp.4 = getm $.Toybox.Time;
+        symbol [ now %tmp.5 24 25 28 ];
+        %tmp.5 = getv function %tmp.4 :now;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %now.2 %tmp.6;
+        symbol [ now %now.2 24 12 15 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc" 26 8 ]
+        %tmp.7 = newd 5;
+        %tmp.9 = const :hour;
+        symbol [ hour %tmp.9 27 13 17 const ];
+        %tmp.10 = lgetv %clock.1;
+        symbol [ clock %tmp.10 27 21 26 ];
+        symbol [ hour %tmp.11 27 27 31 ];
+        %tmp.11 = getv %tmp.10 :hour;
+        %tmp.12 = dup %tmp.7;
+        %tmp.13 = aputv %tmp.12 %tmp.9 %tmp.11;
+        %tmp.15 = const :min;
+        symbol [ min %tmp.15 28 13 16 const ];
+        %tmp.16 = lgetv %clock.1;
+        symbol [ clock %tmp.16 28 21 26 ];
+        symbol [ min %tmp.17 28 27 30 ];
+        %tmp.17 = getv %tmp.16 :min;
+        %tmp.18 = dup %tmp.13;
+        %tmp.19 = aputv %tmp.18 %tmp.15 %tmp.17;
+        %tmp.21 = const :sec;
+        symbol [ sec %tmp.21 29 13 16 const ];
+        %tmp.22 = lgetv %clock.1;
+        symbol [ clock %tmp.22 29 21 26 ];
+        symbol [ sec %tmp.23 29 27 30 ];
+        %tmp.23 = getv %tmp.22 :sec;
+        %tmp.24 = dup %tmp.19;
+        %tmp.25 = aputv %tmp.24 %tmp.21 %tmp.23;
+        %tmp.27 = const :date;
+        symbol [ date %tmp.27 30 13 17 const ];
+        symbol [ Time %tmp.28 30 21 25 ];
+        %tmp.28 = getm $.Toybox.Time;
+        symbol [ Gregorian %tmp.29 30 26 35 ];
+        %tmp.29 = getv %tmp.28 :Gregorian;
+        symbol [ info %tmp.30 30 36 40 ];
+        %tmp.30 = getv function %tmp.29 :info;
+        %tmp.31 = lgetv %now.2;
+        symbol [ now %tmp.31 30 41 44 ];
+        symbol [ Time %tmp.32 30 46 50 ];
+        %tmp.32 = getm $.Toybox.Time;
+        symbol [ FORMAT_MEDIUM %tmp.33 30 51 64 ];
+        %tmp.33 = getv %tmp.32 :FORMAT_MEDIUM;
+        %tmp.34 = invoke %tmp.29 %tmp.30(%tmp.31, %tmp.33);
+        %tmp.35 = dup %tmp.25;
+        %tmp.36 = aputv %tmp.35 %tmp.27 %tmp.34;
+        %tmp.38 = const :dateShort;
+        symbol [ dateShort %tmp.38 31 13 22 const ];
+        symbol [ Time %tmp.39 31 26 30 ];
+        %tmp.39 = getm $.Toybox.Time;
+        symbol [ Gregorian %tmp.40 31 31 40 ];
+        %tmp.40 = getv %tmp.39 :Gregorian;
+        symbol [ info %tmp.41 31 41 45 ];
+        %tmp.41 = getv function %tmp.40 :info;
+        %tmp.42 = lgetv %now.2;
+        symbol [ now %tmp.42 31 46 49 ];
+        symbol [ Time %tmp.43 31 51 55 ];
+        %tmp.43 = getm $.Toybox.Time;
+        symbol [ FORMAT_SHORT %tmp.44 31 56 68 ];
+        %tmp.44 = getv %tmp.43 :FORMAT_SHORT;
+        %tmp.45 = invoke %tmp.40 %tmp.41(%tmp.42, %tmp.44);
+        %tmp.46 = dup %tmp.36;
+        %tmp.47 = aputv %tmp.46 %tmp.38 %tmp.45;
+        ret %tmp.47;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyTimeutils_mc_22_27_33_4_stop:
+    }
+}
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyTimeutils.mc"; @line = 1; ]
+<init> {
+}

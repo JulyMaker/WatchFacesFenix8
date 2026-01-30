@@ -1,0 +1,36 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
+
+    <string id="AppName">JulyWatch</string>
+
+    <string id="BackgroundColorTitle">Color de Fondo</string>
+    <string id="ForegroundColorTitle">Color de Primer Plano</string>
+    <string id="MilitaryFormatTitle">Formato Militar para Hora de 24 Horas</string>
+
+    <string id="ColorBlack">Negro</string>
+    <string id="ColorDarkGray">Gris Oscuro</string>
+    <string id="ColorLightGray">Gris Claro</string>
+    <string id="ColorWhite">Blanco</string>
+    <string id="ColorBlue">Azul</string>
+    <string id="ColorRed">Rojo</string>
+
+    <string id="Monday">Lun</string>
+    <string id="Tuesday">Mar</string>
+    <string id="Wednesday">Mié</string>
+    <string id="Thursday">Jue</string>
+    <string id="Friday">Vie</string>
+    <string id="Saturday">S&#225;b</string>
+    <string id="Sunday">Dom</string>
+
+    <string id="January">Ene</string>
+    <string id="February">Feb</string>
+    <string id="March">Mar</string>
+    <string id="April">Abr</string>
+    <string id="May">May</string> 
+    <string id="June">Jun</string>
+    <string id="July">Jul</string>
+    <string id="August">Ago</string>
+    <string id="September">Sep</string>
+    <string id="October">Oct</string>
+    <string id="November">Nov</string>
+    <string id="December">Dic</string>
+</strings>

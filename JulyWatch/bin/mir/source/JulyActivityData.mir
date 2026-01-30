@@ -1,0 +1,290 @@
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 1; @symbol_usingdef<0> = [Toybox,1,6,12]; @symbol_usingdef<1> = [ActivityMonitor,1,13,28]; ]
+using Toybox.ActivityMonitor;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [Time,2,13,17]; ]
+using Toybox.Time;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 3; @symbol_usingdef<0> = [Toybox,3,6,12]; @symbol_usingdef<1> = [Graphics,3,13,21]; @symbol_usingAlias = [G,3,25,26]; ]
+using Toybox.Graphics as :G;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 5; @symbol_moduledef = [ActivityData,5,7,19]; ]
+module ActivityData {
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 7; @symbol_functiondef = [drawActivityData,7,13,29]; @symbol_param<0> = [dc,7,30,32]; @symbol_param<1> = [width,7,34,39]; @symbol_param<2> = [height,7,41,47]; @symbol_param<3> = [timeData,7,49,57]; ]
+    function drawActivityData(dc, width, height, timeData) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 8 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %cy.1 = local;
+        symbol [ cy %cy.1 8 12 14 ];
+        %tmp.1 = lgetv %height;
+        symbol [ height %tmp.1 8 17 23 ];
+        %tmp.2 = 2;
+        %tmp.3 = div %tmp.1 %tmp.2;
+        lputv %cy.1 %tmp.3;
+        symbol [ cy %cy.1 8 12 14 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 10 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %leftX.2 = local;
+        symbol [ leftX %leftX.2 10 12 17 ];
+        %tmp.4 = lgetv %width;
+        symbol [ width %tmp.4 10 20 25 ];
+        %tmp.5 = 0.20;
+        %tmp.6 = mul %tmp.4 %tmp.5;
+        lputv %leftX.2 %tmp.6;
+        symbol [ leftX %leftX.2 10 12 17 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 11 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %rightX.3 = local;
+        symbol [ rightX %rightX.3 11 12 18 ];
+        %tmp.7 = lgetv %width;
+        symbol [ width %tmp.7 11 21 26 ];
+        %tmp.8 = 0.80;
+        %tmp.9 = mul %tmp.7 %tmp.8;
+        lputv %rightX.3 %tmp.9;
+        symbol [ rightX %rightX.3 11 12 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 12 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %dataY.4 = local;
+        symbol [ dataY %dataY.4 12 12 17 ];
+        %tmp.10 = lgetv %cy.1;
+        symbol [ cy %tmp.10 12 20 22 ];
+        %tmp.11 = 40;
+        %tmp.12 = sub %tmp.10 %tmp.11;
+        lputv %dataY.4 %tmp.12;
+        symbol [ dataY %dataY.4 12 12 17 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 15 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %activityInfo.5 = local;
+        symbol [ activityInfo %activityInfo.5 15 12 24 ];
+        symbol [ ActivityMonitor %tmp.13 15 27 42 ];
+        %tmp.13 = getm $.Toybox.ActivityMonitor;
+        symbol [ getInfo %tmp.14 15 43 50 ];
+        %tmp.14 = getv function %tmp.13 :getInfo;
+        %tmp.15 = invoke %tmp.13 %tmp.14();
+        lputv %activityInfo.5 %tmp.15;
+        symbol [ activityInfo %activityInfo.5 15 12 24 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 16 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop" ]
+        %heartRate.6 = local;
+        symbol [ heartRate %heartRate.6 16 12 21 ];
+        %tmp.16 = null;
+        lputv %heartRate.6 %tmp.16;
+        symbol [ heartRate %heartRate.6 16 12 21 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 19 8 ]
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_8_25_8_if_stmt:
+        symbol [ ActivityMonitor %tmp.17 19 12 27 ];
+        %tmp.17 = getm $.Toybox.ActivityMonitor;
+        %tmp.19 = const :getHeartRateHistory;
+        symbol [ getHeartRateHistory %tmp.19 19 33 52 const ];
+        %tmp.20 = canhazplz %tmp.17 %tmp.19;
+        bf %tmp.20 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_8_25_8_if_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_8_25_8_if_true:
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 20 12 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_stop" ]
+        %hrHistory.7 = local;
+        symbol [ hrHistory %hrHistory.7 20 16 25 ];
+        symbol [ ActivityMonitor %tmp.21 20 28 43 ];
+        %tmp.21 = getm $.Toybox.ActivityMonitor;
+        symbol [ getHeartRateHistory %tmp.22 20 44 63 ];
+        %tmp.22 = getv function %tmp.21 :getHeartRateHistory;
+        %tmp.23 = 1;
+        %tmp.24 = true;
+        %tmp.25 = invoke %tmp.21 %tmp.22(%tmp.23, %tmp.24);
+        lputv %hrHistory.7 %tmp.25;
+        symbol [ hrHistory %hrHistory.7 20 16 25 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 21 12 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_stop" ]
+        %hrSample.8 = local;
+        symbol [ hrSample %hrSample.8 21 16 24 ];
+        %tmp.26 = lgetv %hrHistory.7;
+        symbol [ hrHistory %tmp.26 21 27 36 ];
+        symbol [ next %tmp.27 21 37 41 ];
+        %tmp.27 = getv function %tmp.26 :next;
+        %tmp.28 = invoke %tmp.26 %tmp.27();
+        lputv %hrSample.8 %tmp.28;
+        symbol [ hrSample %hrSample.8 21 16 24 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 22 12 ]
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_stmt:
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_16_22_58_begin:
+        %tmp.29 = lgetv %hrSample.8;
+        symbol [ hrSample %tmp.29 22 16 24 ];
+        %tmp.30 = null;
+        %tmp.31 = ne %tmp.29 %tmp.30;
+        bf %tmp.31 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_36_22_58_true:
+        %tmp.32 = lgetv %hrSample.8;
+        symbol [ hrSample %tmp.32 22 36 44 ];
+        %tmp.33 = as %tmp.32 { (!Null) };
+        symbol [ heartRate %tmp.34 22 45 54 ];
+        %tmp.34 = getv %tmp.33 :heartRate;
+        %tmp.35 = null;
+        %tmp.36 = ne %tmp.34 %tmp.35;
+        push %tmp.36;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_36_22_58_end:
+        %tmp.37 = phi [%tmp.31 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_16_22_58_begin] [%tmp.36 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_36_22_58_true] [%tmp.37 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_36_22_58_end];
+        bf %tmp.37 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_true:
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_64_24_12_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 23 16 ]
+        %tmp.38 = lgetv %hrSample.8;
+        symbol [ hrSample %tmp.38 23 28 36 ];
+        %tmp.39 = as %tmp.38 { (!Null) };
+        symbol [ heartRate %tmp.40 23 37 46 ];
+        %tmp.40 = getv %tmp.39 :heartRate;
+        lputv %heartRate.6 %tmp.40;
+        symbol [ heartRate %heartRate.6 23 16 25 ];
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_64_24_12_stop:
+        goto @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_22_12_24_12_if_end:
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_54_25_8_stop:
+        goto @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_8_25_8_if_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_19_8_25_8_if_end:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 28 8 ]
+        %tmp.41 = self;
+        symbol [ drawStepsData %tmp.42 28 8 21 ];
+        %tmp.42 = getv function %tmp.41 :drawStepsData;
+        %tmp.43 = lgetv %dc;
+        symbol [ dc %tmp.43 28 22 24 ];
+        %tmp.44 = lgetv %leftX.2;
+        symbol [ leftX %tmp.44 28 26 31 ];
+        %tmp.45 = lgetv %dataY.4;
+        symbol [ dataY %tmp.45 28 33 38 ];
+        %tmp.46 = lgetv %activityInfo.5;
+        symbol [ activityInfo %tmp.46 28 40 52 ];
+        symbol [ steps %tmp.47 28 53 58 ];
+        %tmp.47 = getv %tmp.46 :steps;
+        invoke %tmp.41 %tmp.42(%tmp.43, %tmp.44, %tmp.45, %tmp.47);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_7_59_32_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 34; @symbol_functiondef = [drawStepsData,34,13,26]; @symbol_param<0> = [dc,34,27,29]; @symbol_param<1> = [x,34,31,32]; @symbol_param<2> = [y,34,34,35]; @symbol_param<3> = [steps,34,37,42]; ]
+    function drawStepsData(dc, x, y, steps) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_34_44_49_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 35 6 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_34_44_49_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_34_44_49_4_stop" ]
+        %stepsStr.1 = local;
+        symbol [ stepsStr %stepsStr.1 35 10 18 ];
+        %tmp.1 = lgetv %steps;
+        symbol [ steps %tmp.1 35 21 26 ];
+        symbol [ format %tmp.2 35 27 33 ];
+        %tmp.2 = getv function %tmp.1 :format;
+        %tmp.3 = "%d";
+        %tmp.4 = invoke %tmp.1 %tmp.2(%tmp.3);
+        lputv %stepsStr.1 %tmp.4;
+        symbol [ stepsStr %stepsStr.1 35 10 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 38 6 ]
+        %tmp.5 = lgetv %dc;
+        symbol [ dc %tmp.5 38 6 8 ];
+        symbol [ setColor %tmp.6 38 9 17 ];
+        %tmp.6 = getv function %tmp.5 :setColor;
+        symbol [ G %tmp.7 38 18 19 ];
+        %tmp.7 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLUE %tmp.8 38 20 30 ];
+        %tmp.8 = getv %tmp.7 :COLOR_BLUE;
+        symbol [ G %tmp.9 38 32 33 ];
+        %tmp.9 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.10 38 34 51 ];
+        %tmp.10 = getv %tmp.9 :COLOR_TRANSPARENT;
+        invoke %tmp.5 %tmp.6(%tmp.8, %tmp.10);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 45 6 ]
+        %tmp.11 = self;
+        symbol [ drawStepsIcon %tmp.12 45 6 19 ];
+        %tmp.12 = getv function %tmp.11 :drawStepsIcon;
+        %tmp.13 = lgetv %dc;
+        symbol [ dc %tmp.13 45 20 22 ];
+        %tmp.14 = lgetv %x;
+        symbol [ x %tmp.14 45 24 25 ];
+        %tmp.15 = lgetv %y;
+        symbol [ y %tmp.15 45 27 28 ];
+        %tmp.16 = 20;
+        %tmp.17 = sub %tmp.15 %tmp.16;
+        invoke %tmp.11 %tmp.12(%tmp.13, %tmp.14, %tmp.17);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 48 6 ]
+        %tmp.18 = lgetv %dc;
+        symbol [ dc %tmp.18 48 6 8 ];
+        symbol [ drawText %tmp.19 48 9 17 ];
+        %tmp.19 = getv function %tmp.18 :drawText;
+        %tmp.20 = lgetv %x;
+        symbol [ x %tmp.20 48 18 19 ];
+        %tmp.21 = lgetv %y;
+        symbol [ y %tmp.21 48 21 22 ];
+        symbol [ G %tmp.22 48 24 25 ];
+        %tmp.22 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.23 48 26 36 ];
+        %tmp.23 = getv %tmp.22 :FONT_XTINY;
+        %tmp.24 = lgetv %stepsStr.1;
+        symbol [ stepsStr %tmp.24 48 38 46 ];
+        symbol [ G %tmp.25 48 48 49 ];
+        %tmp.25 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.26 48 50 69 ];
+        %tmp.26 = getv %tmp.25 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.18 %tmp.19(%tmp.20, %tmp.21, %tmp.23, %tmp.24, %tmp.26);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_34_44_49_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 51; @symbol_functiondef = [drawStepsIcon,51,13,26]; @symbol_param<0> = [dc,51,27,29]; @symbol_param<1> = [x,51,31,32]; @symbol_param<2> = [y,51,34,35]; ]
+    function drawStepsIcon(dc, x, y) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_51_37_63_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 53 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_51_37_63_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_51_37_63_4_stop" ]
+        %iconSize.1 = local;
+        symbol [ iconSize %iconSize.1 53 11 19 ];
+        %tmp.1 = 6;
+        lputv %iconSize.1 %tmp.1;
+        symbol [ iconSize %iconSize.1 53 11 19 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 56 7 ]
+        %tmp.2 = lgetv %dc;
+        symbol [ dc %tmp.2 56 7 9 ];
+        symbol [ fillCircle %tmp.3 56 10 20 ];
+        %tmp.3 = getv function %tmp.2 :fillCircle;
+        %tmp.4 = lgetv %x;
+        symbol [ x %tmp.4 56 21 22 ];
+        %tmp.5 = lgetv %y;
+        symbol [ y %tmp.5 56 24 25 ];
+        %tmp.6 = lgetv %iconSize.1;
+        symbol [ iconSize %tmp.6 56 28 36 ];
+        %tmp.7 = sub %tmp.5 %tmp.6;
+        %tmp.8 = 1;
+        invoke %tmp.2 %tmp.3(%tmp.4, %tmp.7, %tmp.8);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 59 7 ]
+        %tmp.9 = lgetv %dc;
+        symbol [ dc %tmp.9 59 7 9 ];
+        symbol [ drawLine %tmp.10 59 10 18 ];
+        %tmp.10 = getv function %tmp.9 :drawLine;
+        %tmp.11 = lgetv %x;
+        symbol [ x %tmp.11 59 19 20 ];
+        %tmp.12 = lgetv %y;
+        symbol [ y %tmp.12 59 22 23 ];
+        %tmp.13 = lgetv %iconSize.1;
+        symbol [ iconSize %tmp.13 59 26 34 ];
+        %tmp.14 = sub %tmp.12 %tmp.13;
+        %tmp.15 = 1;
+        %tmp.16 = add %tmp.14 %tmp.15;
+        %tmp.17 = lgetv %x;
+        symbol [ x %tmp.17 59 40 41 ];
+        %tmp.18 = lgetv %y;
+        symbol [ y %tmp.18 59 43 44 ];
+        invoke %tmp.9 %tmp.10(%tmp.11, %tmp.16, %tmp.17, %tmp.18);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc" 62 7 ]
+        %tmp.19 = lgetv %dc;
+        symbol [ dc %tmp.19 62 7 9 ];
+        symbol [ drawLine %tmp.20 62 10 18 ];
+        %tmp.20 = getv function %tmp.19 :drawLine;
+        %tmp.21 = lgetv %x;
+        symbol [ x %tmp.21 62 19 20 ];
+        %tmp.22 = lgetv %y;
+        symbol [ y %tmp.22 62 22 23 ];
+        %tmp.23 = lgetv %x;
+        symbol [ x %tmp.23 62 25 26 ];
+        %tmp.24 = 2;
+        %tmp.25 = add %tmp.23 %tmp.24;
+        %tmp.26 = lgetv %y;
+        symbol [ y %tmp.26 62 32 33 ];
+        %tmp.27 = 1;
+        %tmp.28 = sub %tmp.26 %tmp.27;
+        invoke %tmp.19 %tmp.20(%tmp.21, %tmp.22, %tmp.25, %tmp.28);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyActivityData_mc_51_37_63_4_stop:
+    }
+}
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyActivityData.mc"; @line = 1; ]
+<init> {
+}

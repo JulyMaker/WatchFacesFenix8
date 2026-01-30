@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<manifest filename="E:\personal\Repos\WatchFacesFenix8\JulyWatch\manifest.xml"/>
+<pcToLineNum>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="1" lineNum="5" parent="globals/JulyWatchApp" pc="268435460" symbol="&lt;init&gt;"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="2" lineNum="31" parent="globals" pc="268435472" symbol="getApp"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="2" lineNum="32" parent="globals" pc="268435482" symbol="getApp"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="3" lineNum="6" parent="globals/Background" pc="268435493" symbol="&lt;init&gt;"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="4" lineNum="11" parent="globals/JulyWatchView" pc="268435505" symbol="&lt;init&gt;"/>
+<entry filename="e:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\bin\\gen\\006-B4532-00\\source\\Rez.mcgen" id="5" lineNum="7" parent="globals/Rez" pc="268435517" symbol="&lt;init&gt;"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="6" lineNum="51" parent="globals/ActivityData" pc="268435537" symbol="drawStepsIcon"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="6" lineNum="53" parent="globals/ActivityData" pc="268435548" symbol="drawStepsIcon"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="6" lineNum="56" parent="globals/ActivityData" pc="268435552" symbol="drawStepsIcon"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="6" lineNum="59" parent="globals/ActivityData" pc="268435571" symbol="drawStepsIcon"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="6" lineNum="62" parent="globals/ActivityData" pc="268435595" symbol="drawStepsIcon"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="7" parent="globals/ActivityData" pc="268435620" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="8" parent="globals/ActivityData" pc="268435631" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="10" parent="globals/ActivityData" pc="268435638" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="11" parent="globals/ActivityData" pc="268435648" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="12" parent="globals/ActivityData" pc="268435658" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="15" parent="globals/ActivityData" pc="268435665" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="16" parent="globals/ActivityData" pc="268435677" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="19" parent="globals/ActivityData" pc="268435680" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="20" parent="globals/ActivityData" pc="268435695" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="21" parent="globals/ActivityData" pc="268435712" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="22" parent="globals/ActivityData" pc="268435721" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="23" parent="globals/ActivityData" pc="268435738" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="7" lineNum="28" parent="globals/ActivityData" pc="268435753" symbol="drawActivityData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="8" lineNum="34" parent="globals/ActivityData" pc="268435775" symbol="drawStepsData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="8" lineNum="35" parent="globals/ActivityData" pc="268435786" symbol="drawStepsData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="8" lineNum="38" parent="globals/ActivityData" pc="268435802" symbol="drawStepsData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="8" lineNum="45" parent="globals/ActivityData" pc="268435818" symbol="drawStepsData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyActivityData.mc" id="8" lineNum="48" parent="globals/ActivityData" pc="268435836" symbol="drawStepsData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="9" lineNum="9" parent="globals/TimeUtils" pc="268435856" symbol="getDaySymbol"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="9" lineNum="10" parent="globals/TimeUtils" pc="268435866" symbol="getDaySymbol"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="10" lineNum="22" parent="globals/TimeUtils" pc="268435931" symbol="getTimeData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="10" lineNum="23" parent="globals/TimeUtils" pc="268435942" symbol="getTimeData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="10" lineNum="24" parent="globals/TimeUtils" pc="268435954" symbol="getTimeData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyTimeutils.mc" id="10" lineNum="26" parent="globals/TimeUtils" pc="268435966" symbol="getTimeData"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="11" lineNum="12" parent="globals/JulyWatchApp" pc="268436051" symbol="onStart"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="12" lineNum="25" parent="globals/JulyWatchApp" pc="268436054" symbol="onSettingsChanged"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="12" lineNum="26" parent="globals/JulyWatchApp" pc="268436056" symbol="onSettingsChanged"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="13" lineNum="20" parent="globals/JulyWatchApp" pc="268436068" symbol="getInitialView"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="13" lineNum="21" parent="globals/JulyWatchApp" pc="268436070" symbol="getInitialView"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="14" lineNum="7" parent="globals/JulyWatchApp" pc="268436096" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="14" lineNum="8" parent="globals/JulyWatchApp" pc="268436098" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchApp.mc" id="15" lineNum="16" parent="globals/JulyWatchApp" pc="268436111" symbol="onStop"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="16" lineNum="8" parent="globals/Background" pc="268436114" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="16" lineNum="9" parent="globals/Background" pc="268436117" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="16" lineNum="13" parent="globals/Background" pc="268436135" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="17" lineNum="16" parent="globals/Background" pc="268436152" symbol="draw"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="17" lineNum="18" parent="globals/Background" pc="268436154" symbol="draw"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchBackground.mc" id="17" lineNum="19" parent="globals/Background" pc="268436183" symbol="draw"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="19" lineNum="35" parent="globals/JulyWatchView" pc="268436192" symbol="drawHours"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="19" lineNum="36" parent="globals/JulyWatchView" pc="268436194" symbol="drawHours"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="19" lineNum="37" parent="globals/JulyWatchView" pc="268436211" symbol="drawHours"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="21" lineNum="18" parent="globals/JulyWatchView" pc="268436232" symbol="onLayout"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="21" lineNum="19" parent="globals/JulyWatchView" pc="268436234" symbol="onLayout"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="22" lineNum="29" parent="globals/JulyWatchView" pc="268436268" symbol="clearScreen"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="22" lineNum="30" parent="globals/JulyWatchView" pc="268436270" symbol="clearScreen"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="22" lineNum="31" parent="globals/JulyWatchView" pc="268436282" symbol="clearScreen"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="24" lineNum="13" parent="globals/JulyWatchView" pc="268436291" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="24" lineNum="14" parent="globals/JulyWatchView" pc="268436293" symbol="initialize"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="47" parent="globals/JulyWatchView" pc="268436306" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="49" parent="globals/JulyWatchView" pc="268436309" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="50" parent="globals/JulyWatchView" pc="268436326" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="51" parent="globals/JulyWatchView" pc="268436352" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="53" parent="globals/JulyWatchView" pc="268436380" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="54" parent="globals/JulyWatchView" pc="268436384" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="55" parent="globals/JulyWatchView" pc="268436401" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="56" parent="globals/JulyWatchView" pc="268436424" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="57" parent="globals/JulyWatchView" pc="268436447" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="59" parent="globals/JulyWatchView" pc="268436470" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="60" parent="globals/JulyWatchView" pc="268436491" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="61" parent="globals/JulyWatchView" pc="268436518" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="62" parent="globals/JulyWatchView" pc="268436545" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="65" parent="globals/JulyWatchView" pc="268436572" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="66" parent="globals/JulyWatchView" pc="268436576" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="67" parent="globals/JulyWatchView" pc="268436583" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="68" parent="globals/JulyWatchView" pc="268436590" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="70" parent="globals/JulyWatchView" pc="268436597" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="71" parent="globals/JulyWatchView" pc="268436614" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="26" lineNum="72" parent="globals/JulyWatchView" pc="268436635" symbol="drawSeparators"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="27" lineNum="76" parent="globals/JulyWatchView" pc="268436657" symbol="drawDate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="27" lineNum="77" parent="globals/JulyWatchView" pc="268436660" symbol="drawDate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="27" lineNum="84" parent="globals/JulyWatchView" pc="268436714" symbol="drawDate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="27" lineNum="91" parent="globals/JulyWatchView" pc="268436774" symbol="drawDate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="27" lineNum="92" parent="globals/JulyWatchView" pc="268436791" symbol="drawDate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="96" parent="globals/JulyWatchView" pc="268436811" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="97" parent="globals/JulyWatchView" pc="268436814" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="99" parent="globals/JulyWatchView" pc="268436825" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="100" parent="globals/JulyWatchView" pc="268436834" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="101" parent="globals/JulyWatchView" pc="268436843" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="102" parent="globals/JulyWatchView" pc="268436850" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="104" parent="globals/JulyWatchView" pc="268436857" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="106" parent="globals/JulyWatchView" pc="268436869" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="107" parent="globals/JulyWatchView" pc="268436885" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="112" parent="globals/JulyWatchView" pc="268436932" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="113" parent="globals/JulyWatchView" pc="268436953" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="114" parent="globals/JulyWatchView" pc="268436973" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="115" parent="globals/JulyWatchView" pc="268436992" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="28" lineNum="116" parent="globals/JulyWatchView" pc="268437012" symbol="onUpdate"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="29" lineNum="41" parent="globals/JulyWatchView" pc="268437033" symbol="drawMinutes"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="29" lineNum="42" parent="globals/JulyWatchView" pc="268437035" symbol="drawMinutes"/>
+<entry filename="E:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\source\\JulyWatchView.mc" id="29" lineNum="43" parent="globals/JulyWatchView" pc="268437052" symbol="drawMinutes"/>
+<entry filename="e:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\bin\\gen\\006-B4532-00\\source\\Rez.mcgen" id="30" lineNum="13" parent="globals/Rez/Layouts" pc="268437073" symbol="WatchFace"/>
+<entry filename="e:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\bin\\gen\\006-B4532-00\\source\\Rez.mcgen" id="30" lineNum="14" parent="globals/Rez/Layouts" pc="268437084" symbol="WatchFace"/>
+<entry filename="e:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\bin\\gen\\006-B4532-00\\source\\Rez.mcgen" id="30" lineNum="16" parent="globals/Rez/Layouts" pc="268437108" symbol="WatchFace"/>
+<entry filename="e:\\personal\\Repos\\WatchFacesFenix8\\JulyWatch\\bin\\gen\\006-B4532-00\\source\\Rez.mcgen" id="30" lineNum="18" parent="globals/Rez/Layouts" pc="268437224" symbol="WatchFace"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8388639" module="true" symbol="Graphics"/>
+<entry field="true" id="51" symbol="Tuesday"/>
+<entry id="20" method="true" symbol="drawMinutes"/>
+<entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+<entry id="18" method="true" symbol="drawDate"/>
+<entry id="8389683" method="true" symbol="onSettingsChanged"/>
+<entry field="true" id="32" symbol="ColorRed"/>
+<entry id="8389702" method="true" symbol="getHeartRateHistory"/>
+<entry id="15" method="true" symbol="getDaySymbol"/>
+<entry id="14" method="true" symbol="drawStepsIcon"/>
+<entry field="true" id="43" symbol="MilitaryFormatTitle"/>
+<entry id="7" module="true" symbol="globals/TimeUtils"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry id="12" method="true" symbol="drawActivityData"/>
+<entry id="10" object="true" symbol="JulyWatchView"/>
+<entry field="true" id="29" symbol="ColorBlue"/>
+<entry field="true" id="46" symbol="October"/>
+<entry field="true" id="40" symbol="June"/>
+<entry field="true" id="24" symbol="AppName"/>
+<entry field="true" id="39" symbol="July"/>
+<entry id="8388633" module="true" symbol="ActivityMonitor"/>
+<entry id="53" symbol="date"/>
+<entry id="11" module="true" symbol="TimeUtils"/>
+<entry id="6" module="true" symbol="globals/Rez/Strings"/>
+<entry field="true" id="41" symbol="March"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="17" method="true" symbol="clearScreen"/>
+<entry id="3" module="true" symbol="globals/Rez"/>
+<entry id="8" module="true" symbol="ActivityData"/>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry id="8389375" method="true" object="true" symbol="WatchFace"/>
+<entry field="true" id="8389065" symbol="locY"/>
+<entry field="true" id="8389064" symbol="locX"/>
+<entry field="true" id="38" symbol="January"/>
+<entry field="true" id="8388721" symbol="min"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389348" symbol="font"/>
+<entry id="8389275" method="true" symbol="getApp"/>
+<entry field="true" id="30" symbol="ColorDarkGray"/>
+<entry id="5" module="true" symbol="globals/Rez/Layouts"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry field="true" id="42" symbol="May"/>
+<entry id="8389376" method="true" symbol="onEnterSleep"/>
+<entry field="true" id="8389063" symbol="identifier"/>
+<entry id="8389349" symbol="justification"/>
+<entry field="true" id="44" symbol="Monday"/>
+<entry field="true" id="8388722" symbol="sec"/>
+<entry field="true" id="33" symbol="ColorWhite"/>
+<entry field="true" id="28" symbol="ColorBlack"/>
+<entry id="4" module="true" symbol="globals/Rez/Drawables"/>
+<entry field="true" id="25" symbol="April"/>
+<entry id="8389377" method="true" symbol="onExitSleep"/>
+<entry id="8388644" module="true" symbol="System"/>
+<entry id="2" module="true" symbol="globals/ActivityData"/>
+<entry field="true" id="37" symbol="Friday"/>
+<entry id="8388645" module="true" symbol="Time"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry field="true" id="8388720" symbol="hour"/>
+<entry id="13" method="true" symbol="drawStepsData"/>
+<entry id="8388640" module="true" symbol="Lang"/>
+<entry id="8389068" method="true" symbol="draw"/>
+<entry field="true" id="23" symbol="LauncherIcon"/>
+<entry id="8388610" symbol="statics"/>
+<entry id="8389123" method="true" symbol="onShow"/>
+<entry field="true" id="50" symbol="Thursday"/>
+<entry field="true" id="34" symbol="December"/>
+<entry field="true" id="49" symbol="Sunday"/>
+<entry id="8389350" module="true" symbol="globals"/>
+<entry field="true" id="27" symbol="BackgroundColorTitle"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8390146" module="true" object="true" symbol="Background"/>
+<entry id="16" method="true" symbol="getTimeData"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry field="true" id="31" symbol="ColorLightGray"/>
+<entry field="true" id="26" symbol="August"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry id="21" method="true" symbol="drawSeparators"/>
+<entry id="19" method="true" symbol="drawHours"/>
+<entry field="true" id="8389347" symbol="color"/>
+<entry id="9" object="true" symbol="JulyWatchApp"/>
+<entry field="true" id="36" symbol="ForegroundColorTitle"/>
+<entry field="true" id="35" symbol="February"/>
+<entry id="22" module="true" symbol="Layouts"/>
+<entry field="true" id="47" symbol="Saturday"/>
+<entry field="true" id="52" symbol="Wednesday"/>
+<entry field="true" id="48" symbol="September"/>
+<entry id="54" symbol="dateShort"/>
+<entry id="8389125" method="true" symbol="onHide"/>
+<entry field="true" id="45" symbol="November"/>
+<entry id="8388635" module="true" symbol="Application"/>
+</symbolTable>
+<localVars>
+<entry arg="true" endPc="268435619" name="dc" stackId="1" startPc="268435537"/>
+<entry arg="true" endPc="268435619" name="x" stackId="2" startPc="268435537"/>
+<entry arg="true" endPc="268435619" name="y" stackId="3" startPc="268435537"/>
+<entry endPc="268435618" name="iconSize" stackId="4" startPc="268435548"/>
+<entry arg="true" endPc="268435774" name="dc" stackId="1" startPc="268435620"/>
+<entry arg="true" endPc="268435774" name="width" stackId="2" startPc="268435620"/>
+<entry arg="true" endPc="268435774" name="height" stackId="3" startPc="268435620"/>
+<entry arg="true" endPc="268435774" name="timeData" stackId="4" startPc="268435620"/>
+<entry endPc="268435773" name="cy" stackId="5" startPc="268435631"/>
+<entry endPc="268435773" name="leftX" stackId="6" startPc="268435631"/>
+<entry endPc="268435773" name="rightX" stackId="7" startPc="268435631"/>
+<entry endPc="268435773" name="dataY" stackId="8" startPc="268435631"/>
+<entry endPc="268435773" name="activityInfo" stackId="9" startPc="268435631"/>
+<entry endPc="268435773" name="heartRate" stackId="10" startPc="268435631"/>
+<entry endPc="268435749" name="hrHistory" stackId="11" startPc="268435695"/>
+<entry endPc="268435749" name="hrSample" stackId="12" startPc="268435695"/>
+<entry arg="true" endPc="268435855" name="dc" stackId="1" startPc="268435775"/>
+<entry arg="true" endPc="268435855" name="x" stackId="2" startPc="268435775"/>
+<entry arg="true" endPc="268435855" name="y" stackId="3" startPc="268435775"/>
+<entry arg="true" endPc="268435855" name="steps" stackId="4" startPc="268435775"/>
+<entry endPc="268435854" name="stepsStr" stackId="5" startPc="268435786"/>
+<entry arg="true" endPc="268435930" name="dayOfWeek" stackId="1" startPc="268435856"/>
+<entry endPc="268436050" name="clock" stackId="1" startPc="268435942"/>
+<entry endPc="268436050" name="now" stackId="2" startPc="268435942"/>
+<entry endPc="268436150" name="dictionary" stackId="1" startPc="268436117"/>
+<entry arg="true" endPc="268436191" name="dc" stackId="1" startPc="268436152"/>
+<entry arg="true" endPc="268436231" name="dc" stackId="1" startPc="268436192"/>
+<entry arg="true" endPc="268436231" name="cx" stackId="2" startPc="268436192"/>
+<entry arg="true" endPc="268436231" name="y" stackId="3" startPc="268436192"/>
+<entry arg="true" endPc="268436231" name="hourStr" stackId="4" startPc="268436192"/>
+<entry arg="true" endPc="268436267" name="dc" stackId="1" startPc="268436232"/>
+<entry arg="true" endPc="268436290" name="dc" stackId="1" startPc="268436268"/>
+<entry arg="true" endPc="268436656" name="dc" stackId="1" startPc="268436306"/>
+<entry arg="true" endPc="268436656" name="width" stackId="2" startPc="268436306"/>
+<entry arg="true" endPc="268436656" name="height" stackId="3" startPc="268436306"/>
+<entry arg="true" endPc="268436656" name="cx" stackId="4" startPc="268436306"/>
+<entry arg="true" endPc="268436656" name="cy" stackId="5" startPc="268436306"/>
+<entry endPc="268436655" name="markHeight" stackId="6" startPc="268436309"/>
+<entry endPc="268436655" name="barX" stackId="7" startPc="268436309"/>
+<entry endPc="268436655" name="barW" stackId="8" startPc="268436309"/>
+<entry endPc="268436655" name="barTopY" stackId="9" startPc="268436309"/>
+<entry endPc="268436655" name="barBottomY" stackId="10" startPc="268436309"/>
+<entry arg="true" endPc="268436810" name="dc" stackId="1" startPc="268436657"/>
+<entry arg="true" endPc="268436810" name="cx" stackId="2" startPc="268436657"/>
+<entry arg="true" endPc="268436810" name="y" stackId="3" startPc="268436657"/>
+<entry arg="true" endPc="268436810" name="timeData" stackId="4" startPc="268436657"/>
+<entry endPc="268436809" name="dayWeek" stackId="5" startPc="268436660"/>
+<entry endPc="268436809" name="dateStr" stackId="6" startPc="268436660"/>
+<entry arg="true" endPc="268437032" name="dc" stackId="1" startPc="268436811"/>
+<entry endPc="268437031" name="w" stackId="2" startPc="268436814"/>
+<entry endPc="268437031" name="h" stackId="3" startPc="268436814"/>
+<entry endPc="268437031" name="cx" stackId="4" startPc="268436814"/>
+<entry endPc="268437031" name="cy" stackId="5" startPc="268436814"/>
+<entry endPc="268437031" name="timeData" stackId="6" startPc="268436814"/>
+<entry endPc="268437031" name="hourStr" stackId="7" startPc="268436814"/>
+<entry endPc="268437031" name="minStr" stackId="8" startPc="268436814"/>
+<entry arg="true" endPc="268437072" name="dc" stackId="1" startPc="268437033"/>
+<entry arg="true" endPc="268437072" name="cx" stackId="2" startPc="268437033"/>
+<entry arg="true" endPc="268437072" name="y" stackId="3" startPc="268437033"/>
+<entry arg="true" endPc="268437072" name="minStr" stackId="4" startPc="268437033"/>
+<entry arg="true" endPc="268437238" name="dc" stackId="1" startPc="268437073"/>
+<entry endPc="268437238" name="rez_cmp_local_custom_drawable_11939594661139614796" stackId="2" startPc="268437084"/>
+<entry endPc="268437238" name="rez_cmp_local_text_TimeLabel" stackId="3" startPc="268437084"/>
+</localVars>
+<deviceInfo deviceVersion="5c7ae9cf907f88c116a91dc4ffd75be9b5b7d2e9" partNumber="006-B4532-00"/>
+<annotations>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="MilitaryFormatTitle"/>
+<annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Tuesday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="July"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorBlue"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="October"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="BackgroundColorTitle"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="May"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Thursday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="January"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="April"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Friday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Monday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorBlack"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Saturday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="November"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="June"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Wednesday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="August"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorWhite"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ForegroundColorTitle"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorLightGray"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="Sunday"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="September"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="March"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorRed"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="December"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="ColorDarkGray"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="February"/>
+</annotations>
+<dataEntryOffsetMappings>
+<dataEntry label="globals" offset="76" parentId="" symbolId="globals" type="module"/>
+<dataEntry label="globals/ActivityData" offset="170" parentId="globals" symbolId="ActivityData" type="module"/>
+<dataEntry label="globals/TimeUtils" offset="223" parentId="globals" symbolId="TimeUtils" type="module"/>
+<dataEntry label="globals/JulyWatchApp" offset="267" parentId="globals" symbolId="JulyWatchApp" type="class"/>
+<dataEntry label="globals/Background" offset="347" parentId="globals" symbolId="Background" type="class"/>
+<dataEntry label="globals/JulyWatchView" offset="400" parentId="globals" symbolId="JulyWatchView" type="class"/>
+<dataEntry label="globals/Rez" offset="543" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry label="globals/Rez/Drawables" offset="596" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry label="globals/Rez/Layouts" offset="631" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry label="globals/Rez/Strings" offset="666" parentId="Rez" symbolId="Strings" type="module"/>
+</dataEntryOffsetMappings>
+<functions>
+<functionEntry accessMode="public" name="&lt;init&gt;" parent="ActivityData">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="&lt;init&gt;" parent="TimeUtils">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435471" name="&lt;init&gt;" parent="JulyWatchApp" startPc="268435460">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435492" name="getApp" startPc="268435472">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435504" name="&lt;init&gt;" parent="Background" startPc="268435493">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435516" name="&lt;init&gt;" parent="JulyWatchView" startPc="268435505">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435536" name="&lt;init&gt;" parent="Rez" startPc="268435517">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435619" name="drawStepsIcon" parent="ActivityData" startPc="268435537">
+<param id="dc"/>
+<param id="x"/>
+<param id="y"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435774" name="drawActivityData" parent="ActivityData" startPc="268435620">
+<param id="dc"/>
+<param id="width"/>
+<param id="height"/>
+<param id="timeData"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435855" name="drawStepsData" parent="ActivityData" startPc="268435775">
+<param id="dc"/>
+<param id="x"/>
+<param id="y"/>
+<param id="steps"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268435930" name="getDaySymbol" parent="TimeUtils" startPc="268435856">
+<param id="dayOfWeek"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436050" name="getTimeData" parent="TimeUtils" startPc="268435931">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436053" name="onStart" parent="JulyWatchApp" startPc="268436051">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436067" name="onSettingsChanged" parent="JulyWatchApp" startPc="268436054">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436095" name="getInitialView" parent="JulyWatchApp" startPc="268436068">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436110" name="initialize" parent="JulyWatchApp" startPc="268436096">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436113" name="onStop" parent="JulyWatchApp" startPc="268436111">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436151" name="initialize" parent="Background" startPc="268436114">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436191" name="draw" parent="Background" startPc="268436152">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onExitSleep" parent="JulyWatchView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436231" name="drawHours" parent="JulyWatchView" startPc="268436192">
+<param id="dc"/>
+<param id="cx"/>
+<param id="y"/>
+<param id="hourStr"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onShow" parent="JulyWatchView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436267" name="onLayout" parent="JulyWatchView" startPc="268436232">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436290" name="clearScreen" parent="JulyWatchView" startPc="268436268">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onEnterSleep" parent="JulyWatchView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436305" name="initialize" parent="JulyWatchView" startPc="268436291">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onHide" parent="JulyWatchView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436656" name="drawSeparators" parent="JulyWatchView" startPc="268436306">
+<param id="dc"/>
+<param id="width"/>
+<param id="height"/>
+<param id="cx"/>
+<param id="cy"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268436810" name="drawDate" parent="JulyWatchView" startPc="268436657">
+<param id="dc"/>
+<param id="cx"/>
+<param id="y"/>
+<param id="timeData"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437032" name="onUpdate" parent="JulyWatchView" startPc="268436811">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437072" name="drawMinutes" parent="JulyWatchView" startPc="268437033">
+<param id="dc"/>
+<param id="cx"/>
+<param id="y"/>
+<param id="minStr"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="&lt;init&gt;" parent="Layouts">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" endPc="268437238" name="WatchFace" parent="Layouts" startPc="268437073">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+</functions>
+</debugInfo>

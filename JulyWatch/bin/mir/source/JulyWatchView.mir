@@ -1,0 +1,764 @@
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Application,1,14,25]; ]
+import Toybox.Application;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [Graphics,2,14,22]; ]
+import Toybox.Graphics;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [Lang,3,14,18]; ]
+import Toybox.Lang;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 4; @symbol_importdef<0> = [Toybox,4,7,13]; @symbol_importdef<1> = [System,4,14,20]; ]
+import Toybox.System;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 5; @symbol_importdef<0> = [Toybox,5,7,13]; @symbol_importdef<1> = [WatchUi,5,14,21]; ]
+import Toybox.WatchUi;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [Graphics,7,13,21]; @symbol_usingAlias = [G,7,25,26]; ]
+using Toybox.Graphics as :G;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 8; @symbol_usingdef<0> = [TimeUtils,8,6,15]; ]
+using TimeUtils;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 9; @symbol_usingdef<0> = [ActivityData,9,6,18]; ]
+using ActivityData;
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 11; @symbol_classdef = [JulyWatchView,11,6,19]; @symbol_extends<0> = [WatchUi,11,28,35]; @symbol_extends<1> = [WatchFace,11,36,45]; ]
+class JulyWatchView extends WatchUi.WatchFace {
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 11; ]
+    <init> {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 11; ]
+    static
+    <init> {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 13; @symbol_functiondef = [initialize,13,13,23]; ]
+    function initialize() as Void {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_13_26_15_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 14 8 ]
+        symbol [ WatchFace %tmp.2 14 8 17 ];
+        %tmp.2 = getv ? :WatchFace;
+        symbol [ initialize %tmp.3 14 18 28 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_13_26_15_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 18; @symbol_functiondef = [onLayout,18,13,21]; @symbol_param<0> = [dc,18,22,24]; @symbol_param<0>_type<0> = [Dc,18,28,30]; ]
+    function onLayout(dc as Dc) as Void {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_18_40_20_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 19 8 ]
+        %tmp.1 = self;
+        symbol [ setLayout %tmp.2 19 8 17 ];
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        symbol [ Rez %tmp.4 19 18 21 ];
+        %tmp.4 = getv ? :Rez;
+        symbol [ Layouts %tmp.5 19 22 29 ];
+        %tmp.5 = getv %tmp.4 :Layouts;
+        symbol [ WatchFace %tmp.6 19 30 39 ];
+        %tmp.6 = getv function %tmp.5 :WatchFace;
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 19 40 42 ];
+        %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
+        invoke %tmp.1 %tmp.2(%tmp.8);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_18_40_20_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 25; @symbol_functiondef = [onShow,25,13,19]; ]
+    function onShow() as Void {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 29; @symbol_functiondef = [clearScreen,29,13,24]; @symbol_param<0> = [dc,29,25,27]; @symbol_param<0>_type<0> = [Dc,29,31,33]; ]
+    function clearScreen(dc as Dc) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_29_35_32_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 30 6 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 30 6 8 ];
+        symbol [ setColor %tmp.2 30 9 17 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ G %tmp.3 30 18 19 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.4 30 20 31 ];
+        %tmp.4 = getv %tmp.3 :COLOR_BLACK;
+        symbol [ G %tmp.5 30 33 34 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.6 30 35 46 ];
+        %tmp.6 = getv %tmp.5 :COLOR_BLACK;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 31 6 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 31 6 8 ];
+        symbol [ clear %tmp.8 31 9 14 ];
+        %tmp.8 = getv function %tmp.7 :clear;
+        invoke %tmp.7 %tmp.8();
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_29_35_32_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 35; @symbol_functiondef = [drawHours,35,13,22]; @symbol_param<0> = [dc,35,23,25]; @symbol_param<1> = [cx,35,27,29]; @symbol_param<2> = [y,35,31,32]; @symbol_param<3> = [hourStr,35,34,41]; ]
+    function drawHours(dc, cx, y, hourStr) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_35_43_38_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 36 8 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 36 8 10 ];
+        symbol [ setColor %tmp.2 36 11 19 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ G %tmp.3 36 20 21 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.4 36 22 33 ];
+        %tmp.4 = getv %tmp.3 :COLOR_WHITE;
+        symbol [ G %tmp.5 36 35 36 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.6 36 37 54 ];
+        %tmp.6 = getv %tmp.5 :COLOR_TRANSPARENT;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 37 8 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 37 8 10 ];
+        symbol [ drawText %tmp.8 37 11 19 ];
+        %tmp.8 = getv function %tmp.7 :drawText;
+        %tmp.9 = lgetv %cx;
+        symbol [ cx %tmp.9 37 20 22 ];
+        %tmp.10 = lgetv %y;
+        symbol [ y %tmp.10 37 24 25 ];
+        symbol [ G %tmp.11 37 27 28 ];
+        %tmp.11 = getm $.Toybox.Graphics;
+        symbol [ FONT_NUMBER_THAI_HOT %tmp.12 37 29 49 ];
+        %tmp.12 = getv %tmp.11 :FONT_NUMBER_THAI_HOT;
+        %tmp.13 = lgetv %hourStr;
+        symbol [ hourStr %tmp.13 37 51 58 ];
+        symbol [ G %tmp.14 37 60 61 ];
+        %tmp.14 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.15 37 62 81 ];
+        %tmp.15 = getv %tmp.14 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.7 %tmp.8(%tmp.9, %tmp.10, %tmp.12, %tmp.13, %tmp.15);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_35_43_38_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 41; @symbol_functiondef = [drawMinutes,41,13,24]; @symbol_param<0> = [dc,41,25,27]; @symbol_param<1> = [cx,41,29,31]; @symbol_param<2> = [y,41,33,34]; @symbol_param<3> = [minStr,41,36,42]; ]
+    function drawMinutes(dc, cx, y, minStr) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_41_44_44_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 42 8 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 42 8 10 ];
+        symbol [ setColor %tmp.2 42 11 19 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ G %tmp.3 42 20 21 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.4 42 22 33 ];
+        %tmp.4 = getv %tmp.3 :COLOR_WHITE;
+        symbol [ G %tmp.5 42 35 36 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.6 42 37 54 ];
+        %tmp.6 = getv %tmp.5 :COLOR_TRANSPARENT;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 43 8 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 43 8 10 ];
+        symbol [ drawText %tmp.8 43 11 19 ];
+        %tmp.8 = getv function %tmp.7 :drawText;
+        %tmp.9 = lgetv %cx;
+        symbol [ cx %tmp.9 43 20 22 ];
+        %tmp.10 = lgetv %y;
+        symbol [ y %tmp.10 43 24 25 ];
+        symbol [ G %tmp.11 43 27 28 ];
+        %tmp.11 = getm $.Toybox.Graphics;
+        symbol [ FONT_NUMBER_THAI_HOT %tmp.12 43 29 49 ];
+        %tmp.12 = getv %tmp.11 :FONT_NUMBER_THAI_HOT;
+        %tmp.13 = lgetv %minStr;
+        symbol [ minStr %tmp.13 43 51 57 ];
+        symbol [ G %tmp.14 43 59 60 ];
+        %tmp.14 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.15 43 61 80 ];
+        %tmp.15 = getv %tmp.14 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.7 %tmp.8(%tmp.9, %tmp.10, %tmp.12, %tmp.13, %tmp.15);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_41_44_44_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 47; @symbol_functiondef = [drawSeparators,47,13,27]; @symbol_param<0> = [dc,47,28,30]; @symbol_param<1> = [width,47,32,37]; @symbol_param<2> = [height,47,39,45]; @symbol_param<3> = [cx,47,47,49]; @symbol_param<4> = [cy,47,51,53]; ]
+    function drawSeparators(dc, width, height, cx, cy) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 49 7 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 49 7 9 ];
+        symbol [ setColor %tmp.2 49 10 18 ];
+        %tmp.2 = getv function %tmp.1 :setColor;
+        symbol [ G %tmp.3 49 19 20 ];
+        %tmp.3 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.4 49 21 32 ];
+        %tmp.4 = getv %tmp.3 :COLOR_WHITE;
+        symbol [ G %tmp.5 49 34 35 ];
+        %tmp.5 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.6 49 36 53 ];
+        %tmp.6 = getv %tmp.5 :COLOR_TRANSPARENT;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 50 7 ]
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 50 7 9 ];
+        symbol [ drawText %tmp.8 50 10 18 ];
+        %tmp.8 = getv function %tmp.7 :drawText;
+        %tmp.9 = 5;
+        %tmp.10 = lgetv %cy;
+        symbol [ cy %tmp.10 50 30 32 ];
+        %tmp.11 = 20;
+        %tmp.12 = sub %tmp.10 %tmp.11;
+        symbol [ G %tmp.13 50 39 40 ];
+        %tmp.13 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.14 50 41 52 ];
+        %tmp.14 = getv %tmp.13 :FONT_MEDIUM;
+        %tmp.15 = "-";
+        symbol [ G %tmp.16 50 59 60 ];
+        %tmp.16 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_LEFT %tmp.17 50 61 78 ];
+        %tmp.17 = getv %tmp.16 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.7 %tmp.8(%tmp.9, %tmp.12, %tmp.14, %tmp.15, %tmp.17);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 51 7 ]
+        %tmp.18 = lgetv %dc;
+        symbol [ dc %tmp.18 51 7 9 ];
+        symbol [ drawText %tmp.19 51 10 18 ];
+        %tmp.19 = getv function %tmp.18 :drawText;
+        %tmp.20 = lgetv %width;
+        symbol [ width %tmp.20 51 19 24 ];
+        %tmp.21 = 5;
+        %tmp.22 = sub %tmp.20 %tmp.21;
+        %tmp.23 = lgetv %cy;
+        symbol [ cy %tmp.23 51 30 32 ];
+        %tmp.24 = 20;
+        %tmp.25 = sub %tmp.23 %tmp.24;
+        symbol [ G %tmp.26 51 39 40 ];
+        %tmp.26 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.27 51 41 52 ];
+        %tmp.27 = getv %tmp.26 :FONT_MEDIUM;
+        %tmp.28 = "-";
+        symbol [ G %tmp.29 51 59 60 ];
+        %tmp.29 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_RIGHT %tmp.30 51 61 79 ];
+        %tmp.30 = getv %tmp.29 :TEXT_JUSTIFY_RIGHT;
+        invoke %tmp.18 %tmp.19(%tmp.22, %tmp.25, %tmp.27, %tmp.28, %tmp.30);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 53 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop" ]
+        %markHeight.1 = local;
+        symbol [ markHeight %markHeight.1 53 11 21 ];
+        %tmp.31 = 8;
+        lputv %markHeight.1 %tmp.31;
+        symbol [ markHeight %markHeight.1 53 11 21 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 54 7 ]
+        %tmp.32 = lgetv %dc;
+        symbol [ dc %tmp.32 54 7 9 ];
+        symbol [ drawLine %tmp.33 54 10 18 ];
+        %tmp.33 = getv function %tmp.32 :drawLine;
+        %tmp.34 = lgetv %cx;
+        symbol [ cx %tmp.34 54 19 21 ];
+        %tmp.35 = 0;
+        %tmp.36 = lgetv %cx;
+        symbol [ cx %tmp.36 54 26 28 ];
+        %tmp.37 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.37 54 30 40 ];
+        invoke %tmp.32 %tmp.33(%tmp.34, %tmp.35, %tmp.36, %tmp.37);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 55 7 ]
+        %tmp.38 = lgetv %dc;
+        symbol [ dc %tmp.38 55 7 9 ];
+        symbol [ drawLine %tmp.39 55 10 18 ];
+        %tmp.39 = getv function %tmp.38 :drawLine;
+        %tmp.40 = lgetv %cx;
+        symbol [ cx %tmp.40 55 19 21 ];
+        %tmp.41 = 1;
+        %tmp.42 = sub %tmp.40 %tmp.41;
+        %tmp.43 = 0;
+        %tmp.44 = lgetv %cx;
+        symbol [ cx %tmp.44 55 28 30 ];
+        %tmp.45 = 1;
+        %tmp.46 = sub %tmp.44 %tmp.45;
+        %tmp.47 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.47 55 34 44 ];
+        invoke %tmp.38 %tmp.39(%tmp.42, %tmp.43, %tmp.46, %tmp.47);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 56 7 ]
+        %tmp.48 = lgetv %dc;
+        symbol [ dc %tmp.48 56 7 9 ];
+        symbol [ drawLine %tmp.49 56 10 18 ];
+        %tmp.49 = getv function %tmp.48 :drawLine;
+        %tmp.50 = lgetv %cx;
+        symbol [ cx %tmp.50 56 19 21 ];
+        %tmp.51 = 2;
+        %tmp.52 = sub %tmp.50 %tmp.51;
+        %tmp.53 = 0;
+        %tmp.54 = lgetv %cx;
+        symbol [ cx %tmp.54 56 28 30 ];
+        %tmp.55 = 2;
+        %tmp.56 = sub %tmp.54 %tmp.55;
+        %tmp.57 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.57 56 34 44 ];
+        invoke %tmp.48 %tmp.49(%tmp.52, %tmp.53, %tmp.56, %tmp.57);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 57 7 ]
+        %tmp.58 = lgetv %dc;
+        symbol [ dc %tmp.58 57 7 9 ];
+        symbol [ drawLine %tmp.59 57 10 18 ];
+        %tmp.59 = getv function %tmp.58 :drawLine;
+        %tmp.60 = lgetv %cx;
+        symbol [ cx %tmp.60 57 19 21 ];
+        %tmp.61 = 3;
+        %tmp.62 = sub %tmp.60 %tmp.61;
+        %tmp.63 = 0;
+        %tmp.64 = lgetv %cx;
+        symbol [ cx %tmp.64 57 28 30 ];
+        %tmp.65 = 3;
+        %tmp.66 = sub %tmp.64 %tmp.65;
+        %tmp.67 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.67 57 34 44 ];
+        invoke %tmp.58 %tmp.59(%tmp.62, %tmp.63, %tmp.66, %tmp.67);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 59 7 ]
+        %tmp.68 = lgetv %dc;
+        symbol [ dc %tmp.68 59 7 9 ];
+        symbol [ drawLine %tmp.69 59 10 18 ];
+        %tmp.69 = getv function %tmp.68 :drawLine;
+        %tmp.70 = lgetv %cx;
+        symbol [ cx %tmp.70 59 19 21 ];
+        %tmp.71 = lgetv %height;
+        symbol [ height %tmp.71 59 23 29 ];
+        %tmp.72 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.72 59 32 42 ];
+        %tmp.73 = sub %tmp.71 %tmp.72;
+        %tmp.74 = lgetv %cx;
+        symbol [ cx %tmp.74 59 44 46 ];
+        %tmp.75 = lgetv %height;
+        symbol [ height %tmp.75 59 48 54 ];
+        invoke %tmp.68 %tmp.69(%tmp.70, %tmp.73, %tmp.74, %tmp.75);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 60 7 ]
+        %tmp.76 = lgetv %dc;
+        symbol [ dc %tmp.76 60 7 9 ];
+        symbol [ drawLine %tmp.77 60 10 18 ];
+        %tmp.77 = getv function %tmp.76 :drawLine;
+        %tmp.78 = lgetv %cx;
+        symbol [ cx %tmp.78 60 19 21 ];
+        %tmp.79 = 1;
+        %tmp.80 = sub %tmp.78 %tmp.79;
+        %tmp.81 = lgetv %height;
+        symbol [ height %tmp.81 60 25 31 ];
+        %tmp.82 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.82 60 34 44 ];
+        %tmp.83 = sub %tmp.81 %tmp.82;
+        %tmp.84 = lgetv %cx;
+        symbol [ cx %tmp.84 60 46 48 ];
+        %tmp.85 = 1;
+        %tmp.86 = sub %tmp.84 %tmp.85;
+        %tmp.87 = lgetv %height;
+        symbol [ height %tmp.87 60 52 58 ];
+        invoke %tmp.76 %tmp.77(%tmp.80, %tmp.83, %tmp.86, %tmp.87);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 61 7 ]
+        %tmp.88 = lgetv %dc;
+        symbol [ dc %tmp.88 61 7 9 ];
+        symbol [ drawLine %tmp.89 61 10 18 ];
+        %tmp.89 = getv function %tmp.88 :drawLine;
+        %tmp.90 = lgetv %cx;
+        symbol [ cx %tmp.90 61 19 21 ];
+        %tmp.91 = 2;
+        %tmp.92 = sub %tmp.90 %tmp.91;
+        %tmp.93 = lgetv %height;
+        symbol [ height %tmp.93 61 25 31 ];
+        %tmp.94 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.94 61 34 44 ];
+        %tmp.95 = sub %tmp.93 %tmp.94;
+        %tmp.96 = lgetv %cx;
+        symbol [ cx %tmp.96 61 46 48 ];
+        %tmp.97 = 2;
+        %tmp.98 = sub %tmp.96 %tmp.97;
+        %tmp.99 = lgetv %height;
+        symbol [ height %tmp.99 61 52 58 ];
+        invoke %tmp.88 %tmp.89(%tmp.92, %tmp.95, %tmp.98, %tmp.99);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 62 7 ]
+        %tmp.100 = lgetv %dc;
+        symbol [ dc %tmp.100 62 7 9 ];
+        symbol [ drawLine %tmp.101 62 10 18 ];
+        %tmp.101 = getv function %tmp.100 :drawLine;
+        %tmp.102 = lgetv %cx;
+        symbol [ cx %tmp.102 62 19 21 ];
+        %tmp.103 = 3;
+        %tmp.104 = sub %tmp.102 %tmp.103;
+        %tmp.105 = lgetv %height;
+        symbol [ height %tmp.105 62 25 31 ];
+        %tmp.106 = lgetv %markHeight.1;
+        symbol [ markHeight %tmp.106 62 34 44 ];
+        %tmp.107 = sub %tmp.105 %tmp.106;
+        %tmp.108 = lgetv %cx;
+        symbol [ cx %tmp.108 62 46 48 ];
+        %tmp.109 = 3;
+        %tmp.110 = sub %tmp.108 %tmp.109;
+        %tmp.111 = lgetv %height;
+        symbol [ height %tmp.111 62 52 58 ];
+        invoke %tmp.100 %tmp.101(%tmp.104, %tmp.107, %tmp.110, %tmp.111);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 65 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop" ]
+        %barX.2 = local;
+        symbol [ barX %barX.2 65 11 15 ];
+        %tmp.112 = 15;
+        lputv %barX.2 %tmp.112;
+        symbol [ barX %barX.2 65 11 15 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 66 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop" ]
+        %barW.3 = local;
+        symbol [ barW %barW.3 66 11 15 ];
+        %tmp.113 = lgetv %width;
+        symbol [ width %tmp.113 66 18 23 ];
+        %tmp.114 = 30;
+        %tmp.115 = sub %tmp.113 %tmp.114;
+        lputv %barW.3 %tmp.115;
+        symbol [ barW %barW.3 66 11 15 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 67 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop" ]
+        %barTopY.4 = local;
+        symbol [ barTopY %barTopY.4 67 11 18 ];
+        %tmp.116 = lgetv %cy;
+        symbol [ cy %tmp.116 67 21 23 ];
+        %tmp.117 = 12;
+        %tmp.118 = sub %tmp.116 %tmp.117;
+        lputv %barTopY.4 %tmp.118;
+        symbol [ barTopY %barTopY.4 67 11 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 68 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop" ]
+        %barBottomY.5 = local;
+        symbol [ barBottomY %barBottomY.5 68 11 21 ];
+        %tmp.119 = lgetv %cy;
+        symbol [ cy %tmp.119 68 24 26 ];
+        %tmp.120 = 12;
+        %tmp.121 = add %tmp.119 %tmp.120;
+        lputv %barBottomY.5 %tmp.121;
+        symbol [ barBottomY %barBottomY.5 68 11 21 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 70 7 ]
+        %tmp.122 = lgetv %dc;
+        symbol [ dc %tmp.122 70 7 9 ];
+        symbol [ setColor %tmp.123 70 10 18 ];
+        %tmp.123 = getv function %tmp.122 :setColor;
+        symbol [ G %tmp.124 70 19 20 ];
+        %tmp.124 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.125 70 21 34 ];
+        %tmp.125 = getv %tmp.124 :COLOR_LT_GRAY;
+        symbol [ G %tmp.126 70 36 37 ];
+        %tmp.126 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.127 70 38 55 ];
+        %tmp.127 = getv %tmp.126 :COLOR_TRANSPARENT;
+        invoke %tmp.122 %tmp.123(%tmp.125, %tmp.127);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 71 7 ]
+        %tmp.128 = lgetv %dc;
+        symbol [ dc %tmp.128 71 7 9 ];
+        symbol [ drawLine %tmp.129 71 10 18 ];
+        %tmp.129 = getv function %tmp.128 :drawLine;
+        %tmp.130 = lgetv %barX.2;
+        symbol [ barX %tmp.130 71 19 23 ];
+        %tmp.131 = lgetv %barTopY.4;
+        symbol [ barTopY %tmp.131 71 25 32 ];
+        %tmp.132 = lgetv %barX.2;
+        symbol [ barX %tmp.132 71 34 38 ];
+        %tmp.133 = lgetv %barW.3;
+        symbol [ barW %tmp.133 71 41 45 ];
+        %tmp.134 = add %tmp.132 %tmp.133;
+        %tmp.135 = lgetv %barTopY.4;
+        symbol [ barTopY %tmp.135 71 47 54 ];
+        invoke %tmp.128 %tmp.129(%tmp.130, %tmp.131, %tmp.134, %tmp.135);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 72 7 ]
+        %tmp.136 = lgetv %dc;
+        symbol [ dc %tmp.136 72 7 9 ];
+        symbol [ drawLine %tmp.137 72 10 18 ];
+        %tmp.137 = getv function %tmp.136 :drawLine;
+        %tmp.138 = lgetv %barX.2;
+        symbol [ barX %tmp.138 72 19 23 ];
+        %tmp.139 = lgetv %barBottomY.5;
+        symbol [ barBottomY %tmp.139 72 25 35 ];
+        %tmp.140 = lgetv %barX.2;
+        symbol [ barX %tmp.140 72 37 41 ];
+        %tmp.141 = lgetv %barW.3;
+        symbol [ barW %tmp.141 72 44 48 ];
+        %tmp.142 = add %tmp.140 %tmp.141;
+        %tmp.143 = lgetv %barBottomY.5;
+        symbol [ barBottomY %tmp.143 72 50 60 ];
+        invoke %tmp.136 %tmp.137(%tmp.138, %tmp.139, %tmp.142, %tmp.143);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_47_55_73_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 76; @symbol_functiondef = [drawDate,76,13,21]; @symbol_param<0> = [dc,76,22,24]; @symbol_param<1> = [cx,76,26,28]; @symbol_param<2> = [y,76,30,31]; @symbol_param<3> = [timeData,76,33,41]; ]
+    function drawDate(dc, cx, y, timeData) {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 77 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_stop" ]
+        %dayWeek.1 = local;
+        symbol [ dayWeek %dayWeek.1 77 11 18 ];
+        symbol [ WatchUi %tmp.1 77 21 28 ];
+        %tmp.1 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.2 77 29 41 ];
+        %tmp.2 = getv function %tmp.1 :loadResource;
+        symbol [ Rez %tmp.4 78 11 14 ];
+        %tmp.4 = getv ? :Rez;
+        symbol [ Strings %tmp.5 78 15 22 ];
+        %tmp.5 = getv %tmp.4 :Strings;
+        symbol [ TimeUtils %tmp.6 78 23 32 ];
+        %tmp.6 = getm $.TimeUtils;
+        symbol [ getDaySymbol %tmp.7 78 33 45 ];
+        %tmp.7 = getv function %tmp.6 :getDaySymbol;
+        %tmp.8 = lgetv %timeData;
+        symbol [ timeData %tmp.8 78 46 54 ];
+        %tmp.10 = const :dateShort;
+        symbol [ dateShort %tmp.10 78 56 65 const ];
+        %tmp.11 = agetv %tmp.8 %tmp.10;
+        symbol [ day_of_week %tmp.12 78 67 78 ];
+        %tmp.12 = getv %tmp.11 :day_of_week;
+        %tmp.13 = invoke %tmp.6 %tmp.7(%tmp.12);
+        %tmp.14 = agetv %tmp.5 %tmp.13;
+        %tmp.15 = invoke %tmp.1 %tmp.2(%tmp.14);
+        lputv %dayWeek.1 %tmp.15;
+        symbol [ dayWeek %dayWeek.1 77 11 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 84 7 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_stop" ]
+        %dateStr.2 = local;
+        symbol [ dateStr %dateStr.2 84 11 18 ];
+        symbol [ Lang %tmp.16 84 21 25 ];
+        %tmp.16 = getm $.Toybox.Lang;
+        symbol [ format %tmp.17 84 26 32 ];
+        %tmp.17 = getv function %tmp.16 :format;
+        %tmp.18 = "$1$ $2$ $3$";
+        %tmp.19 = newa 3;
+        %tmp.20 = lgetv %dayWeek.1;
+        symbol [ dayWeek %tmp.20 85 11 18 ];
+        %tmp.21 = dup %tmp.19;
+        %tmp.22 = aputv %tmp.21 0 %tmp.20;
+        %tmp.23 = lgetv %timeData;
+        symbol [ timeData %tmp.23 86 11 19 ];
+        %tmp.25 = const :date;
+        symbol [ date %tmp.25 86 21 25 const ];
+        %tmp.26 = agetv %tmp.23 %tmp.25;
+        symbol [ day %tmp.27 86 27 30 ];
+        %tmp.27 = getv %tmp.26 :day;
+        %tmp.28 = dup %tmp.22;
+        %tmp.29 = aputv %tmp.28 1 %tmp.27;
+        %tmp.30 = lgetv %timeData;
+        symbol [ timeData %tmp.30 87 11 19 ];
+        %tmp.32 = const :date;
+        symbol [ date %tmp.32 87 21 25 const ];
+        %tmp.33 = agetv %tmp.30 %tmp.32;
+        symbol [ month %tmp.34 87 27 32 ];
+        %tmp.34 = getv %tmp.33 :month;
+        %tmp.35 = dup %tmp.29;
+        %tmp.36 = aputv %tmp.35 2 %tmp.34;
+        %tmp.37 = invoke %tmp.16 %tmp.17(%tmp.18, %tmp.36);
+        lputv %dateStr.2 %tmp.37;
+        symbol [ dateStr %dateStr.2 84 11 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 91 7 ]
+        %tmp.38 = lgetv %dc;
+        symbol [ dc %tmp.38 91 7 9 ];
+        symbol [ setColor %tmp.39 91 10 18 ];
+        %tmp.39 = getv function %tmp.38 :setColor;
+        symbol [ G %tmp.40 91 19 20 ];
+        %tmp.40 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.41 91 21 32 ];
+        %tmp.41 = getv %tmp.40 :COLOR_WHITE;
+        symbol [ G %tmp.42 91 34 35 ];
+        %tmp.42 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.43 91 36 53 ];
+        %tmp.43 = getv %tmp.42 :COLOR_TRANSPARENT;
+        invoke %tmp.38 %tmp.39(%tmp.41, %tmp.43);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 92 7 ]
+        %tmp.44 = lgetv %dc;
+        symbol [ dc %tmp.44 92 7 9 ];
+        symbol [ drawText %tmp.45 92 10 18 ];
+        %tmp.45 = getv function %tmp.44 :drawText;
+        %tmp.46 = lgetv %cx;
+        symbol [ cx %tmp.46 92 19 21 ];
+        %tmp.47 = lgetv %y;
+        symbol [ y %tmp.47 92 23 24 ];
+        symbol [ G %tmp.48 92 26 27 ];
+        %tmp.48 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.49 92 28 38 ];
+        %tmp.49 = getv %tmp.48 :FONT_XTINY;
+        %tmp.50 = lgetv %dateStr.2;
+        symbol [ dateStr %tmp.50 92 40 47 ];
+        symbol [ G %tmp.51 92 49 50 ];
+        %tmp.51 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.52 92 51 70 ];
+        %tmp.52 = getv %tmp.51 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.44 %tmp.45(%tmp.46, %tmp.47, %tmp.49, %tmp.50, %tmp.52);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_76_43_93_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 96; @symbol_functiondef = [onUpdate,96,13,21]; @symbol_param<0> = [dc,96,22,24]; @symbol_param<0>_type<0> = [Dc,96,28,30]; ]
+    function onUpdate(dc as Dc) as Void {
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start:
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 97 8 ]
+        %tmp.1 = self;
+        symbol [ clearScreen %tmp.2 97 8 19 ];
+        %tmp.2 = getv function %tmp.1 :clearScreen;
+        %tmp.3 = lgetv %dc;
+        symbol [ dc %tmp.3 97 20 22 ];
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 99 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %w.1 = local;
+        symbol [ w %w.1 99 12 13 ];
+        %tmp.4 = lgetv %dc;
+        symbol [ dc %tmp.4 99 16 18 ];
+        symbol [ getWidth %tmp.5 99 19 27 ];
+        %tmp.5 = getv function %tmp.4 :getWidth;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %w.1 %tmp.6;
+        symbol [ w %w.1 99 12 13 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 100 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %h.2 = local;
+        symbol [ h %h.2 100 12 13 ];
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 100 16 18 ];
+        symbol [ getHeight %tmp.8 100 19 28 ];
+        %tmp.8 = getv function %tmp.7 :getHeight;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        lputv %h.2 %tmp.9;
+        symbol [ h %h.2 100 12 13 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 101 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %cx.3 = local;
+        symbol [ cx %cx.3 101 12 14 ];
+        %tmp.10 = lgetv %w.1;
+        symbol [ w %tmp.10 101 17 18 ];
+        %tmp.11 = 2;
+        %tmp.12 = div %tmp.10 %tmp.11;
+        lputv %cx.3 %tmp.12;
+        symbol [ cx %cx.3 101 12 14 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 102 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %cy.4 = local;
+        symbol [ cy %cy.4 102 12 14 ];
+        %tmp.13 = lgetv %h.2;
+        symbol [ h %tmp.13 102 17 18 ];
+        %tmp.14 = 2;
+        %tmp.15 = div %tmp.13 %tmp.14;
+        lputv %cy.4 %tmp.15;
+        symbol [ cy %cy.4 102 12 14 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 104 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %timeData.5 = local;
+        symbol [ timeData %timeData.5 104 12 20 ];
+        symbol [ TimeUtils %tmp.16 104 23 32 ];
+        %tmp.16 = getm $.TimeUtils;
+        symbol [ getTimeData %tmp.17 104 33 44 ];
+        %tmp.17 = getv function %tmp.16 :getTimeData;
+        %tmp.18 = invoke %tmp.16 %tmp.17();
+        lputv %timeData.5 %tmp.18;
+        symbol [ timeData %timeData.5 104 12 20 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 106 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %hourStr.6 = local;
+        symbol [ hourStr %hourStr.6 106 12 19 ];
+        %tmp.19 = lgetv %timeData.5;
+        symbol [ timeData %tmp.19 106 22 30 ];
+        %tmp.21 = const :hour;
+        symbol [ hour %tmp.21 106 32 36 const ];
+        %tmp.22 = agetv %tmp.19 %tmp.21;
+        symbol [ toString %tmp.23 106 38 46 ];
+        %tmp.23 = getv function %tmp.22 :toString;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        lputv %hourStr.6 %tmp.24;
+        symbol [ hourStr %hourStr.6 106 12 19 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 107 8 ]
+        [ "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_start" "E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop" ]
+        %minStr.7 = local;
+        symbol [ minStr %minStr.7 107 12 18 ];
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_begin:
+        %tmp.25 = lgetv %timeData.5;
+        symbol [ timeData %tmp.25 107 22 30 ];
+        %tmp.27 = const :min;
+        symbol [ min %tmp.27 107 32 35 const ];
+        %tmp.28 = agetv %tmp.25 %tmp.27;
+        %tmp.29 = 10;
+        %tmp.30 = lt %tmp.28 %tmp.29;
+        bf %tmp.30 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_else_false;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_true:
+        %tmp.31 = "0";
+        %tmp.32 = lgetv %timeData.5;
+        symbol [ timeData %tmp.32 108 20 28 ];
+        %tmp.34 = const :min;
+        symbol [ min %tmp.34 108 30 33 const ];
+        %tmp.35 = agetv %tmp.32 %tmp.34;
+        %tmp.36 = add %tmp.31 %tmp.35;
+        push %tmp.36;
+        goto @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_end;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_else_false:
+        %tmp.37 = lgetv %timeData.5;
+        symbol [ timeData %tmp.37 109 14 22 ];
+        %tmp.39 = const :min;
+        symbol [ min %tmp.39 109 24 27 const ];
+        %tmp.40 = agetv %tmp.37 %tmp.39;
+        symbol [ toString %tmp.41 109 29 37 ];
+        %tmp.41 = getv function %tmp.40 :toString;
+        %tmp.42 = invoke %tmp.40 %tmp.41();
+        push %tmp.42;
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_end:
+        %tmp.43 = phi [%tmp.30 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_begin] [%tmp.36 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_true] [%tmp.42 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_else_false] [%tmp.43 @E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_107_22_109_38_end];
+        lputv %minStr.7 %tmp.43;
+        symbol [ minStr %minStr.7 107 12 18 ];
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 112 8 ]
+        symbol [ ActivityData %tmp.44 112 8 20 ];
+        %tmp.44 = getm $.ActivityData;
+        symbol [ drawActivityData %tmp.45 112 21 37 ];
+        %tmp.45 = getv function %tmp.44 :drawActivityData;
+        %tmp.46 = lgetv %dc;
+        symbol [ dc %tmp.46 112 38 40 ];
+        %tmp.47 = lgetv %w.1;
+        symbol [ w %tmp.47 112 42 43 ];
+        %tmp.48 = lgetv %h.2;
+        symbol [ h %tmp.48 112 45 46 ];
+        %tmp.49 = lgetv %timeData.5;
+        symbol [ timeData %tmp.49 112 48 56 ];
+        invoke %tmp.44 %tmp.45(%tmp.46, %tmp.47, %tmp.48, %tmp.49);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 113 8 ]
+        %tmp.50 = self;
+        symbol [ drawHours %tmp.51 113 8 17 ];
+        %tmp.51 = getv function %tmp.50 :drawHours;
+        %tmp.52 = lgetv %dc;
+        symbol [ dc %tmp.52 113 18 20 ];
+        %tmp.53 = lgetv %cx.3;
+        symbol [ cx %tmp.53 113 22 24 ];
+        %tmp.54 = lgetv %cy.4;
+        symbol [ cy %tmp.54 113 26 28 ];
+        %tmp.55 = 110;
+        %tmp.56 = sub %tmp.54 %tmp.55;
+        %tmp.57 = lgetv %hourStr.6;
+        symbol [ hourStr %tmp.57 113 36 43 ];
+        invoke %tmp.50 %tmp.51(%tmp.52, %tmp.53, %tmp.56, %tmp.57);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 114 8 ]
+        %tmp.58 = self;
+        symbol [ drawSeparators %tmp.59 114 8 22 ];
+        %tmp.59 = getv function %tmp.58 :drawSeparators;
+        %tmp.60 = lgetv %dc;
+        symbol [ dc %tmp.60 114 23 25 ];
+        %tmp.61 = lgetv %w.1;
+        symbol [ w %tmp.61 114 27 28 ];
+        %tmp.62 = lgetv %h.2;
+        symbol [ h %tmp.62 114 30 31 ];
+        %tmp.63 = lgetv %cx.3;
+        symbol [ cx %tmp.63 114 33 35 ];
+        %tmp.64 = lgetv %cy.4;
+        symbol [ cy %tmp.64 114 37 39 ];
+        invoke %tmp.58 %tmp.59(%tmp.60, %tmp.61, %tmp.62, %tmp.63, %tmp.64);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 115 8 ]
+        %tmp.65 = self;
+        symbol [ drawDate %tmp.66 115 8 16 ];
+        %tmp.66 = getv function %tmp.65 :drawDate;
+        %tmp.67 = lgetv %dc;
+        symbol [ dc %tmp.67 115 17 19 ];
+        %tmp.68 = lgetv %cx.3;
+        symbol [ cx %tmp.68 115 21 23 ];
+        %tmp.69 = lgetv %cy.4;
+        symbol [ cy %tmp.69 115 25 27 ];
+        %tmp.70 = 10;
+        %tmp.71 = sub %tmp.69 %tmp.70;
+        %tmp.72 = lgetv %timeData.5;
+        symbol [ timeData %tmp.72 115 34 42 ];
+        invoke %tmp.65 %tmp.66(%tmp.67, %tmp.68, %tmp.71, %tmp.72);
+[ "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc" 116 8 ]
+        %tmp.73 = self;
+        symbol [ drawMinutes %tmp.74 116 8 19 ];
+        %tmp.74 = getv function %tmp.73 :drawMinutes;
+        %tmp.75 = lgetv %dc;
+        symbol [ dc %tmp.75 116 20 22 ];
+        %tmp.76 = lgetv %cx.3;
+        symbol [ cx %tmp.76 116 24 26 ];
+        %tmp.77 = lgetv %cy.4;
+        symbol [ cy %tmp.77 116 28 30 ];
+        %tmp.78 = 5;
+        %tmp.79 = sub %tmp.77 %tmp.78;
+        %tmp.80 = lgetv %minStr.7;
+        symbol [ minStr %tmp.80 116 36 42 ];
+        invoke %tmp.73 %tmp.74(%tmp.75, %tmp.76, %tmp.79, %tmp.80);
+E__personal_Repos_WatchFacesFenix8_JulyWatch_source_JulyWatchView_mc_96_40_117_4_stop:
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 122; @symbol_functiondef = [onHide,122,13,19]; ]
+    function onHide() as Void {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 126; @symbol_functiondef = [onExitSleep,126,13,24]; ]
+    function onExitSleep() as Void {
+    }
+    [ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 130; @symbol_functiondef = [onEnterSleep,130,13,25]; ]
+    function onEnterSleep() as Void {
+    }
+}
+[ @file = "E:\personal\Repos\WatchFacesFenix8\JulyWatch\source\JulyWatchView.mc"; @line = 1; ]
+<init> {
+}
