@@ -4,6 +4,7 @@ bin/
 *.prg
 *.debug
 *.json
+JulyWatch/bin/
 
 # IDE files
 .vscode/
