@@ -1,4 +1,57 @@
 <layout id="WatchFace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <drawable class="Background" />
-    <label id="TimeLabel" x="center" y="center" font="Graphics.FONT_LARGE" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_BLUE" />
+    <label id="distanicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="7" color="#a9c415" />
+    <label id="hearthicon" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="+" color="#e20e0e" />
+    <label id="stepsicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="0" color="#259de2" />
 </layout>
+
+<!-- 
+Small/XSmall                                  MTBA-Icons-Small
+
+{ -> Rectangulo vertical (Nada)               A -> Gota agua vacia
+} -> Rectangulo vertical (Nada)               B -> Cronometro viento
+: -> Dos puntos                               P -> Bandera
+~ -> Fuego pequeño                            Q -> Circulo rayas
+# -> Telefono                                 R -> Sol
+@ -> Pila grande rayo(\@)                     S -> Gota llena
+* -> Corazon grande                           T -> Busto rayo                                  
+^ -> Pasos pequeños                           U -> Cuerpo rayo
+$ -> Rectangulo vertical (Nada)               V -> Check      
+[ -> Pila grande                              W -> Viento
++ -> Corazon pequeño                          X -> VO2
+= -> Pila pequeña                             Y -> Sonid desactivado
+] -> Pasos grandes                            1 -> Escaleras
+_ -> Rectangulo vertical (Nada)               2 -> Cronometro normal
+? -> Fuego grande                             3 -> Corazon
+                                              4 -> Pila vacia
+Icons-260                                     5 -> Bocadillo dialogo
+                                              6 -> Llama
+v -> Luna vacía                               7 -> Posición GPS
+z -> Luna llena                               8 -> Bluetooth
+x -> Luna media                               9 -> Pila llena
+w -> Creciente 1                              0 -> Pasos
+y -> Creciente 2
+{ -> Decreciente 1
+} -> Decreciente 2
+
+a -> Bluetooth
+b -> Bluetooth desconectado
+c -> Grados Celsius
+f -> Grados Fahrenheit
+d -> Campana (Alarma)
+e -> Bocadillos dialogo
+r -> Sol flecha arriba
+s -> Sol flecha abajo
+
+A -> Sol
+B -> Sol nube
+C -> Luna
+D -> Luna nube
+E -> Lluvia
+F -> Nieve
+G -> Agua nieve
+H -> Viento
+I -> Niebla
+J -> Nube
+
+-->

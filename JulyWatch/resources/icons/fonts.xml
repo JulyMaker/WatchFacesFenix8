@@ -1,0 +1,6 @@
+<fonts>
+<font id = "icons260" filename = "icons-260.fnt" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
+<font id = "xsmallFont" filename = "xsmall.fnt" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~# @*^$[+=]_~?%.,-"/>
+<font id = "smallFont" filename = "small.fnt" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
+<font id = "mtbaFont" filename = "mtba-icons-small.fnt" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
+</fonts>

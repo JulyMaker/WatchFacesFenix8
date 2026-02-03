@@ -100,7 +100,11 @@ class JulyWatchView extends WatchUi.WatchFace {
         var h = dc.getHeight();
         var cx = w / 2;
         var cy = h / 2;
-    
+
+        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT); 
+        dc.drawArc(cx, cy-40, cx, Graphics.ARC_CLOCKWISE, 268, 266 - (100/56));
+
+
         var timeData = TimeUtils.getTimeData();
     
         var hourStr = timeData[:hour].toString();
@@ -109,7 +113,13 @@ class JulyWatchView extends WatchUi.WatchFace {
             : timeData[:min].toString();
     
         // Dibujo principal
-        ActivityData.drawActivityData(dc, w, h, timeData);
+        var icons = {} as Dictionary<Symbol, Text>;
+        icons[:steps] = View.findDrawableById("stepsicon") as Text;
+        icons[:heart] = View.findDrawableById("hearthicon") as Text;
+        icons[:dist] = View.findDrawableById("distanicon") as Text;
+
+
+        ActivityData.drawActivityData(dc, w, h, timeData, icons);
         drawHours(dc, cx, cy - 110, hourStr);
         drawSeparators(dc, w, h, cx, cy);
         drawDate(dc, cx, cy - 10, timeData);
