@@ -1,0 +1,14 @@
+# Build results
+bin/
+/build/
+*.prg
+*.debug
+*.json
+
+# IDE files
+.vscode/
+.idea/
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
