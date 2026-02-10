@@ -1,7 +1,105 @@
 using Toybox.ActivityMonitor;
-using Toybox.Time;
+using Toybox.Time as T;
 using Toybox.Graphics as G;
 using Toybox.WatchUi;
+using Toybox.System as S;
+using Toybox.Position as P;
+using Toybox.Weather as W;
+using Toybox.Math;
+using Toybox.SensorHistory as H;
+
+module ActivityUtils{
+
+    function min(a, b) {
+        return a < b ? a : b;
+    }
+
+    // Obtener el último valor de Body Battery
+    function getBodyBattery(){
+        var bodyBattery = 0.0;
+        
+        // Verificar si el sensor está disponible
+        if (H has :getBodyBatteryHistory) {
+            var history = H.getBodyBatteryHistory({
+                :period => 1, // Último dato
+                :order => H.ORDER_NEWEST_FIRST
+            });
+            
+            if (history != null) {
+                var sample = history.next();
+                if (sample != null && sample.data != null) {
+                    bodyBattery = sample.data;
+                }
+            }
+        }
+        
+        return bodyBattery;
+    }
+
+    function getActivityPercent(activity) {
+        var activityInfo = ActivityMonitor.getInfo();
+        if (activityInfo == null) { return 0.0; }
+
+        var percent = 1.0;
+        var value = 0;
+        var goal = 0;
+        
+        switch(activity){
+            case  :steps:
+                value = activityInfo.steps;
+                goal = activityInfo.stepGoal;
+                break;
+            case  :floor:
+                value = activityInfo.floorsClimbed;
+                goal = activityInfo.floorsClimbedGoal;
+                break;
+            case :activeMinutes:
+                value = activityInfo.activeMinutesWeek.total;
+                goal = activityInfo.activeMinutesWeekGoal;
+                break;
+            case :bodyBatt:
+                value = getBodyBattery();
+                goal = 100.0;
+                break;
+            
+        }
+            
+        if (goal > 0) {
+            percent = min(1.0, (value.toFloat() / goal.toFloat()));
+        }
+
+        return percent;
+    }
+
+    function getSolarIntensity() {
+        var solarValue = "0";
+        
+        // Verificar si el sensor está disponible
+        if (H has :getSolarIntensityHistory) {
+            try {
+                // Obtener el último valor (últimos 60 segundos)
+                var history = H.getSolarIntensityHistory({
+                    :period => 1,        // 1 = últimos datos
+                    :order => H.ORDER_NEWEST_FIRST
+                });
+                
+                if (history != null) {
+                    var sample = history.next();
+                    if (sample != null && sample.data != null) {
+                        solarValue = sample.data;
+                        
+                        // El valor está en alguna unidad (¿lux? ¿W/m²?)
+                        // Garmin suele devolver valores de 0-100,000+ para luz solar
+                    }
+                }
+            } catch (ex) {
+                S.println("Error getting solar: " + ex.toString());
+            }
+        }
+        
+        return solarValue;
+    }
+}
 
 module ActivityData {
 
@@ -11,7 +109,8 @@ module ActivityData {
 
         var leftX = width * 0.20;
         var rightX = width * 0.80;
-        var dataY = cy - 40; // Ajusta esta posición según tu diseño
+        var dataYU = cy - 40;
+        var dataYD = cy + 20;
         var separation = 8;
 
         // 1. Obtener datos de actividad
@@ -28,29 +127,33 @@ module ActivityData {
         }
         
         // 2. Ppasos
-        drawStepsData(dc, leftX, dataY, activityInfo.steps, separation, icons);
+        drawStepsData(dc, leftX, dataYU, activityInfo.steps, separation, icons);
 
         // 3. Frecuencia cardiaca
-        drawHeartRateData(dc, rightX, dataY, heartRate, separation, icons);
+        drawHeartRateData(dc, rightX, dataYU, heartRate, separation, icons);
 
         //4. Distancia
-        drawDistanceData(dc, cx, dataY - 75, activityInfo.distance, separation, icons);
+        drawDistanceData(dc, cx, dataYU - 70, activityInfo.distance, separation, icons);
+
+        //4. Escaleras
+        drawStairsData(dc, leftX, dataYD, activityInfo.floorsClimbed, separation, icons);
+
+        //5. Bateria
+        drawBatteryData(dc, rightX, dataYD, S.getSystemStats().battery, separation, icons);
+
+        drawSunTimes(dc, cx, dataYD + 70);
     }
 
     function drawStepsData(dc, x, y, steps, separation, icons) {
       var stepsStr = steps.format("%d");
       
-      // Dibujar icono de pasos (puedes usar un caracter o dibujar líneas)
       dc.setColor(G.COLOR_BLUE, G.COLOR_TRANSPARENT);
       drawStepsIcon(dc, x, y - separation, icons);
-
-      // Dibujar número de pasos
       dc.drawText(x, y, G.FONT_XTINY, stepsStr, G.TEXT_JUSTIFY_CENTER);
       
     }
 
     function drawStepsIcon(dc, x, y, icons) {
-       // Dibuja un icono simple de pasos (un pequeño pie/caminante)
        var iconSize = 15;
 
         var iconSteps = icons[:steps];
@@ -66,12 +169,7 @@ module ActivityData {
            hrStr = heartRate.format("%d");
        }
        
-       // Dibujar icono de corazón
-       dc.setColor(G.COLOR_RED, G.COLOR_TRANSPARENT);
        drawHeartIcon(dc, x, y - separation, icons);
-       
-       // Dibujar frecuencia cardiaca
-       dc.setColor(G.COLOR_RED, G.COLOR_TRANSPARENT);
        dc.drawText(x, y, G.FONT_XTINY, hrStr, G.TEXT_JUSTIFY_CENTER);
     }
 
@@ -86,23 +184,80 @@ module ActivityData {
     }
 
     function drawDistanceData(dc, x, y, distance, separation, icons) {
-      var distanceStr = distance.format("%d");
-      
-      // Dibujar icono de distancia (puedes usar un caracter o dibujar líneas)
-      dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
-      drawDistanceIcon(dc, x - 25, y +5,distanceStr, icons);
+        var units = " m";
+        var distanceStr = distance.format("%d");
+        var offset = 25 + (distanceStr.length() *3);
 
-      // Dibujar número de distancia
-      dc.drawText(x, y, G.FONT_XTINY, distanceStr + " m", G.TEXT_JUSTIFY_CENTER);
+      if (distance > 1000) {
+          units = " km";
+          distance = distance / 1000;
+          offset = 25 + (distance.format("%.1f").length() *3);
+          distanceStr = "   " + distance.format("%.1f");
+      }
+      
+      drawDistanceIcon(dc, x - offset, y + 5, distanceStr, icons);
+      dc.drawText(x, y, G.FONT_XTINY, distanceStr + units, G.TEXT_JUSTIFY_CENTER);
     }
 
     function drawDistanceIcon(dc, x, y, distanceStr,icons) {
-       // Dibuja un icono simple de distancia (una línea con una marca en el centro)
-       var iconSize = 6;
+       var iconSize = 3;
        
         var iconDistance = icons[:dist];
         iconDistance.locY = y - iconSize;
         iconDistance.locX = x;
         iconDistance.draw(dc);  // ¡IMPORTANTE!
+    }
+
+    function drawStairsData(dc, x, y, stairs, separation, icons) {
+      var stairsStr = stairs.format("%d");
+
+      drawStairsIcon(dc, x, y,stairsStr, icons);
+      dc.drawText(x, y, G.FONT_XTINY, stairsStr, G.TEXT_JUSTIFY_CENTER);
+    }
+
+    function drawStairsIcon(dc, x, y, stairsStr,icons) {
+       var iconSize = 22;
+       
+        var iconStairs = icons[:stair];
+        iconStairs.locY = y + iconSize;
+        iconStairs.locX = x;
+        iconStairs.draw(dc);  // ¡IMPORTANTE!
+    }
+
+    function drawBatteryData(dc, x, y, batteryLevel, separation, icons) {
+      var batteryStr = batteryLevel.format("%d");
+      
+      drawBatteryIcon(dc, x, y, icons);
+      dc.drawText(x, y, G.FONT_XTINY, batteryStr, G.TEXT_JUSTIFY_CENTER);
+    }
+
+    function drawBatteryIcon(dc, x, y, icons) {
+       var iconSize = 22;
+       
+        var iconBattery = icons[:batte];
+        iconBattery.locY = y + iconSize;
+        iconBattery.locX = x;
+        iconBattery.draw(dc);  // ¡IMPORTANTE!
+    }
+
+    function degToRad(d) { return d * Math.PI / 180.0; }
+    function radToDeg(r) { return r * 180.0 / Math.PI; }
+
+    function formatSunTime(t) {
+        if(t == null) { return "--"; }
+        var infoSunR = T.Gregorian.info( t, T.FORMAT_MEDIUM );
+        return (infoSunR.hour < 10 ? "0" : "")+infoSunR.hour+":"+ (infoSunR.min < 10 ? "0" : "") + infoSunR.min;
+    }
+
+    function drawSunTimes(dc, x, y) {
+        //var curpos = W.getCurrentConditions().observationLocationPosition;
+        var curpos = P.getInfo().position; 
+        if (curpos != null) {
+            var sunrise = W.getSunrise(curpos, T.now());
+            var sunset  = W.getSunset(curpos, T.now());
+            dc.drawText(x, y, G.FONT_XTINY, formatSunTime(sunrise) + " - " + formatSunTime(sunset), G.TEXT_JUSTIFY_CENTER);
+        }else{
+            dc.drawText(x, y, G.FONT_XTINY, "-- - --", G.TEXT_JUSTIFY_CENTER);
+        }
     }
 }

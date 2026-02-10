@@ -1,6 +1,6 @@
 info face="Weather Icons" size=-17 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=2 padding=0,0,0,0 spacing=1,1 outline=0
 common lineHeight=25 base=19 scaleW=256 scaleH=256 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
-page id=0 file="weather-icons-20_0.png"
+page id=0 file="weather_20.png"
 chars count=17
 char id=65  x=100   y=0     width=26    height=22    xoffset=0     yoffset=0     xadvance=26    page=0  chnl=15
 char id=66  x=0     y=26    width=24    height=19    xoffset=0     yoffset=0     xadvance=24    page=0  chnl=15

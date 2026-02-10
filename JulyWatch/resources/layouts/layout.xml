@@ -1,38 +1,50 @@
 <layout id="WatchFace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <drawable class="Background" />
-    <label id="distanicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="7" color="#a9c415" />
-    <label id="hearthicon" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="+" color="#e20e0e" />
+    <label id="distanicon" x="center" y="center" font="@Fonts.mtbaFont30" justification="Graphics.TEXT_JUSTIFY_CENTER" text="7" color="#eeaa17" />
+    <label id="clockicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="2" color="#ffffff" />
     <label id="stepsicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="0" color="#259de2" />
+    <label id="stairsicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="1" color="#fafafa" />
+
+    <label id="stairsicons" x="center" y="center" font="@Fonts.variousFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="F" color="#ffffff" />
+    <label id="bodyBatt" x="center" y="center" font="@Fonts.variousFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="o" color="#259de2" />
+    <label id="cronoicon" x="center" y="center" font="@Fonts.variousFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="t" color="#ffffff" />
+    <label id="stepicons" x="center" y="center" font="@Fonts.variousFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="s" color="#ffffff" />
+
+    <label id="hearthicon" x="center" y="center" font="@Fonts.smallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="+" color="#e20e0e" />
+    <label id="batteryicon" x="center" y="center" font="@Fonts.smallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="=" color="#ffffff" />
+
+    <label id="field" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="^" color="#259de2" />
+    <label id="hearthicons" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="+" color="#e20e0e" />
 </layout>
 
 <!-- 
-Small/XSmall                                  MTBA-Icons-Small
+Small/XSmall                                  MTBA-Icons-Small                Various Icons
 
-{ -> Rectangulo vertical (Nada)               A -> Gota agua vacia
-} -> Rectangulo vertical (Nada)               B -> Cronometro viento
-: -> Dos puntos                               P -> Bandera
-~ -> Fuego pequeño                            Q -> Circulo rayas
-# -> Telefono                                 R -> Sol
-@ -> Pila grande rayo(\@)                     S -> Gota llena
-* -> Corazon grande                           T -> Busto rayo                                  
-^ -> Pasos pequeños                           U -> Cuerpo rayo
-$ -> Rectangulo vertical (Nada)               V -> Check      
-[ -> Pila grande                              W -> Viento
-+ -> Corazon pequeño                          X -> VO2
-= -> Pila pequeña                             Y -> Sonid desactivado
-] -> Pasos grandes                            1 -> Escaleras
-_ -> Rectangulo vertical (Nada)               2 -> Cronometro normal
-? -> Fuego grande                             3 -> Corazon
-                                              4 -> Pila vacia
-Icons-260                                     5 -> Bocadillo dialogo
-                                              6 -> Llama
-v -> Luna vacía                               7 -> Posición GPS
-z -> Luna llena                               8 -> Bluetooth
-x -> Luna media                               9 -> Pila llena
-w -> Creciente 1                              0 -> Pasos
-y -> Creciente 2
-{ -> Decreciente 1
-} -> Decreciente 2
+{ -> Rectangulo vertical (Nada)               A -> Gota agua vacia            A -> Campana tachada
+} -> Rectangulo vertical (Nada)               B -> Cronometro viento          B -> Bluetooth desconectado
+: -> Dos puntos                               P -> Bandera                    D -> Bombilla vacia
+~ -> Fuego pequeño                            Q -> Circulo rayas              F -> Sube Escaleras
+# -> Telefono                                 R -> Sol                        N -> Bocadillo dialogo
+@ -> Pila grande rayo(\@)                     S -> Gota llena                 P -> Corazon tachado
+* -> Corazon grande                           T -> Busto rayo                 U -> Bombilla llena                 
+^ -> Pasos pequeños                           U -> Cuerpo rayo                h -> Pila llena
+$ -> Rectangulo vertical (Nada)               V -> Check                      k -> Pila vacia
+[ -> Pila grande                              W -> Viento                     m -> Bateria media 
++ -> Corazon pequeño                          X -> VO2                        n -> Dialogo relleno
+= -> Pila pequeña                             Y -> Sonid desactivado          l -> Bateria cargando
+] -> Pasos grandes                            1 -> Escaleras                  o -> Body Batt lleno
+_ -> Rectangulo vertical (Nada)               2 -> Cronometro normal          p -> Corazon pulsaciones
+? -> Fuego grande                             3 -> Corazon                    s -> Pasos
+                                              4 -> Pila vacia                 t -> Cronometro
+Icons-260                                     5 -> Bocadillo dialogo          w -> Gota agua
+                                              6 -> Llama                      x -> Cabeza con rayo
+v -> Luna vacía                               7 -> Posición GPS               y -> Body Batt medio
+z -> Luna llena                               8 -> Bluetooth                  z -> Boddy Batt vacio
+x -> Luna media                               9 -> Pila llena                 a -> Campana llena
+w -> Creciente 1                              0 -> Pasos                      b -> Bluetooth conectado
+y -> Creciente 2                                                              c -> Llama
+{ -> Decreciente 1                                                            d -> Luna
+} -> Decreciente 2                                                            f -> Baja escaleras
 
 a -> Bluetooth
 b -> Bluetooth desconectado

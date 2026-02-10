@@ -5,8 +5,12 @@ import Toybox.System;
 import Toybox.WatchUi;
 
 using Toybox.Graphics as G;
+using Toybox.Weather as W;
 using TimeUtils;
 using ActivityData;
+using ActivityUtils;
+using ArcUtils;
+using Toybox.Math;
 
 class JulyWatchView extends WatchUi.WatchFace {
 
@@ -32,10 +36,34 @@ class JulyWatchView extends WatchUi.WatchFace {
     }
 
     // Draw Hours
-    function drawHours(dc, cx, y, hourStr) {
-        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
-        dc.drawText(cx, y, G.FONT_NUMBER_THAI_HOT, hourStr, G.TEXT_JUSTIFY_CENTER);
+    function drawHours(dc, x, y, text) {
+        var font = G.FONT_NUMBER_THAI_HOT;
+        
+        // Colores del degradado (arriba → abajo)
+        var topColor    = Graphics.COLOR_DK_BLUE;
+        var middleColor = Graphics.COLOR_BLUE;
+        var bottomColor = Graphics.COLOR_DK_RED;
+    
+        // Arriba
+        dc.setColor(topColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x, y - 2, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x, y - 1, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+    
+        // Centro (laterales)
+        dc.setColor(middleColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x - 1, y, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x + 1, y, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+    
+        // Abajo
+        dc.setColor(bottomColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x, y + 1, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x, y + 2, font, text, Graphics.TEXT_JUSTIFY_CENTER);
+    
+        // Centro vacío
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x, y, font, text, Graphics.TEXT_JUSTIFY_CENTER);
     }
+    
 
     // Draw Minutes 
     function drawMinutes(dc, cx, y, minStr) {
@@ -85,11 +113,36 @@ class JulyWatchView extends WatchUi.WatchFace {
            dayWeek,
            timeData[:date].day,
            timeData[:date].month
-           //secStr
+           //,secStr
        ]);
    
        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
        dc.drawText(cx, y, G.FONT_XTINY, dateStr, G.TEXT_JUSTIFY_CENTER);
+    }
+
+    //function drawMoon(dc, x, y) {
+//
+    //    var phase = W.get
+    //    if (phase == null) {return 0.0;}
+    //
+    //
+    //
+    //    var icon = moonIcons[phase];
+    //
+    //
+    //
+    //    dc.drawBitmap(x, y, icon);
+    //
+    //}
+
+    function hexToColor(hex as String) {
+        hex = hex.substring(1, hex.length());
+        
+        var r = hex.substring(0, 2).toNumberWithBase(16);
+        var g = hex.substring(2, 4).toNumberWithBase(16);
+        var b = hex.substring(4, 6).toNumberWithBase(16);
+        
+        return G.createColor( 0xFF, r, g, b);
     }
 
     // Update the view
@@ -101,29 +154,50 @@ class JulyWatchView extends WatchUi.WatchFace {
         var cx = w / 2;
         var cy = h / 2;
 
-        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT); 
-        dc.drawArc(cx, cy-40, cx, Graphics.ARC_CLOCKWISE, 268, 266 - (100/56));
-
-
         var timeData = TimeUtils.getTimeData();
     
-        var hourStr = timeData[:hour].toString();
+        var hourStr = timeData[:hour] < 10
+            ? "0" + timeData[:hour]
+            :timeData[:hour].toString();
         var minStr  = timeData[:min] < 10
             ? "0" + timeData[:min]
             : timeData[:min].toString();
     
         // Dibujo principal
         var icons = {} as Dictionary<Symbol, Text>;
-        icons[:steps] = View.findDrawableById("stepsicon") as Text;
+        icons[:steps] = View.findDrawableById("stepsicon")  as Text;
         icons[:heart] = View.findDrawableById("hearthicon") as Text;
-        icons[:dist] = View.findDrawableById("distanicon") as Text;
+        icons[:dist]  = View.findDrawableById("distanicon") as Text;
+        icons[:stair] = View.findDrawableById("stairsicon") as Text;
+        icons[:batte] = View.findDrawableById("batteryicon") as Text;
+        icons[:sclock] = View.findDrawableById("clockicon") as Text;
 
+
+        icons[:cronos] = View.findDrawableById("cronoicon") as Text;
+        icons[:bodyBatt] = View.findDrawableById("bodyBatt") as Text;
+        icons[:stairs] = View.findDrawableById("stairsicons") as Text;
+
+        icons[:ssmall] = View.findDrawableById("stepicons") as Text;
+        icons[:hsmall] = View.findDrawableById("hearthicons") as Text;
 
         ActivityData.drawActivityData(dc, w, h, timeData, icons);
         drawHours(dc, cx, cy - 110, hourStr);
         drawSeparators(dc, w, h, cx, cy);
         drawDate(dc, cx, cy - 10, timeData);
         drawMinutes(dc, cx, cy - 5, minStr);
+       
+        dc.drawText(cx - 100, cy - 10, G.FONT_XTINY, ActivityUtils.getSolarIntensity(), G.TEXT_JUSTIFY_CENTER);
+
+        // Dibujo de los iconos y las barras de actividad
+        ArcUtils.drawIconQ1(dc, cx, cy, icons[:ssmall], G.COLOR_RED);
+        ArcUtils.drawIconQ2(dc, cx, cy, icons[:cronos], G.COLOR_BLUE);
+        ArcUtils.drawIconQ3(dc, cx, cy, icons[:bodyBatt], G.COLOR_GREEN);
+        ArcUtils.drawIconQ4(dc, cx, cy, icons[:stairs], G.COLOR_YELLOW);
+        ArcUtils.drawArcSegments(dc, G.COLOR_RED, hexToColor("#7a1b04"), ActivityUtils.getActivityPercent(:steps), ArcUtils.quarter1(), false);
+        ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, hexToColor("#0f0d7c"), ActivityUtils.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true);
+        ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, ActivityUtils.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false);
+        ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, hexToColor("#a8760a"), ActivityUtils.getActivityPercent(:floor), ArcUtils.quarter4(), true);
+
     }
 
     // Called when this View is removed from the screen. Save the

@@ -1,0 +1,29 @@
+info face="garmin-icons" size=18 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=18 base=14 scaleW=179 scaleH=179 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="various_30.0.png"
+chars count=25
+char id=65   x=153   y=0     width=11    height=18    xoffset=0     yoffset=0     xadvance=11    page=0  chnl=15
+char id=66   x=88   y=18    width=8    height=18    xoffset=0     yoffset=0     xadvance=8    page=0  chnl=15
+char id=68   x=14    y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=70   x=164   y=0     width=11    height=18    xoffset=0     yoffset=0     xadvance=11    page=0  chnl=15
+char id=78   x=0     y=0     width=13    height=18    xoffset=0     yoffset=0     xadvance=13    page=0  chnl=15
+char id=80   x=0     y=18    width=11    height=18    xoffset=0     yoffset=0     xadvance=11    page=0  chnl=15
+char id=85   x=27    y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=97   x=36    y=18    width=10    height=18    xoffset=0     yoffset=0     xadvance=10    page=0  chnl=15
+char id=98   x=105   y=18    width=7    height=18    xoffset=0     yoffset=0     xadvance=7    page=0  chnl=15
+char id=99   x=79   y=18    width=8    height=18    xoffset=0     yoffset=0     xadvance=8    page=0  chnl=15
+char id=100  x=39    y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=102  x=12    y=18    width=11    height=18    xoffset=0     yoffset=0     xadvance=11    page=0  chnl=15
+char id=104  x=52    y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=107  x=64    y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=108  x=77   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=109  x=90   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=110  x=102   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=111  x=115   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=112  x=127   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=115  x=97   y=18    width=8    height=18    xoffset=0     yoffset=0     xadvance=8    page=0  chnl=15
+char id=116  x=47    y=18    width=10    height=18    xoffset=0     yoffset=0     xadvance=10    page=0  chnl=15
+char id=119  x=69    y=18    width=9    height=18    xoffset=0     yoffset=0     xadvance=9    page=0  chnl=15
+char id=120  x=140   y=0     width=12    height=18    xoffset=0     yoffset=0     xadvance=12    page=0  chnl=15
+char id=121  x=24    y=18    width=11    height=18    xoffset=0     yoffset=0     xadvance=11    page=0  chnl=15
+char id=122  x=58    y=18    width=10    height=18    xoffset=0     yoffset=0     xadvance=10    page=0  chnl=15
