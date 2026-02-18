@@ -8,6 +8,8 @@ using Toybox.Weather as W;
 using Toybox.Math;
 using Toybox.SensorHistory as H;
 
+using TinyFont as TF;
+
 module ActivityUtils{
 
     function min(a, b) {
@@ -103,7 +105,7 @@ module ActivityUtils{
 
 module ActivityData {
 
-    function drawActivityData(dc, width, height, timeData, icons) {
+    function drawActivityData(dc, width, height, timeData, dca) {
         var cy = height / 2;
         var cx = width / 2;
 
@@ -127,63 +129,63 @@ module ActivityData {
         }
         
         // 2. Ppasos
-        drawStepsData(dc, leftX, dataYU, activityInfo.steps, separation, icons);
+        drawStepsData(dc, leftX, dataYU, activityInfo.steps, separation, dca);
 
         // 3. Frecuencia cardiaca
-        drawHeartRateData(dc, rightX, dataYU, heartRate, separation, icons);
+        drawHeartRateData(dc, rightX, dataYU, heartRate, separation, dca);
 
         //4. Distancia
-        drawDistanceData(dc, cx, dataYU - 70, activityInfo.distance, separation, icons);
+        drawDistanceData(dc, cx, dataYU - 70, activityInfo.distance, separation, dca);
 
         //4. Escaleras
-        drawStairsData(dc, leftX, dataYD, activityInfo.floorsClimbed, separation, icons);
+        drawStairsData(dc, leftX, dataYD, activityInfo.floorsClimbed, separation, dca);
 
         //5. Bateria
-        drawBatteryData(dc, rightX, dataYD, S.getSystemStats().battery, separation, icons);
+        drawBatteryData(dc, rightX, dataYD, S.getSystemStats().battery, separation, dca);
 
         drawSunTimes(dc, cx, dataYD + 70);
     }
 
-    function drawStepsData(dc, x, y, steps, separation, icons) {
+    function drawStepsData(dc, x, y, steps, separation, dca) {
       var stepsStr = steps.format("%d");
       
       dc.setColor(G.COLOR_BLUE, G.COLOR_TRANSPARENT);
-      drawStepsIcon(dc, x, y - separation, icons);
+      drawStepsIcon(dc, x, y - separation, dca);
       dc.drawText(x, y, G.FONT_XTINY, stepsStr, G.TEXT_JUSTIFY_CENTER);
       
     }
 
-    function drawStepsIcon(dc, x, y, icons) {
+    function drawStepsIcon(dc, x, y, dca) {
        var iconSize = 15;
 
-        var iconSteps = icons[:steps];
+        var iconSteps = dca.icon(:steps);
         iconSteps.locY = y - iconSize;
         iconSteps.locX = x;
         //iconSteps.setText(" ^ ");
         iconSteps.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawHeartRateData(dc, x, y, heartRate, separation, icons) {
+    function drawHeartRateData(dc, x, y, heartRate, separation, dca) {
        var hrStr = "--";
        if (heartRate != null) {
            hrStr = heartRate.format("%d");
        }
        
-       drawHeartIcon(dc, x, y - separation, icons);
+       drawHeartIcon(dc, x, y - separation, dca);
        dc.drawText(x, y, G.FONT_XTINY, hrStr, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawHeartIcon(dc, x, y, icons) {
+    function drawHeartIcon(dc, x, y, dca) {
        // Dibuja un icono de corazón simple
        var iconSize = 15;
        
-       var iconHeart = icons[:heart];
+       var iconHeart = dca.icon(:heart);
         iconHeart.locY = y - iconSize;
         iconHeart.locX = x;
         iconHeart.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawDistanceData(dc, x, y, distance, separation, icons) {
+    function drawDistanceData(dc, x, y, distance, separation, dca) {
         var units = " m";
         var distanceStr = distance.format("%d");
         var offset = 25 + (distanceStr.length() *3);
@@ -195,46 +197,47 @@ module ActivityData {
           distanceStr = "   " + distance.format("%.1f");
       }
       
-      drawDistanceIcon(dc, x - offset, y + 5, distanceStr, icons);
+      drawDistanceIcon(dc, x - offset, y + 5, distanceStr, dca);
       dc.drawText(x, y, G.FONT_XTINY, distanceStr + units, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawDistanceIcon(dc, x, y, distanceStr,icons) {
+    function drawDistanceIcon(dc, x, y, distanceStr, dca) {
        var iconSize = 3;
        
-        var iconDistance = icons[:dist];
+        var iconDistance = dca.icon(:dist);
         iconDistance.locY = y - iconSize;
         iconDistance.locX = x;
         iconDistance.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawStairsData(dc, x, y, stairs, separation, icons) {
+    function drawStairsData(dc, x, y, stairs, separation, dca) {
       var stairsStr = stairs.format("%d");
 
-      drawStairsIcon(dc, x, y,stairsStr, icons);
+      drawStairsIcon(dc, x, y,stairsStr, dca);
       dc.drawText(x, y, G.FONT_XTINY, stairsStr, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawStairsIcon(dc, x, y, stairsStr,icons) {
+    function drawStairsIcon(dc, x, y, stairsStr, dca) {
        var iconSize = 22;
        
-        var iconStairs = icons[:stair];
+        var iconStairs = dca.icon(:stair);
         iconStairs.locY = y + iconSize;
         iconStairs.locX = x;
         iconStairs.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawBatteryData(dc, x, y, batteryLevel, separation, icons) {
+    function drawBatteryData(dc, x, y, batteryLevel, separation, dca) {
       var batteryStr = batteryLevel.format("%d");
       
-      drawBatteryIcon(dc, x, y, icons);
+      TF.drawBatteryV(dc, x - 3, y + 23, batteryLevel, 2, G.COLOR_WHITE);
+      //drawBatteryIcon(dc, x, y, dca);
       dc.drawText(x, y, G.FONT_XTINY, batteryStr, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawBatteryIcon(dc, x, y, icons) {
+    function drawBatteryIcon(dc, x, y, dca) {
        var iconSize = 22;
        
-        var iconBattery = icons[:batte];
+        var iconBattery = dca.icon(:batte);
         iconBattery.locY = y + iconSize;
         iconBattery.locX = x;
         iconBattery.draw(dc);  // ¡IMPORTANTE!

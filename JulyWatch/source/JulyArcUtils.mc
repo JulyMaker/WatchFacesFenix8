@@ -1,4 +1,3 @@
-
 using Toybox.Math;
 using Toybox.Graphics as G;
 

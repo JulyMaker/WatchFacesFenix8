@@ -1,8 +1,9 @@
 <fonts>
-    <font id = "icons260" filename = "icons-260.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
+    <font id = "icons260" filename = "icons-260.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-|"/>
     <font id = "xsmallFont" filename = "xsmall_50.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~# @*^$[+=]_~?%.,-"/>
     <font id = "smallFont" filename = "small_0.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
     <font id = "mtbaFont" filename = "mtba.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
     <font id = "mtbaFont30" filename = "mtba_30.0.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
     <font id = "variousFont" filename = "various_30.0.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
+    <font id = "weatherFont" filename = "weather_20.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-|"/>
 </fonts>

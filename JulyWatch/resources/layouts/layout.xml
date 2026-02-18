@@ -15,6 +15,41 @@
 
     <label id="field" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="^" color="#259de2" />
     <label id="hearthicons" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="+" color="#e20e0e" />
+
+    <label id="birthdayicons" x="center" y="center" font="@Fonts.xsmallFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="#" color="#e20e0e" />
+
+    <!-- Moon -->
+    <label id="moonvacia" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="v" color="#259de2" />
+    <label id="mooncrec1" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="w" color="#259de2" />
+    <label id="mooncrec2" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="y" color="#259de2" />
+    <label id="moonmediaD" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="x" color="#259de2" />
+    <label id="moondecre1" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="{" color="#259de2" />
+    <label id="moondecre2" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="}" color="#259de2" />
+    <label id="moonllena" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="z" color="#259de2" />
+    <label id="moonmediaC" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="|" color="#259de2" />
+
+    <!-- Weather-->
+    <label id="lunFog" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="a" color="#259de2" />
+    <label id="lunRayo" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="b" color="#259de2" />
+    <label id="lunNiebla" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="c" color="#259de2" />
+    <label id="lunLluvia" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="d" color="#259de2" />
+    <label id="lunNieve" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="e" color="#259de2" />
+    <label id="lun" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="f" color="#259de2" />
+    <label id="lunPNub" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="g" color="#259de2" />
+    <label id="lunNub" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="h" color="#259de2" />
+    <label id="solFog" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="A" color="#259de2" />
+    <label id="solNub" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="B" color="#259de2" />
+    <label id="solRayo" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="C" color="#259de2" />
+    <label id="solNiebla" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="D" color="#259de2" />
+    <label id="solLluvia" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="E" color="#259de2" />
+    <label id="solNieve" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="F" color="#259de2" />
+    <label id="solPNub" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="G" color="#259de2" />
+    <label id="sol" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="H" color="#259de2" />
+    <label id="Nuves" x="center" y="center" font="@Fonts.weatherFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="I" color="#259de2" />
+    <label id="Niebla" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="I" color="#259de2" />
+    <label id="Viento" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="H" color="#259de2" />
+    <label id="AguaNieve" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="G" color="#259de2" />
+
 </layout>
 
 <!-- 
@@ -40,30 +75,30 @@ Icons-260                                     5 -> Bocadillo dialogo          w 
                                               6 -> Llama                      x -> Cabeza con rayo
 v -> Luna vacía                               7 -> Posición GPS               y -> Body Batt medio
 z -> Luna llena                               8 -> Bluetooth                  z -> Boddy Batt vacio
-x -> Luna media                               9 -> Pila llena                 a -> Campana llena
+x -> Luna media D                             9 -> Pila llena                 a -> Campana llena
 w -> Creciente 1                              0 -> Pasos                      b -> Bluetooth conectado
 y -> Creciente 2                                                              c -> Llama
 { -> Decreciente 1                                                            d -> Luna
 } -> Decreciente 2                                                            f -> Baja escaleras
 
-a -> Bluetooth
-b -> Bluetooth desconectado
-c -> Grados Celsius
-f -> Grados Fahrenheit
-d -> Campana (Alarma)
-e -> Bocadillos dialogo
-r -> Sol flecha arriba
-s -> Sol flecha abajo
-
+a -> Bluetooth                                Weather 20 
+b -> Bluetooth desconectado                   a -> Viento nublado luna
+c -> Grados Celsius                           b -> Luna rayo
+f -> Grados Fahrenheit                        c -> Luna lluvia fuerte 
+d -> Campana (Alarma)                         d -> Luna lluvia
+e -> Bocadillos dialogo                       e -> Luna nieve
+r -> Sol flecha arriba                        f -> Luna
+s -> Sol flecha abajo                         g -> Luna poco nublado
+                                              h -> Luna nublado
 A -> Sol
-B -> Sol nube
-C -> Luna
-D -> Luna nube
-E -> Lluvia
-F -> Nieve
-G -> Agua nieve
-H -> Viento
-I -> Niebla
-J -> Nube
+B -> Sol nube                                 A -> Sol nublado viento
+C -> Luna                                     B -> Sol nublado
+D -> Luna nube                                C -> Sol rayo
+E -> Lluvia                                   D -> Sol lluvia fuerte 
+F -> Nieve                                    E -> Sol lluvia
+G -> Agua nieve                               F -> Sol nieve
+H -> Viento                                   G -> Sol poco nublado
+I -> Niebla                                   H -> Sol
+J -> Nube                                     I -> Nuves
 
 -->
