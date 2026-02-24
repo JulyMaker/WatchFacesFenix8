@@ -132,7 +132,7 @@ class JulyWatchView extends WatchUi.WatchFace {
                 zon.get(:hour).clear(dc);
                 TU.drawHours(dc, cx, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
             }else{
-                zon.get(:hour).clear(dc);
+                zon.get(:hour2).clear(dc);
                 TU.drawHour(dc, cx + 28, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
             }
         }

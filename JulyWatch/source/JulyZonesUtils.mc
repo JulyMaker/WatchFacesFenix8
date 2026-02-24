@@ -3,10 +3,10 @@ using Toybox.Graphics as G;
 class ZonesMap {
 
     var zones = {
-        :hour    => new Zone(82 , 42, 94,70, -1),
-        :hour2   => new Zone(132, 42, 45,70, -1),
-        :min     => new Zone(82 ,150, 95,70, -1),
-        :min2    => new Zone(132,150, 46,70, -1),
+        :hour    => new Zone(82 , 42, 97,70, -1),
+        :hour2   => new Zone(132, 42, 48,70, -1),
+        :min     => new Zone(82 ,150, 96,70, -1),
+        :min2    => new Zone(132,150, 47,70, -1),
         :weatIco => new Zone(25 ,120, 50,21, -1),
         :weatTmp => new Zone(25 ,120, 50,21, -1),
         :moon    => new Zone(188,120, 20,21, -1),
