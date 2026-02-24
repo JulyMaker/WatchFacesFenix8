@@ -3,8 +3,12 @@
     <string id="AppName">JulyWatch</string>
 
     <string id="BackgroundColorTitle">Color de Fondo</string>
-    <string id="ForegroundColorTitle">Color de Primer Plano</string>
+    <string id="ForegroundColorTitle">Color Primer Plano</string>
     <string id="MilitaryFormatTitle">Formato Militar para Hora de 24 Horas</string>
+
+    <string id="TouchZones">Zonas Tactiles</string>
+    <string id="ClearBirth">Ocultar Cumpleaños</string>
+    <string id="ZonesDebug">Mostrar Zonas</string>
 
     <string id="ColorBlack">Negro</string>
     <string id="ColorDarkGray">Gris Oscuro</string>

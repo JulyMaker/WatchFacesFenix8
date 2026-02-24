@@ -21,16 +21,12 @@ module ColorsUtils {
 
     function gradientMulti(colors, t) {
         var n = colors.size() - 1;   // 4 tramos para 5 colores
-    
         var scaled = t * n;
         var idx = Math.floor(scaled).toNumber();
     
-        if (idx >= n) {
-            return colors[n];
-        }
+        if (idx >= n) { return colors[n]; }
     
         var localT = scaled - idx;
-    
         return lerpColor(colors[idx], colors[idx + 1], localT);
     }
 

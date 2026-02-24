@@ -10,8 +10,8 @@ using Toybox.Time as Time;
 using Toybox.Math;
 
 using TimeUtils as TU;
-using ActivityData;
-using ActivityUtils;
+using ActivityData as AD;
+using SensorUtils as SU;
 using ArcUtils;
 using MoonUtils as MU;
 using WeatherUtils as WU;
@@ -19,16 +19,258 @@ using ColorsUtils as C;
 using TinyFont as TF;
 using BirthdayUtils as BU;
 
-const CLICK_DEBUG = false;
+const DEGMIN = true;
+const DEGHOUR = true;
+const DIRHOUR = true; // true=horz / false=vert
 
 class JulyWatchView extends WatchUi.WatchFace {
-
     var dca;
     var wfDelegate;
-    var degMin = true;
-    var degHour = true;
-    var dirHour = true; // true=horz / false=vert
+    var zon;
     
+    var settings;
+
+    var arcSteps ;
+    var arcActMin;
+    var arcFloor ;
+    var arcBody  ;
+
+    var minCCache  ;
+    var hourCCache ;
+
+    var w;
+    var h;
+    var cx;
+    var cy;
+
+    function initialize() {
+        WatchFace.initialize();
+        wfDelegate = new WFDelegate(self);
+
+        settings = Settings.get();
+
+        arcSteps  = new ArcState();
+        arcActMin = new ArcState();
+        arcFloor  = new ArcState();
+        arcBody   = new ArcState();
+
+        minCCache    = new ColorCache();
+        hourCCache   = new ColorCache();
+    }
+
+    // Load your resources here
+    function onLayout(dc as Dc) as Void {
+        setLayout(Rez.Layouts.WatchFace(dc));
+
+        if (dca == null) { loadIcons(); }
+        zon = new ZonesMap();
+        arcSteps  = new ArcState();
+        arcActMin = new ArcState();
+        arcFloor  = new ArcState();
+        arcBody   = new ArcState();
+
+        clearScreen(dc);
+        w = dc.getWidth();
+        h = dc.getHeight();
+        cx = w / 2;
+        cy = h / 2;
+        
+        // Separators lines
+        drawSeparators(dc, w, h, cx, cy);
+
+        // Activity icons
+        AD.initialize(w, h);
+        AD.drawIcon(dc, AD.leftX, AD.dataYU, dca, G.COLOR_BLUE, 23, :steps);
+        AD.drawIcon(dc, AD.rightX, AD.dataYU, dca, G.COLOR_RED, 23, :heart);
+        AD.drawIcon(dc, AD.leftX, AD.dataYD, dca, G.COLOR_WHITE, -22, :stair);
+
+        // heartRate init
+        dc.setColor(G.COLOR_RED, G.COLOR_TRANSPARENT);
+        dc.drawText(AD.rightX, AD.dataYU, G.FONT_XTINY, "--", G.TEXT_JUSTIFY_CENTER);
+
+        // Icons in arcs
+        ArcUtils.drawIconQ1(dc, cx, cy, dca.icon(:ssmall), G.COLOR_RED);
+        ArcUtils.drawIconQ2(dc, cx, cy, dca.icon(:cronos), G.COLOR_BLUE);
+        ArcUtils.drawIconQ3(dc, cx, cy, dca.icon(:bodyBatt), G.COLOR_GREEN);
+        ArcUtils.drawIconQ4(dc, cx, cy, dca.icon(:stairs), G.COLOR_YELLOW);
+        // Draw Activity arcsv
+        AD.getActivitySensor();
+        ArcUtils.drawArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+        ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+        ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+        ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+    }
+
+    // Called when this View is brought to the foreground. Restore
+    // the state of this View and prepare it to be shown. This includes
+    // loading resources into memory.
+    function onShow() as Void {
+        if (dca == null) { loadIcons(); }
+    }
+
+    // Clear Screen
+    function clearScreen(dc as Dc) {
+      dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
+      dc.clear();
+    }
+    function clearZone(dc as Dc, x, y, w, h) {
+        dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
+        dc.fillRectangle(x, y, w, h);
+    }
+
+    // Update the view
+    function onUpdate(dc as Dc) as Void {
+        //clearScreen(dc);
+
+        var timeData = TU.getTimeData();
+        
+        // Main Structure
+        if (zon.get(:hour).hasChanged(timeData[:hour])) {
+            var tens = timeData[:hour] / 10;
+            if(zon.get(:hour2).hasChanged(tens))
+            {
+                zon.get(:hour).clear(dc);
+                TU.drawHours(dc, cx, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
+            }else{
+                zon.get(:hour).clear(dc);
+                TU.drawHour(dc, cx + 28, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
+            }
+        }
+
+        if (zon.get(:min).hasChanged(timeData[:min])) {
+            var tens = timeData[:min] / 10;
+            if(zon.get(:min2).hasChanged(tens))
+            {
+                zon.get(:min).clear(dc);
+                TU.drawMinutes(dc, cx, cy - 5, timeData, DEGMIN, minCCache);
+            }else{
+                zon.get(:min2).clear(dc);
+                TU.drawMinute(dc, cx + 28, cy - 5, timeData, DEGMIN, minCCache);
+            }    
+        }
+
+        if (zon.get(:dateFi).hasChanged(timeData[:day])) {
+            zon.get(:dateFi).clear(dc);
+            zon.get(:sun).clear(dc);
+            zon.get(:moon).clear(dc);
+            zon.get(:birthday).clear(dc);
+
+            TU.drawDate(dc, cx, cy - 10, timeData);  // Date   
+            TU.drawSunTimes(dc, cx, cy + 90);        // SunTimes
+            MU.drawMoon(dc, dca, cx + 68, cy - 9);   // Moon
+            var names = BU.getBirthday(dc, timeData, cx, cy, dca); // BirthDay
+            if(names){TF.drawText(dc, cx - 82, cy - 80, names, 1, C.hexToColor("#e20e0e"), 3.5);}
+
+            // Draw Activity arcs
+            ArcUtils.drawArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+            ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+            ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+            ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+        }
+        if(settings.clearBirth){ zon.get(:birthday).clear(dc); }
+
+        if (zon.getT(:weatherT).timer(timeData[:now])) { // Weather and temp 4h
+            WU.getCondition(); // higth cost
+
+            if(zon.get(:weatIco).hasChanged(WU.conditions.condition) ||
+            zon.get(:weatTmp).hasChanged(WU.conditions.temperature)){
+                zon.get(:weatIco).clear(dc);
+                WU.drawWeatherIco(dc, dca, cx - 95, cy - 10, G.COLOR_WHITE);
+                TF.drawText(dc, cx - 82, cy - 5, WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
+            }
+        }
+
+        if (zon.getT(:activityT).timer(timeData[:now])) { // Move Activity
+            AD.getActivitySensor(); // higth cost
+            
+            var dirty = 0;
+            if(zon.get(:field1).hasChanged(AD.activitySensor.steps)){         dirty |= 0x01; zon.get(:field1).clear(dc);}
+            if(zon.get(:field2).hasChanged(AD.activitySensor.distance)){      dirty |= 0x02; zon.get(:field2).clear(dc);}
+            if(zon.get(:field5).hasChanged(AD.activitySensor.floorsClimbed)){ dirty |= 0x04; zon.get(:field5).clear(dc);}
+
+            AD.drawMoveActivity(dc, dca, dirty);
+
+            // Activity arcs
+            ArcUtils.updateArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+            ArcUtils.updateArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+            ArcUtils.updateArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+        }
+
+        if (zon.getT(:frecHRT).timer(timeData[:now])) { // Freq HR 10s
+            AD.getHRSensor(); // higth cost
+            
+            if(zon.get(:field3).hasChanged(AD.HRSensor)){ // Frecuencia cardiaca
+                zon.get(:field3).clear(dc);
+
+                AD.drawActivityData(dc, AD.rightX, AD.dataYU, AD.HRSensor, G.COLOR_RED);
+            }
+        }
+
+        if (zon.getT(:solarT).timer(timeData[:now])) {     //  1min
+            if(AD.hasSolarInt){     
+                AD.getStatsSensor(); // higth cost
+
+                if(zon.get(:solar).hasChanged(AD.statsSensor.solarIntensity)){ // Nivel intensidad solar
+                    zon.get(:solar).clear(dc);
+                    dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
+                    dc.drawText(cx + 90, cy - 10, G.FONT_XTINY, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+                }
+            }
+            
+            if(zon.get(:battChg).hasChanged(AD.statsSensor.charging)){ // Nivel de batería            
+                if(AD.statsSensor.charging){
+                    AD.drawIcon(dc, AD.rightX + 8, AD.dataYD + 23, dca, G.COLOR_WHITE, 0, :bCharg);
+                }else{
+                    zon.get(:battChg).clear(dc);
+                }
+            }
+        }
+
+        if (zon.getT(:batteryT).timer(timeData[:now])) {  // Bateria 2min
+            if(!AD.hasSolarInt){ AD.getStatsSensor(); }   // higth cost
+
+            var batteryLevel = AD.statsSensor.battery;
+            
+            if(zon.get(:field4).hasChanged(batteryLevel)){ // Nivel de batería
+                zon.get(:field4).clear(dc);
+                AD.drawActivityData(dc, AD.rightX, AD.dataYD, batteryLevel, G.COLOR_WHITE);
+
+                if( zon.get(:field6).changed(batteryLevel, 10) ){
+                    zon.get(:field6).clear(dc);
+                    TF.drawBatteryV(dc, AD.rightX - 3, AD.dataYD + 23, batteryLevel, 2, G.COLOR_WHITE);
+                } 
+            }
+        }
+          
+        if (zon.getT(:bodybatT).timer(timeData[:now])) {  // Body Batt 5min
+            AD.getBodyBattery(); // higth cost
+            ArcUtils.updateArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+        }
+
+        if(settings.clickDeb) {wfDelegate.drawZones(dc, G.COLOR_DK_RED);} else{ wfDelegate.clearZones(dc);}
+        if(settings.zonesDebug) {zon.drawZones(dc);}else{zon.clearZones(dc);}
+    }
+
+    // Called when this View is removed from the screen. Save the
+    // state of this View here. This includes freeing resources from
+    // memory.
+    function onHide() as Void {
+        //if (dca != null){
+        //    dca.clearAll();
+        //    dca = null;
+        //} 
+
+        //if(zon != null) {zon = null;}
+    }
+
+    // The user has just looked at their watch. Timers and animations may be started here.
+    function onExitSleep() as Void {
+    }
+
+    // Terminate any active timers and prepare for slow updates.
+    function onEnterSleep() as Void {
+    }
+
     function addIcon(id as Symbol, st as String){
         dca.register(self, id, st);
     }
@@ -69,31 +311,7 @@ class JulyWatchView extends WatchUi.WatchFace {
         addGroup(:weather, strAux);
 
         addIcon(:birth, "birthdayicons");
-    }
-
-    function initialize() {
-        WatchFace.initialize();
-
-        wfDelegate = new WFDelegate();
-        //setInputDelegate(wfDelegate);
-    }
-
-    // Load your resources here
-    function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.WatchFace(dc));
-    }
-
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
-    function onShow() as Void {
-        loadIcons();
-    }
-
-    // Clear Screen
-    function clearScreen(dc as Dc) {
-      dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
-      dc.clear();
+        addIcon(:bCharg, "batChargeicon");
     }
 
     // Draw separators
@@ -104,15 +322,10 @@ class JulyWatchView extends WatchUi.WatchFace {
        dc.drawText(width - 5, cy - 20, G.FONT_MEDIUM, "-", G.TEXT_JUSTIFY_RIGHT);
        
        var markHeight = 8;
-       dc.drawLine(cx, 0, cx, markHeight);
-       dc.drawLine(cx-1, 0, cx-1, markHeight);
-       dc.drawLine(cx-2, 0, cx-2, markHeight);
-       dc.drawLine(cx-3, 0, cx-3, markHeight);
-       
-       dc.drawLine(cx, height - markHeight, cx, height);
-       dc.drawLine(cx-1, height - markHeight, cx-1, height);
-       dc.drawLine(cx-2, height - markHeight, cx-2, height);
-       dc.drawLine(cx-3, height - markHeight, cx-3, height);
+       for (var i = 0; i < 4; i++) {
+         dc.drawLine(cx - i,                   0, cx - i, markHeight);
+         dc.drawLine(cx - i, height - markHeight, cx - i, height);
+       }
 
        // Barras horizontales
        var barX = 15;
@@ -125,69 +338,7 @@ class JulyWatchView extends WatchUi.WatchFace {
        dc.drawLine(barX, barBottomY, barX + barW, barBottomY);
     }
 
-    // Update the view
-    function onUpdate(dc as Dc) as Void {
-        clearScreen(dc);
-
-        var w = dc.getWidth();
-        var h = dc.getHeight();
-        var cx = w / 2;
-        var cy = h / 2;
-
-        var timeData = TU.getTimeData();
-        
-        // Main Structure
-        ActivityData.drawActivityData(dc, w, h, timeData, dca);
-        drawSeparators(dc, w, h, cx, cy);
-        TU.drawHours(dc, cx, cy - 110, timeData, dirHour, degHour);
-        TU.drawMinutes(dc, cx, cy - 5, timeData, degMin);
-        TU.drawDate(dc, cx, cy - 10, timeData);
-       
-        // Middle icons 
-        WU.drawWeather(dc, dca, cx - 95, cy - 12, G.COLOR_WHITE);
-        //dc.drawText(cx + 90, cy - 10, G.FONT_XTINY, WU.temp(), G.TEXT_JUSTIFY_CENTER);
-        TF.drawText(dc, cx - 82, cy - 5, WU.temp(), 2, G.COLOR_YELLOW, 2.5);
-        MU.drawMoon(dc, dca, cx + 68, cy - 9);
-        dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
-        dc.drawText(cx + 90, cy - 10, G.FONT_XTINY, ActivityUtils.getSolarIntensity(), G.TEXT_JUSTIFY_CENTER);
-       
-        // BirthDay
-        var names = BU.getBirthday(dc, timeData, cx, cy, dca);
-        if(names){TF.drawText(dc, cx - 82, cy - 80, names, 1, C.hexToColor("#e20e0e"), 3.5);}
-        
-        if(CLICK_DEBUG) {wfDelegate.drawZones(dc, G.COLOR_DK_RED);}
-
-        // Icons and activity arcs
-        ArcUtils.drawIconQ1(dc, cx, cy, dca.icon(:ssmall), G.COLOR_RED);
-        ArcUtils.drawIconQ2(dc, cx, cy, dca.icon(:cronos), G.COLOR_BLUE);
-        ArcUtils.drawIconQ3(dc, cx, cy, dca.icon(:bodyBatt), G.COLOR_GREEN);
-        ArcUtils.drawIconQ4(dc, cx, cy, dca.icon(:stairs), G.COLOR_YELLOW);
-        ArcUtils.drawArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), ActivityUtils.getActivityPercent(:steps), ArcUtils.quarter1(), false);
-        ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), ActivityUtils.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true);
-        ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, ActivityUtils.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false);
-        ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), ActivityUtils.getActivityPercent(:floor), ArcUtils.quarter4(), true);
+    function reloadSettings() {
+        settings.readSettings();
     }
-
-    function onTap(clickEvent) {
-        System.println(clickEvent.getCoordinates()); // e.g. [36, 40]
-        System.println(clickEvent.getType());        // CLICK_TYPE_TAP = 0
-        return true;
-    }
-
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
-    function onHide() as Void {
-        dca.clearAll();
-        dca = null;
-    }
-
-    // The user has just looked at their watch. Timers and animations may be started here.
-    function onExitSleep() as Void {
-    }
-
-    // Terminate any active timers and prepare for slow updates.
-    function onEnterSleep() as Void {
-    }
-
 }

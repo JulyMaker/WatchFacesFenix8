@@ -13,4 +13,29 @@
     <string id="ColorBlue">Blue</string>
     <string id="ColorRed">Red</string>
 
+    <string id="TouchZones">Touch Zones</string>
+    <string id="ClearBirth">Hide Birthday</string>
+    <string id="ZonesDebug">Show Zones</string>
+
+    <string id="Monday">Mon</string>
+    <string id="Tuesday">Tue</string>
+    <string id="Wednesday">Wed</string>
+    <string id="Thursday">Thu</string>
+    <string id="Friday">Fri</string>
+    <string id="Saturday">Sat</string>
+    <string id="Sunday">Sun</string>
+
+    <string id="January">Jan</string>
+    <string id="February">Feb</string>
+    <string id="March">Mar</string>
+    <string id="April">Apr</string>
+    <string id="May">May</string> 
+    <string id="June">Jun</string>
+    <string id="July">Jul</string>
+    <string id="August">Aug</string>
+    <string id="September">Sep</string>
+    <string id="October">Oct</string>
+    <string id="November">Nov</string>
+    <string id="December">Dec</string>
+
 </strings>

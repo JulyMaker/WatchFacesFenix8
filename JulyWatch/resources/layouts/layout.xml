@@ -1,6 +1,7 @@
 <layout id="WatchFace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://developer.garmin.com/downloads/connect-iq/resources.xsd">
     <drawable class="Background" />
     <label id="distanicon" x="center" y="center" font="@Fonts.mtbaFont30" justification="Graphics.TEXT_JUSTIFY_CENTER" text="7" color="#eeaa17" />
+    <label id="batChargeicon" x="center" y="center" font="@Fonts.mtbaFont30" justification="Graphics.TEXT_JUSTIFY_CENTER" text="U" color="#f8f8f8" />
     <label id="clockicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="2" color="#ffffff" />
     <label id="stepsicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="0" color="#259de2" />
     <label id="stairsicon" x="center" y="center" font="@Fonts.mtbaFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="1" color="#fafafa" />

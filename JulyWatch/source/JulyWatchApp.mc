@@ -18,11 +18,18 @@ class JulyWatchApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [ new JulyWatchView() ];
+        var view = new JulyWatchView();
+        var delegate = new WFDelegate(view);
+        return [view, delegate];
+        //return [ new JulyWatchView() ];
     }
 
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
+        var view = WatchUi.getCurrentView() as JulyWatchView;
+        if (view != null) {
+            view[0].reloadSettings();
+        }
         WatchUi.requestUpdate();
     }
 

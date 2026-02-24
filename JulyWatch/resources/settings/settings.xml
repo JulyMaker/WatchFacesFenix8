@@ -22,4 +22,38 @@
         <settingConfig type="boolean" />
     </setting>
 
+    <setting propertyKey="@Properties.TouchZones" title="@Strings.TouchZones">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.ClearBirth" title="@Strings.ClearBirth">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.ZonesDebug" title="@Strings.ZonesDebug">
+        <settingConfig type="boolean" />
+    </setting>
+    
+    <!--<group id="groupName" title="@Strings.group1Title" description="@Strings.group1Description"> 
+        <setting propertyKey="@Properties.number_prop" title="@Strings.number_title"> 
+            <settingConfig type="numeric" /> 
+        </setting> 
+     
+        <setting propertyKey="@Properties.long_prop" title="@Strings.long_title"> 
+            <settingConfig type="numeric" /> 
+        </setting> 
+    </group> -->
+
+    <!-- The defaults is where you program the initial values -->
+    <!--<defaults>
+        <entry>
+            <default id=”activityType”>0</default>
+            <default id="zone1">89</default>
+            <default id="zone2">109</default>
+            <default id="zone3">125</default>
+            <default id="zone3">144</default>
+            <default id="zone5">160</default>
+        </entry>
+    </defaults>-->
+
 </settings>

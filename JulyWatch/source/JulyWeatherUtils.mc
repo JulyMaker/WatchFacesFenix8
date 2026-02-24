@@ -11,6 +11,8 @@ using Toybox.Lang as L;
 
 module WeatherUtils{
 
+    var conditions;
+
     function isNight(){
         var h = S.getClockTime().hour;
         return (h < 8 || h >= 21);
@@ -99,14 +101,16 @@ module WeatherUtils{
         icon.draw(dc);
     }
 
-    function drawWeather(dc,weathericons, x, y, color){
-        var condition = W.getCurrentConditions().condition;
-        WeatherUtils.weatherIcon(dc, condition, weathericons, x, y, color);
+    function getCondition(){
+        conditions = W.getCurrentConditions();
+    }
+
+    function drawWeatherIco(dc,weathericons, x, y, color){
+        weatherIcon(dc, conditions.condition, weathericons, x, y, color);
     }
 
     function temp() as String{
-        var condition = W.getCurrentConditions();
-        var temp = condition.temperature;
+        var temp = conditions.temperature;
         var st = temp.format("%.1f");
 
         var DEG = "\u00B0";

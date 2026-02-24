@@ -16,10 +16,10 @@ module BirthdayUtils {
         2 =>  { 22 => ["nana"]}, // Febrero
         3 =>  { 11 => ["july"]}, // Marzo
         4 =>  {}, // Abril 
-        5 =>  { 16 => ["mama"]}, // Mayo
+        5 =>  { 16 => ["rocio"]}, // Mayo
         6 =>  {}, // Junio
         7 =>  {}, // Julio
-        8 =>  { 9 => ["papa"]}, // Agosto
+        8 =>  { 9 => ["julio"]}, // Agosto
         9 =>  {}, // Septiembre
         10 => { 19 => ["oihane"]}, // Octubre
         11 => { 23 => ["raquel"]}, // Noviembre
@@ -38,7 +38,7 @@ module BirthdayUtils {
         birthIcon.locY = cy - 95;
         birthIcon.locX = cx - 70;
         birthIcon.draw(dc);
-        
+
         if (d instanceof Array) {
             var s = "";
             for (var i = 0; i < d.size(); i++) {

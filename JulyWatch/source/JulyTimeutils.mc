@@ -6,6 +6,31 @@ using Toybox.Time;
 using Toybox.System;
 using Toybox.Graphics as G;
 using ColorsUtils as C;
+using Toybox.Position as P;
+using Toybox.Time as T;
+using Toybox.Weather as W;
+
+class ColorCache{
+    var color;
+
+    function initialize(){
+        color=[];
+    }
+
+    function buildColorCache(steps, colors){
+        if(color.size() > 0){ return; }
+
+        for (var i = 0; i < steps; i++) {
+             var t = i.toFloat() / (steps - 1);
+             var col = C.gradientMulti(colors, t);
+             color.add(col);
+        }
+    }
+
+    function clear(){
+        color.removeAll();
+    }
+}
 
 module TimeUtils {
 
@@ -26,13 +51,16 @@ module TimeUtils {
     function getTimeData() {
         var clock = System.getClockTime();
         var now   = Time.now();
+        var short = Time.Gregorian.info(now, Time.FORMAT_SHORT);
 
         return {
             :hour => clock.hour,
             :min  => clock.min,
             :sec  => clock.sec,
+            :day  => short.day,
             :date => Time.Gregorian.info(now, Time.FORMAT_MEDIUM),
-            :dateShort => Time.Gregorian.info(now, Time.FORMAT_SHORT)
+            :dateShort => short,
+            :now => now.value()
         };
     }
 
@@ -57,12 +85,20 @@ module TimeUtils {
     }
 
     // Draw Minutes 
-    function drawMinutes(dc, x, y, timeData, deg){
+    function drawMinutes(dc, x, y, timeData, deg, ccache){
         var minStr  = timeData[:min] < 10
             ? "0" + timeData[:min]
             : timeData[:min].toString();
 
-        if(deg){drawMin(dc, x, y, minStr);}
+        if(deg){drawMin(dc, x, y, minStr, ccache);}
+        else{drawMinW(dc, x, y, minStr);}
+    }
+
+    // Draw Minute
+    function drawMinute(dc, x, y, timeData, deg, ccache){
+        var minStr  = (timeData[:min] % 10).toString();
+
+        if(deg){drawMin(dc, x, y, minStr, ccache);}
         else{drawMinW(dc, x, y, minStr);}
     }
 
@@ -71,15 +107,15 @@ module TimeUtils {
         dc.drawText(cx, y, G.FONT_NUMBER_THAI_HOT, minStr, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawMin(dc, x, y, minStr) as Void{
+    function drawMin(dc, x, y, minStr, ccache) as Void{
 
         var font = G.FONT_NUMBER_THAI_HOT;
         var colors = [
-            C.hexToColor("#0aafbb"),
-            C.hexToColor("#067074"),
-            C.hexToColor("#eca725"),
-            C.hexToColor("#db1a1a"),
-            C.hexToColor("#5f0606")
+            C.hexToColor("#f7ec51"),
+            C.hexToColor("#bece4a"),
+            C.hexToColor("#868803"),
+            C.hexToColor("#05852f"),
+            C.hexToColor("#926b01")
         ];
 
         var top = y + 26; // 150
@@ -89,13 +125,15 @@ module TimeUtils {
         //dc.drawLine(30, bottom, x * 2 - 30, bottom);
 
         var h = bottom - top; //dc.getFontHeight(font) * 1.30;
-        var steps = 28.0;   // 🔥 cuanto mayor, más suave
+        var steps = 30.0;   // 🔥 cuanto mayor, más suave
     
         var bandH = (h as Float) / steps; // Math.round(h / steps); // ;
+        ccache.buildColorCache(steps, colors);
 
         for (var i = 0; i < steps; i++) {
-              var t = i.toFloat() / (steps - 1);
-              var col = C.gradientMulti(colors, t);
+              //var t = i.toFloat() / (steps - 1);
+              //var col = C.gradientMulti(colors, t);
+              var col = ccache.color[i];
 
               var hy = Math.round(top + bandH * i);
               var nextHy = Math.round(top + bandH * (i + 1));
@@ -110,16 +148,23 @@ module TimeUtils {
     }
 
     // Hours
-    function drawHours(dc, x, y, timeData, horiz, deg){
+    function drawHours(dc, x, y, timeData, horiz, deg, ccache){
         var hourStr = timeData[:hour] < 10
             ? "0" + timeData[:hour]
             :timeData[:hour].toString();
 
-        if(horiz){drawHoursH(dc, x, y, hourStr, deg);}
-        else{drawHoursV(dc, x, y, hourStr, deg);}
+        if(horiz){drawHoursH(dc, x, y, hourStr, deg, ccache);}
+        else{drawHoursV(dc, x, y, hourStr, deg, ccache);}
     }
 
-    function drawHoursV(dc, x, y, hourStr, deg) {
+    function drawHour(dc, x, y, timeData, horiz, deg, ccache){
+        var hourStr = (timeData[:hour] %10).toString();
+
+        if(horiz){drawHoursH(dc, x, y, hourStr, deg, ccache);}
+        else{drawHoursV(dc, x, y, hourStr, deg, ccache);}
+    }
+
+    function drawHoursV(dc, x, y, hourStr, deg, ccache) {
         var font = G.FONT_NUMBER_THAI_HOT;
     
         var colors = [
@@ -141,11 +186,10 @@ module TimeUtils {
         var w = rigth - left; //dc.getFontHeight(font) * 1.30;
         var steps  = 40.0;     // más = más suave
         var bandW  = (w as Float) / steps;
-    
+        ccache.buildColorCache(steps, colors);
+
         for (var i = 0; i < steps; i++) {
-    
-            var t = i.toFloat() / (steps - 1);
-            var col = C.gradientMulti(colors, t);
+            var col = ccache.color[i];
     
             var hx = Math.round(left + bandW * i);
             var nextHx = Math.round(left + bandW * (i + 1));
@@ -173,7 +217,7 @@ module TimeUtils {
         dc.drawText(x, y, font, hourStr, G.TEXT_JUSTIFY_CENTER);
     }
 
-    function drawHoursH(dc, x, y, hourStr, deg) {
+    function drawHoursH(dc, x, y, hourStr, deg, ccache) {
         var font = G.FONT_NUMBER_THAI_HOT;
     
         var colors = [
@@ -195,11 +239,10 @@ module TimeUtils {
         var h = bottom - top; //dc.getFontHeight(font) * 1.30;
         var steps  = 28.0;     // más = más suave
         var bandH  = (h as Float) / steps;
-    
+        ccache.buildColorCache(steps, colors);
+
         for (var i = 0; i < steps; i++) {
-    
-            var t = i.toFloat() / (steps - 1);
-            var col = C.gradientMulti(colors, t);
+            var col = ccache.color[i];
     
             var hy = Math.round(top + bandH * i);
             var nextHx = Math.round(top + bandH * (i + 1));
@@ -227,4 +270,24 @@ module TimeUtils {
         dc.drawText(x, y, font, hourStr, G.TEXT_JUSTIFY_CENTER);
     }
 
+    function degToRad(d) { return d * Math.PI / 180.0; }
+    function radToDeg(r) { return r * 180.0 / Math.PI; }
+
+    function formatSunTime(t) {
+        if(t == null) { return "--"; }
+        var infoSunR = T.Gregorian.info( t, T.FORMAT_MEDIUM );
+        return (infoSunR.hour < 10 ? "0" : "")+infoSunR.hour+":"+ (infoSunR.min < 10 ? "0" : "") + infoSunR.min;
+    }
+
+    function drawSunTimes(dc, x, y) {
+        var curpos = P.getInfo().position; 
+        if (curpos != null) {
+            var sunrise = W.getSunrise(curpos, T.now());
+            var sunset  = W.getSunset(curpos, T.now());
+            dc.drawText(x, y, G.FONT_XTINY, formatSunTime(sunrise) + " - " + formatSunTime(sunset), G.TEXT_JUSTIFY_CENTER);
+        }
+        //else{
+        //    dc.drawText(x, y, G.FONT_XTINY, "-- - --", G.TEXT_JUSTIFY_CENTER);
+        //}
+    }
 }
