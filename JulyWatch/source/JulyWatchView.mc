@@ -18,6 +18,7 @@ using WeatherUtils as WU;
 using ColorsUtils as C;
 using TinyFont as TF;
 using BirthdayUtils as BU;
+using Prof as P;
 
 const DEGMIN = true;
 const DEGHOUR = true;
@@ -42,20 +43,22 @@ class JulyWatchView extends WatchUi.WatchFace {
     var h;
     var cx;
     var cy;
+    var font;
 
     function initialize() {
         WatchFace.initialize();
         wfDelegate = new WFDelegate(self);
 
         settings = Settings.get();
+        font = G.getVectorFont({ :face =>"RobotoCondensedBold", :size => 16});
 
         arcSteps  = new ArcState();
         arcActMin = new ArcState();
         arcFloor  = new ArcState();
         arcBody   = new ArcState();
 
-        minCCache    = new ColorCache();
-        hourCCache   = new ColorCache();
+        minCCache = new ColorCache();
+        hourCCache= new ColorCache();
     }
 
     // Load your resources here
@@ -64,10 +67,10 @@ class JulyWatchView extends WatchUi.WatchFace {
 
         if (dca == null) { loadIcons(); }
         zon = new ZonesMap();
-        arcSteps  = new ArcState();
-        arcActMin = new ArcState();
-        arcFloor  = new ArcState();
-        arcBody   = new ArcState();
+        //arcSteps  = new ArcState();
+        //arcActMin = new ArcState();
+        //arcFloor  = new ArcState();
+        //arcBody   = new ArcState();
 
         clearScreen(dc);
         w = dc.getWidth();
@@ -105,7 +108,14 @@ class JulyWatchView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() as Void {
-        if (dca == null) { loadIcons(); }
+        //if(dca == null) { loadIcons(); }
+        //if(zon        == null){zon = new ZonesMap();}
+        //if(arcSteps   == null){arcSteps  = new ArcState();}
+        //if(arcActMin  == null){arcActMin = new ArcState();}
+        //if(arcFloor   == null){arcFloor  = new ArcState();}
+        //if(arcBody    == null){arcBody   = new ArcState();}
+        //if(minCCache  == null){minCCache = new ColorCache();}
+        //if(hourCCache == null){hourCCache= new ColorCache();}
     }
 
     // Clear Screen
@@ -213,7 +223,8 @@ class JulyWatchView extends WatchUi.WatchFace {
                 if(zon.get(:solar).hasChanged(AD.statsSensor.solarIntensity)){ // Nivel intensidad solar
                     zon.get(:solar).clear(dc);
                     dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
-                    dc.drawText(cx + 90, cy - 10, G.FONT_XTINY, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+                    
+                    dc.drawText(cx + 90, cy - 10, font, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
                 }
             }
             
@@ -258,13 +269,23 @@ class JulyWatchView extends WatchUi.WatchFace {
         //if (dca != null){
         //    dca.clearAll();
         //    dca = null;
-        //} 
-
-        //if(zon != null) {zon = null;}
+        //}
+        //
+        //zon = null;
+        //
+        //arcSteps  = null;
+        //arcActMin = null;
+        //arcFloor  = null;
+        //arcBody   = null;
+        //
+        //minCCache  = null;
+        //hourCCache = null;
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void {
+        settings.readSettings();
+        if(zon== null){ zon = new ZonesMap();}
     }
 
     // Terminate any active timers and prepare for slow updates.
@@ -287,9 +308,9 @@ class JulyWatchView extends WatchUi.WatchFace {
         var strAux;
 
         // Icons
-        dca.registerGroup(:icons, [:steps,:heart,:dist, :stair, :batte, :sclock, :cronos,
+        dca.registerGroup(:icons, [:steps,:heart, :stair, :batte, :sclock, :cronos,
         :bodyBatt, :stairs, :ssmall, :hsmall]);
-        strAux = ["stepsicon", "hearthicon", "distanicon", "stairsicon","batteryicon", "clockicon",
+        strAux = ["stepsicon", "hearthicon", "stairsicon","batteryicon", "clockicon",
         "cronoicon", "bodyBatt", "stairsicons", "stepicons", "hearthicons"];
         addGroup(:icons, strAux);
 
@@ -312,6 +333,9 @@ class JulyWatchView extends WatchUi.WatchFace {
 
         addIcon(:birth, "birthdayicons");
         addIcon(:bCharg, "batChargeicon");
+
+        //addIcon(:disAB, "disAB");
+        //addIcon(:disABC,"disABC");
     }
 
     // Draw separators

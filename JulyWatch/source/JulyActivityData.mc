@@ -63,6 +63,8 @@ module ActivityData {
     var activitySensor;
     var bodyBattSensor;
     var statsSensor;
+    var distanceFont;
+    //var fakeBB;
 
     function initialize(width, height){
         cy = height / 2;
@@ -71,10 +73,12 @@ module ActivityData {
         rightX = width * 0.80;
         dataYU = cy - 40;
         dataYD = cy + 20;
+        //fakeBB = 100;
 
         hasHeartRate = ActivityMonitor has :getHeartRateHistory;
         hasBoddyBatt = H has :getBodyBatteryHistory;
         hasSolarInt  = S.getSystemStats() has :solarIntensity;
+        distanceFont = WatchUi.loadResource(Rez.Fonts.distanceFont);
 
         HRSensor = 0;
         activitySensor = 0;
@@ -92,6 +96,8 @@ module ActivityData {
     }
 
     function getBodyBattery(){
+        //if(fakeBB > 0){ fakeBB = (fakeBB - 10);}
+        //bodyBattSensor = fakeBB;
         bodyBattSensor = SensorUtils.getBodyBattery();
     }
 
@@ -106,10 +112,7 @@ module ActivityData {
         // Pasos
         if (dirty & 0x01){ drawActivityData(dc, leftX, dataYU, activitySensor.steps, G.COLOR_BLUE); }
         // Distancia
-        if (dirty & 0x02){
-            var off = drawUnitsData(dc, cx, dataYU - 70, activitySensor.distance, C.hexToColor("#eeaa17"));
-            drawIcon(dc, cx - off, dataYU - 65, dca, C.hexToColor("#eeaa17"), 3, :dist);
-        }
+        if (dirty & 0x02){ drawUnitsData(dc, cx, dataYU - 68, activitySensor.distance, C.hexToColor("#eeaa17")); }
         // Escaleras
         if (dirty & 0x04){ drawActivityData(dc, leftX, dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE); }
     }
@@ -131,20 +134,16 @@ module ActivityData {
     function drawUnitsData(dc, x, y, data, color) {
         dc.setColor(color, G.COLOR_TRANSPARENT);
 
-        var units = " m";
+        var units = "m";
         var dataStr = data.format("%d");
-        var offset = 25 + (dataStr.length() *3);
         
         if (data > 1000) {
-            units = " km";
-            data = data / 1000;
-            offset = 25 + (data.format("%.1f").length() *3);
-            dataStr = "   " + data.format("%.1f");
+            units = "km";
+            data = data / 1000;  
+            dataStr = data.format("%.1f");
         }
-      
-        dc.drawText(x, y, G.FONT_XTINY, dataStr + units, G.TEXT_JUSTIFY_CENTER);
-      
-        return offset;
+        
+        dc.drawText(x, y, distanceFont, "#" + dataStr + units, G.TEXT_JUSTIFY_CENTER);
     }  
 
     function min(a, b) {

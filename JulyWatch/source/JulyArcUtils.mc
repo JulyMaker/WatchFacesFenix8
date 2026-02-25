@@ -10,9 +10,12 @@ class ArcState {
         pos=[];
     }
 
-    function buildGeometry(cx, cy, innerRadius, outerRadius, quarter, segments) {
+    function buildGeometry(cx, cy, quarter, segments) {
         if (pos.size() > 0) { return; }  // ya calculado
 
+        var innerRadius = 125;
+        var radius = 135;
+        
         var startAngle = quarter[0];
         var endAngle   = quarter[1];
 
@@ -22,8 +25,8 @@ class ArcState {
             var angle = startAngle + (i * angleStep);
             var x1 = cx + Math.cos(angle) * innerRadius;
             var y1 = cy + Math.sin(angle) * innerRadius;
-            var x2 = cx + Math.cos(angle) * outerRadius;
-            var y2 = cy + Math.sin(angle) * outerRadius;
+            var x2 = cx + Math.cos(angle) * radius;
+            var y2 = cy + Math.sin(angle) * radius;
 
             pos.add([x1, y1, x2, y2]);
         }
@@ -98,13 +101,10 @@ module ArcUtils {
         var cx = dc.getWidth() / 2;
         var cy = dc.getHeight() / 2;
     
-        var radius = 135;
-        var innerRadius = 125;
-    
+        
+        state.buildGeometry(cx, cy, quarter, SEGMENT);
         var filledSegments = (SEGMENT * percent).toNumber();
 
-        state.buildGeometry(cx, cy, innerRadius, radius, quarter, SEGMENT);
-        
         for (var i = 0; i < SEGMENT; i++) {
             dc.setPenWidth(1);
             if (dir && i < filledSegments) {
@@ -134,23 +134,21 @@ module ArcUtils {
         var newSeg  = (SEGMENT * percent).toNumber();
         var init = (prevSeg < newSeg)? prevSeg : newSeg;
         var fin  = (prevSeg > newSeg)? prevSeg : newSeg;
-    
+        var pos =0;
+
+        if (newSeg > prevSeg) { dc.setColor(col1, G.COLOR_TRANSPARENT); }
+        else{ dc.setColor(col2, G.COLOR_TRANSPARENT);}
+        
         for (var i = init; i < fin; i++) {
             dc.setPenWidth(1);
-            //dc.setColor(col1, G.COLOR_TRANSPARENT);
-            if (dir && i < newSeg) {
-                //dc.setPenWidth(1);
-                dc.setColor(col1, G.COLOR_TRANSPARENT);
-            }else if (!dir && i >= SEGMENT - newSeg) {
-                //dc.setPenWidth(1);
-                dc.setColor(col1, G.COLOR_TRANSPARENT);
-            }else {
-                //dc.setPenWidth(1);
-                dc.setColor(col2, G.COLOR_TRANSPARENT);
+            if (dir) {
+                pos = i;
+            }else if (!dir) {
+                pos = SEGMENT - 1 - i;   
             }
-
+        
             //dc.drawLine(x1, y1, x2, y2);
-            var p= state.pos[i];
+            var p= state.pos[pos];
             dc.drawLine(p[0], p[1], p[2], p[3]);
         }
 

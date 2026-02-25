@@ -51,6 +51,9 @@
     <label id="Viento" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="H" color="#259de2" />
     <label id="AguaNieve" x="center" y="center" font="@Fonts.icons260" justification="Graphics.TEXT_JUSTIFY_CENTER" text="G" color="#259de2" />
 
+    <!-- Distance -->
+    <label id="disAB" x="center" y="center" font="@Fonts.distanceFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="~" color="#eeaa17" />
+    <label id="disABC" x="center" y="center" font="@Fonts.distanceFont" justification="Graphics.TEXT_JUSTIFY_CENTER" text="#" color="#eeaa17" />
 </layout>
 
 <!-- 
