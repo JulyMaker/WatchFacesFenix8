@@ -10,11 +10,11 @@ class ArcState {
         pos=[];
     }
 
-    function buildGeometry(cx, cy, quarter, segments) {
+    function buildGeometry(lay, quarter, segments) {
         if (pos.size() > 0) { return; }  // ya calculado
 
-        var innerRadius = 125;
-        var radius = 135;
+        var innerRadius = lay.sx(125);
+        var radius = lay.sx(135);
         
         var startAngle = quarter[0];
         var endAngle   = quarter[1];
@@ -23,10 +23,10 @@ class ArcState {
 
         for (var i = 0; i < segments; i++) {
             var angle = startAngle + (i * angleStep);
-            var x1 = cx + Math.cos(angle) * innerRadius;
-            var y1 = cy + Math.sin(angle) * innerRadius;
-            var x2 = cx + Math.cos(angle) * radius;
-            var y2 = cy + Math.sin(angle) * radius;
+            var x1 = lay.cx + Math.cos(angle) * innerRadius;
+            var y1 = lay.cy + Math.sin(angle) * innerRadius;
+            var x2 = lay.cx + Math.cos(angle) * radius;
+            var y2 = lay.cy + Math.sin(angle) * radius;
 
             pos.add([x1, y1, x2, y2]);
         }
@@ -69,40 +69,36 @@ module ArcUtils {
         return [startAngle, endAngle];
     }
 
-    function drawIconQ1(dc, x, y, icon, color) {
-        icon.locX = x - 25;
-        icon.locY = y - 128;
+    function drawIconQ1(dc, lay, icon, color) {
+        icon.locX = lay.cx - lay.sx(25);
+        icon.locY = lay.cy - lay.sy(128);
         icon.setColor(color);
         icon.draw(dc);  // ¡IMPORTANTE!
     }
 
-     function drawIconQ2(dc, x, y, icon, color) {
-        icon.locX = x + 20;
-        icon.locY = y - 129;
+     function drawIconQ2(dc, lay, icon, color) {
+        icon.locX = lay.cx + lay.sx(20);
+        icon.locY = lay.cy - lay.sy(129);
         icon.setColor(color);
         icon.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawIconQ3(dc, x, y, icon, color) {
-        icon.locX = x + 25;
-        icon.locY = y + 110;
+    function drawIconQ3(dc, lay, icon, color) {
+        icon.locX = lay.cx + lay.sx(25);
+        icon.locY = lay.cy + lay.sy(110);
         icon.setColor(color);
         icon.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawIconQ4(dc, x, y, icon, color) {
-        icon.locX = x - 25;
-        icon.locY = y + 110;
+    function drawIconQ4(dc, lay, icon, color) {
+        icon.locX = lay.cx - lay.sx(25);
+        icon.locY = lay.cy + lay.sy(110);
         icon.setColor(color);
         icon.draw(dc);  // ¡IMPORTANTE!
     }
 
-    function drawArcSegments(dc, col1, col2, percent, quarter, dir, state) {
-        var cx = dc.getWidth() / 2;
-        var cy = dc.getHeight() / 2;
-    
-        
-        state.buildGeometry(cx, cy, quarter, SEGMENT);
+    function drawArcSegments(dc, lay, col1, col2, percent, quarter, dir, state) {
+        state.buildGeometry(lay, quarter, SEGMENT);
         var filledSegments = (SEGMENT * percent).toNumber();
 
         for (var i = 0; i < SEGMENT; i++) {
@@ -138,7 +134,7 @@ module ArcUtils {
 
         if (newSeg > prevSeg) { dc.setColor(col1, G.COLOR_TRANSPARENT); }
         else{ dc.setColor(col2, G.COLOR_TRANSPARENT);}
-        
+
         for (var i = init; i < fin; i++) {
             dc.setPenWidth(1);
             if (dir) {

@@ -1,4 +1,4 @@
-using Toybox.Graphics;
+using Toybox.Graphics as G;
 
 module TinyFont {
 
@@ -57,7 +57,7 @@ module TinyFont {
 
         if (glyph == null) {return;}
 
-        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(color, G.COLOR_TRANSPARENT);
 
         for (var i = 0; i < 15; i++) {
             if (glyph[i] == 1) {
@@ -89,7 +89,7 @@ module TinyFont {
         var w = 8 * scale;
         var h = 5 * scale;
 
-        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(color, G.COLOR_TRANSPARENT);
 
         // marco
         dc.drawRectangle(x, y, w, h);
@@ -103,7 +103,7 @@ module TinyFont {
         var w = 4 * scale;
         var h = 10 * scale;
     
-        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(color, G.COLOR_TRANSPARENT);
         dc.drawRectangle(x, y, w, h);
     
         dc.fillRectangle(
@@ -123,5 +123,17 @@ module TinyFont {
             fill
         );
     }
+}
 
+class Fonts {
+
+    static var time;
+    static var small;
+    static var tiny;
+
+    static function init(lay) {
+        time  = G.getVectorFont({ :face =>"RobotoCondensedBold", :size => lay.sy(46) });
+        small = G.getVectorFont({ :face =>"RobotoCondensedBold", :size => lay.sy(16)});
+        tiny  = G.getVectorFont({ :face =>"RobotoCondensedBold", :size => lay.sy(12) });
+    }
 }

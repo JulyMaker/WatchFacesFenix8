@@ -18,7 +18,6 @@ using WeatherUtils as WU;
 using ColorsUtils as C;
 using TinyFont as TF;
 using BirthdayUtils as BU;
-using Prof as P;
 
 const DEGMIN = true;
 const DEGHOUR = true;
@@ -28,7 +27,8 @@ class JulyWatchView extends WatchUi.WatchFace {
     var dca;
     var wfDelegate;
     var zon;
-    
+    var lay;
+
     var settings;
 
     var arcSteps ;
@@ -39,18 +39,12 @@ class JulyWatchView extends WatchUi.WatchFace {
     var minCCache  ;
     var hourCCache ;
 
-    var w;
-    var h;
-    var cx;
-    var cy;
-    var font;
-
     function initialize() {
         WatchFace.initialize();
+        
         wfDelegate = new WFDelegate(self);
 
         settings = Settings.get();
-        font = G.getVectorFont({ :face =>"RobotoCondensedBold", :size => 16});
 
         arcSteps  = new ArcState();
         arcActMin = new ArcState();
@@ -59,49 +53,50 @@ class JulyWatchView extends WatchUi.WatchFace {
 
         minCCache = new ColorCache();
         hourCCache= new ColorCache();
+        zon = new ZonesMap();
     }
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.WatchFace(dc));
 
+        lay = new Layout(dc.getWidth(), dc.getHeight());
+        wfDelegate.resolution(lay.w);
+        zon.resolution(lay.w);
+
+        Fonts.init(lay);
+        
+        minCCache.setScale(lay.scale); 
+        hourCCache.setScale(lay.scale);
+
         if (dca == null) { loadIcons(); }
-        zon = new ZonesMap();
-        //arcSteps  = new ArcState();
-        //arcActMin = new ArcState();
-        //arcFloor  = new ArcState();
-        //arcBody   = new ArcState();
 
         clearScreen(dc);
-        w = dc.getWidth();
-        h = dc.getHeight();
-        cx = w / 2;
-        cy = h / 2;
         
         // Separators lines
-        drawSeparators(dc, w, h, cx, cy);
+        drawSeparators(dc, lay.w, lay.h, lay.cx, lay.cy);
 
         // Activity icons
-        AD.initialize(w, h);
-        AD.drawIcon(dc, AD.leftX, AD.dataYU, dca, G.COLOR_BLUE, 23, :steps);
-        AD.drawIcon(dc, AD.rightX, AD.dataYU, dca, G.COLOR_RED, 23, :heart);
-        AD.drawIcon(dc, AD.leftX, AD.dataYD, dca, G.COLOR_WHITE, -22, :stair);
+        AD.initialize();
+        AD.drawIcon(dc, lay.leftX,  lay.dataYU, dca, G.COLOR_BLUE, 23, :steps);
+        AD.drawIcon(dc, lay.rightX, lay.dataYU, dca, G.COLOR_RED, 23, :heart);
+        AD.drawIcon(dc, lay.leftX,  lay.dataYD, dca, G.COLOR_WHITE, -22, :stair);
 
         // heartRate init
         dc.setColor(G.COLOR_RED, G.COLOR_TRANSPARENT);
-        dc.drawText(AD.rightX, AD.dataYU, G.FONT_XTINY, "--", G.TEXT_JUSTIFY_CENTER);
+        dc.drawText(lay.rightX, lay.dataYU, G.FONT_XTINY, "--", G.TEXT_JUSTIFY_CENTER);
 
         // Icons in arcs
-        ArcUtils.drawIconQ1(dc, cx, cy, dca.icon(:ssmall), G.COLOR_RED);
-        ArcUtils.drawIconQ2(dc, cx, cy, dca.icon(:cronos), G.COLOR_BLUE);
-        ArcUtils.drawIconQ3(dc, cx, cy, dca.icon(:bodyBatt), G.COLOR_GREEN);
-        ArcUtils.drawIconQ4(dc, cx, cy, dca.icon(:stairs), G.COLOR_YELLOW);
+        ArcUtils.drawIconQ1(dc, lay, dca.icon(:ssmall), G.COLOR_RED);
+        ArcUtils.drawIconQ2(dc, lay, dca.icon(:cronos), G.COLOR_BLUE);
+        ArcUtils.drawIconQ3(dc, lay, dca.icon(:bodyBatt), G.COLOR_GREEN);
+        ArcUtils.drawIconQ4(dc, lay, dca.icon(:stairs), G.COLOR_YELLOW);
         // Draw Activity arcsv
         AD.getActivitySensor();
-        ArcUtils.drawArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
-        ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
-        ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
-        ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+        ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+        ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+        ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+        ArcUtils.drawArcSegments(dc, lay, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -123,9 +118,10 @@ class JulyWatchView extends WatchUi.WatchFace {
       dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
       dc.clear();
     }
-    function clearZone(dc as Dc, x, y, w, h) {
+
+    function clearZone(dc as Dc, x, y, lay) {
         dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
-        dc.fillRectangle(x, y, w, h);
+        dc.fillRectangle(x, y, lay.w, lay.h);
     }
 
     // Update the view
@@ -140,10 +136,10 @@ class JulyWatchView extends WatchUi.WatchFace {
             if(zon.get(:hour2).hasChanged(tens))
             {
                 zon.get(:hour).clear(dc);
-                TU.drawHours(dc, cx, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
+                TU.drawHours(dc, lay.cx, lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
             }else{
                 zon.get(:hour2).clear(dc);
-                TU.drawHour(dc, cx + 28, cy - 110, timeData, DIRHOUR, DEGHOUR, hourCCache);
+                TU.drawHour(dc, lay.cx + sx(28), lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
             }
         }
 
@@ -152,10 +148,10 @@ class JulyWatchView extends WatchUi.WatchFace {
             if(zon.get(:min2).hasChanged(tens))
             {
                 zon.get(:min).clear(dc);
-                TU.drawMinutes(dc, cx, cy - 5, timeData, DEGMIN, minCCache);
+                TU.drawMinutes(dc, lay.cx, lay.cy - sy(5), timeData, DEGMIN, minCCache);
             }else{
                 zon.get(:min2).clear(dc);
-                TU.drawMinute(dc, cx + 28, cy - 5, timeData, DEGMIN, minCCache);
+                TU.drawMinute(dc, lay.cx + sx(28), lay.cy - sy(5), timeData, DEGMIN, minCCache);
             }    
         }
 
@@ -165,17 +161,17 @@ class JulyWatchView extends WatchUi.WatchFace {
             zon.get(:moon).clear(dc);
             zon.get(:birthday).clear(dc);
 
-            TU.drawDate(dc, cx, cy - 10, timeData);  // Date   
-            TU.drawSunTimes(dc, cx, cy + 90);        // SunTimes
-            MU.drawMoon(dc, dca, cx + 68, cy - 9);   // Moon
-            var names = BU.getBirthday(dc, timeData, cx, cy, dca); // BirthDay
-            if(names){TF.drawText(dc, cx - 82, cy - 80, names, 1, C.hexToColor("#e20e0e"), 3.5);}
+            TU.drawDate(dc, lay.cx, lay.cy - sy(10), timeData);          // Date   
+            TU.drawSunTimes(dc, lay.cx, lay.cy + sy(90));                // SunTimes
+            MU.drawMoon(dc, dca, lay.cx + sx(68), lay.cy - sy(9));   // Moon
+            var names = BU.getBirthday(dc, timeData, lay, dca);   // BirthDay
+            if(names){TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(80), names, 1, C.hexToColor("#e20e0e"), 3.5);}
 
             // Draw Activity arcs
-            ArcUtils.drawArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
-            ArcUtils.drawArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
-            ArcUtils.drawArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
-            ArcUtils.drawArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+            ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+            ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+            ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+            ArcUtils.drawArcSegments(dc, lay, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
         }
         if(settings.clearBirth){ zon.get(:birthday).clear(dc); }
 
@@ -185,8 +181,8 @@ class JulyWatchView extends WatchUi.WatchFace {
             if(zon.get(:weatIco).hasChanged(WU.conditions.condition) ||
             zon.get(:weatTmp).hasChanged(WU.conditions.temperature)){
                 zon.get(:weatIco).clear(dc);
-                WU.drawWeatherIco(dc, dca, cx - 95, cy - 10, G.COLOR_WHITE);
-                TF.drawText(dc, cx - 82, cy - 5, WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
+                WU.drawWeatherIco(dc, dca, lay.cx - sx(95), lay.cy - sy(10), G.COLOR_WHITE);
+                TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(5), WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
             }
         }
 
@@ -198,7 +194,7 @@ class JulyWatchView extends WatchUi.WatchFace {
             if(zon.get(:field2).hasChanged(AD.activitySensor.distance)){      dirty |= 0x02; zon.get(:field2).clear(dc);}
             if(zon.get(:field5).hasChanged(AD.activitySensor.floorsClimbed)){ dirty |= 0x04; zon.get(:field5).clear(dc);}
 
-            AD.drawMoveActivity(dc, dca, dirty);
+            AD.drawMoveActivity(dc, lay, dca, dirty);
 
             // Activity arcs
             ArcUtils.updateArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
@@ -212,7 +208,7 @@ class JulyWatchView extends WatchUi.WatchFace {
             if(zon.get(:field3).hasChanged(AD.HRSensor)){ // Frecuencia cardiaca
                 zon.get(:field3).clear(dc);
 
-                AD.drawActivityData(dc, AD.rightX, AD.dataYU, AD.HRSensor, G.COLOR_RED);
+                AD.drawActivityData(dc, lay.rightX, lay.dataYU, AD.HRSensor, G.COLOR_RED);
             }
         }
 
@@ -224,13 +220,13 @@ class JulyWatchView extends WatchUi.WatchFace {
                     zon.get(:solar).clear(dc);
                     dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
                     
-                    dc.drawText(cx + 90, cy - 10, font, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+                    dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
                 }
             }
             
-            if(zon.get(:battChg).hasChanged(AD.statsSensor.charging)){ // Nivel de batería            
+            if(zon.get(:battChg).hasChanged(AD.statsSensor.charging)){ // Icono cargando         
                 if(AD.statsSensor.charging){
-                    AD.drawIcon(dc, AD.rightX + 8, AD.dataYD + 23, dca, G.COLOR_WHITE, 0, :bCharg);
+                    AD.drawIcon(dc, lay.rightX + sx(8), lay.dataYD + sy(23), dca, G.COLOR_WHITE, 0, :bCharg);
                 }else{
                     zon.get(:battChg).clear(dc);
                 }
@@ -244,11 +240,11 @@ class JulyWatchView extends WatchUi.WatchFace {
             
             if(zon.get(:field4).hasChanged(batteryLevel)){ // Nivel de batería
                 zon.get(:field4).clear(dc);
-                AD.drawActivityData(dc, AD.rightX, AD.dataYD, batteryLevel, G.COLOR_WHITE);
+                AD.drawActivityData(dc, lay.rightX, lay.dataYD, batteryLevel, G.COLOR_WHITE);
 
                 if( zon.get(:field6).changed(batteryLevel, 10) ){
                     zon.get(:field6).clear(dc);
-                    TF.drawBatteryV(dc, AD.rightX - 3, AD.dataYD + 23, batteryLevel, 2, G.COLOR_WHITE);
+                    TF.drawBatteryV(dc, lay.rightX - sx(3), lay.dataYD + sy(23), batteryLevel, 2, G.COLOR_WHITE);
                 } 
             }
         }
@@ -285,11 +281,19 @@ class JulyWatchView extends WatchUi.WatchFace {
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void {
         settings.readSettings();
-        if(zon== null){ zon = new ZonesMap();}
+        if(zon== null){ zon = new ZonesMap(); zon.resolution(lay.w);}
     }
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() as Void {
+    }
+
+    function sx(num){
+        return lay.sx(num);
+    }
+
+    function sy(num){
+        return lay.sy(num);
     }
 
     function addIcon(id as Symbol, st as String){

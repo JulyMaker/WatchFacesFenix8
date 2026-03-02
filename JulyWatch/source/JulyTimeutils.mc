@@ -12,6 +12,7 @@ using Toybox.Weather as W;
 
 class ColorCache{
     var color;
+    var s;
 
     function initialize(){
         color=[];
@@ -29,6 +30,10 @@ class ColorCache{
 
     function clear(){
         color.removeAll();
+    }
+
+    function setScale(scale){
+        s = scale;
     }
 }
 
@@ -65,7 +70,7 @@ module TimeUtils {
     }
 
     // Draw date with seconds
-    function drawDate(dc, cx, y, timeData) {
+    function drawDate(dc, x, y, timeData) {
        var dayWeek = WatchUi.loadResource(
            Rez.Strings[TimeUtils.getDaySymbol(timeData[:dateShort].day_of_week)]
        );
@@ -81,7 +86,7 @@ module TimeUtils {
        ]);
    
        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
-       dc.drawText(cx, y, G.FONT_XTINY, dateStr, G.TEXT_JUSTIFY_CENTER);
+       dc.drawText(x, y, G.FONT_XTINY, dateStr, G.TEXT_JUSTIFY_CENTER);
     }
 
     // Draw Minutes 
@@ -118,8 +123,8 @@ module TimeUtils {
             C.hexToColor("#926b01")
         ];
 
-        var top = y + 26; // 150
-        var bottom = y + 90; //215;
+        var top = y + 26*ccache.s; // 150
+        var bottom = y + 90*ccache.s; //215;
         //dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
         //dc.drawLine(30, top, x * 2 - 30, top);
         //dc.drawLine(30, bottom, x * 2 - 30, bottom);
@@ -177,8 +182,8 @@ module TimeUtils {
 
         if(!deg){colors = [G.COLOR_WHITE]; }
 
-        var left = x - 45;
-        var rigth = x + 47;
+        var left = x - 45*ccache.s;
+        var rigth = x + 47*ccache.s;
         //dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
         //dc.drawLine(left, 30, left, y + 200);
         //dc.drawLine(rigth, 30, rigth, y + 200);
@@ -230,8 +235,8 @@ module TimeUtils {
     
         if(!deg){colors = [G.COLOR_WHITE]; }
 
-        var top = y + 26;
-        var bottom = y + 95;
+        var top = y + 26*ccache.s;
+        var bottom = y + 95*ccache.s;
         //dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
         //dc.drawLine(30, top, x * 2 - 30, top);
         //dc.drawLine(30, bottom, x * 2 - 30, bottom);

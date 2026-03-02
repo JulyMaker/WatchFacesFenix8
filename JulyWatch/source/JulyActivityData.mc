@@ -66,13 +66,8 @@ module ActivityData {
     var distanceFont;
     //var fakeBB;
 
-    function initialize(width, height){
-        cy = height / 2;
-        cx = width / 2;
-        leftX = width * 0.20;
-        rightX = width * 0.80;
-        dataYU = cy - 40;
-        dataYD = cy + 20;
+    function initialize(){
+
         //fakeBB = 100;
 
         hasHeartRate = ActivityMonitor has :getHeartRateHistory;
@@ -106,15 +101,15 @@ module ActivityData {
     }
 
     // Draw activities
-    function drawMoveActivity(dc, dca, dirty){
+    function drawMoveActivity(dc, lay, dca, dirty){
         if(dirty == 0) {return ;}
 
         // Pasos
-        if (dirty & 0x01){ drawActivityData(dc, leftX, dataYU, activitySensor.steps, G.COLOR_BLUE); }
+        if (dirty & 0x01){ drawActivityData(dc, lay.leftX, lay.dataYU, activitySensor.steps, G.COLOR_BLUE); }
         // Distancia
-        if (dirty & 0x02){ drawUnitsData(dc, cx, dataYU - 68, activitySensor.distance, C.hexToColor("#eeaa17")); }
+        if (dirty & 0x02){ drawUnitsData(dc, lay.cx, lay.dataYU - lay.sy(68), activitySensor.distance, C.hexToColor("#eeaa17")); }
         // Escaleras
-        if (dirty & 0x04){ drawActivityData(dc, leftX, dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE); }
+        if (dirty & 0x04){ drawActivityData(dc, lay.leftX, lay.dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE); }
     }
 
     function drawIcon(dc, x, y, dca, color, iconPos, type)
