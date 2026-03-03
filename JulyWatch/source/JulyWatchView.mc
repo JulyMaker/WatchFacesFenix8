@@ -103,14 +103,6 @@ class JulyWatchView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() as Void {
-        //if(dca == null) { loadIcons(); }
-        //if(zon        == null){zon = new ZonesMap();}
-        //if(arcSteps   == null){arcSteps  = new ArcState();}
-        //if(arcActMin  == null){arcActMin = new ArcState();}
-        //if(arcFloor   == null){arcFloor  = new ArcState();}
-        //if(arcBody    == null){arcBody   = new ArcState();}
-        //if(minCCache  == null){minCCache = new ColorCache();}
-        //if(hourCCache == null){hourCCache= new ColorCache();}
     }
 
     // Clear Screen
@@ -119,10 +111,10 @@ class JulyWatchView extends WatchUi.WatchFace {
       dc.clear();
     }
 
-    function clearZone(dc as Dc, x, y, lay) {
-        dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
-        dc.fillRectangle(x, y, lay.w, lay.h);
-    }
+    //function clearZone(dc as Dc, x, y, lay) {
+    //    dc.setColor(G.COLOR_BLACK, G.COLOR_BLACK);
+    //    dc.fillRectangle(x, y, lay.w, lay.h);
+    //}
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
@@ -165,8 +157,8 @@ class JulyWatchView extends WatchUi.WatchFace {
             TU.drawSunTimes(dc, lay.cx, lay.cy + sy(90));                // SunTimes
             MU.drawMoon(dc, dca, lay.cx + sx(68), lay.cy - sy(9));   // Moon
             var names = BU.getBirthday(dc, timeData, lay, dca);   // BirthDay
-            if(names){TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(80), names, 1, C.hexToColor("#e20e0e"), 3.5);}
-
+            //if(names){TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(80), names, 1, C.hexToColor("#e20e0e"), 3.5);}
+            if(names){dc.drawText(lay.cx - sx(70), lay.cy - sy(83), Fonts.tiny, names, G.TEXT_JUSTIFY_CENTER);}
             // Draw Activity arcs
             ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
             ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
@@ -262,26 +254,10 @@ class JulyWatchView extends WatchUi.WatchFace {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() as Void {
-        //if (dca != null){
-        //    dca.clearAll();
-        //    dca = null;
-        //}
-        //
-        //zon = null;
-        //
-        //arcSteps  = null;
-        //arcActMin = null;
-        //arcFloor  = null;
-        //arcBody   = null;
-        //
-        //minCCache  = null;
-        //hourCCache = null;
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() as Void {
-        settings.readSettings();
-        if(zon== null){ zon = new ZonesMap(); zon.resolution(lay.w);}
     }
 
     // Terminate any active timers and prepare for slow updates.

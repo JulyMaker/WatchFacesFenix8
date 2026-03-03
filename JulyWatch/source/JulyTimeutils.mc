@@ -227,8 +227,8 @@ module TimeUtils {
     
         var colors = [
             C.hexToColor("#0aafbb"),
-            C.hexToColor("#067074"),
-            C.hexToColor("#915a08"),
+            C.hexToColor("#1aa4a8"),
+            C.hexToColor("#df9322"),
             C.hexToColor("#db1a1a"),
             C.hexToColor("#5f0606")
         ];

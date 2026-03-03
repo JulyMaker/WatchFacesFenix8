@@ -14,7 +14,7 @@ module BirthdayUtils {
  const BIRTH = {  
         1 =>  {}, // Enero
         2 =>  { 22 => ["nana"]}, // Febrero
-        3 =>  { 2 => ["test"], 11 => ["july"] }, // Marzo
+        3 =>  { 3 => ["test"], 11 => ["july"] }, // Marzo
         4 =>  {}, // Abril 
         5 =>  { 16 => ["rocio"]}, // Mayo
         6 =>  {}, // Junio

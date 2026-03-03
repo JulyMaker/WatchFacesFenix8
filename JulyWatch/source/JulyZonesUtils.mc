@@ -11,7 +11,7 @@ class ZonesMap {
         :weatTmp => new Zone(25 ,120, 50, 21, -1),
         :moon    => new Zone(188,120, 20, 21, -1),
         :solar   => new Zone(210,120, 30, 21, -1),
-        :birthday=> new Zone(48 , 35, 25, 21, -1),
+        :birthday=> new Zone(48 , 35, 25, 23, -1),
         :sun     => new Zone(82 ,220, 97, 21, -1),
         :battChg => new Zone(213,170,  8, 20, -1), //Battery charging
 
