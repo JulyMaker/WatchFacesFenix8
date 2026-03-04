@@ -99,7 +99,7 @@ module ActivityData {
         // Pasos
         drawActivityData(dc, lay.leftX, lay.dataYU, activitySensor.steps, G.COLOR_BLUE);
         // Distancia
-        drawUnitsData(dc, lay.cx, lay.dataYU - lay.sy(68), activitySensor.distance, C.hexToColor("#eeaa17"));
+        drawUnitsData(dc, lay.cx, lay.dataYU - lay.sy(68), activitySensor.distance/100.0, C.hexToColor("#eeaa17"));
         // Escaleras
         drawActivityData(dc, lay.leftX, lay.dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE);
     }
@@ -114,8 +114,10 @@ module ActivityData {
 
     function drawActivityData(dc, x, y, data, color){
         dc.setColor(color, G.COLOR_TRANSPARENT);
-        var dataStr ="--";
-        if (data < 240) { dataStr = data.format("%d"); }
+        var dataStr = data.format("%d");
+        if(color == G.COLOR_RED && data > 250){
+            dataStr = "--";  
+        }
         dc.drawText(x, y, G.FONT_XTINY, dataStr, G.TEXT_JUSTIFY_CENTER);
     }
 
@@ -127,7 +129,7 @@ module ActivityData {
         
         if (data > 1000) {
             units = "km";
-            data = data / 1000;  
+            data = data / 1000.0;  
             dataStr = data.format("%.1f");
         }
         
