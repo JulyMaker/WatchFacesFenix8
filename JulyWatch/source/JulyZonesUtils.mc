@@ -49,7 +49,7 @@ class ZonesMap {
     var timers = {
         :activityT => new TimerControl(5),     // 5s
         :frecHRT   => new TimerControl(10),    // 10s
-        :solarT    => new TimerControl(60),    // 1min
+        :solarT    => new TimerControl(30),    // 30s
         :batteryT  => new TimerControl(120),   // 2min
         :bodybatT  => new TimerControl(300),   // 5min
         :weatherT  => new TimerControl(14400)  // 4h

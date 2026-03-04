@@ -71,20 +71,25 @@ class JulyWatchView extends WatchUi.WatchFace {
 
         if (dca == null) { loadIcons(); }
 
+        AD.getBodyBattery();
+        WU.getCondition();
+        AD.getActivitySensor();
+        AD.getHRSensor();
+        AD.getStatsSensor();
+
+        AD.initialize();
+    }
+
+    function layout(dc as Dc) as Void {
         clearScreen(dc);
         
         // Separators lines
         drawSeparators(dc, lay.w, lay.h, lay.cx, lay.cy);
 
         // Activity icons
-        AD.initialize();
         AD.drawIcon(dc, lay.leftX,  lay.dataYU, dca, G.COLOR_BLUE, 23, :steps);
         AD.drawIcon(dc, lay.rightX, lay.dataYU, dca, G.COLOR_RED, 23, :heart);
         AD.drawIcon(dc, lay.leftX,  lay.dataYD, dca, G.COLOR_WHITE, -22, :stair);
-
-        // heartRate init
-        dc.setColor(G.COLOR_RED, G.COLOR_TRANSPARENT);
-        dc.drawText(lay.rightX, lay.dataYU, G.FONT_XTINY, "--", G.TEXT_JUSTIFY_CENTER);
 
         // Icons in arcs
         ArcUtils.drawIconQ1(dc, lay, dca.icon(:ssmall), G.COLOR_RED);
@@ -92,10 +97,9 @@ class JulyWatchView extends WatchUi.WatchFace {
         ArcUtils.drawIconQ3(dc, lay, dca.icon(:bodyBatt), G.COLOR_GREEN);
         ArcUtils.drawIconQ4(dc, lay, dca.icon(:stairs), G.COLOR_YELLOW);
         // Draw Activity arcsv
-        AD.getActivitySensor();
         ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
         ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
-        ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+        ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, C.hexToColor("#0a4e2e"), AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
         ArcUtils.drawArcSegments(dc, lay, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
     }
 
@@ -118,136 +122,76 @@ class JulyWatchView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc as Dc) as Void {
-        //clearScreen(dc);
+        layout(dc);
 
         var timeData = TU.getTimeData();
         
         // Main Structure
-        if (zon.get(:hour).hasChanged(timeData[:hour])) {
-            var tens = timeData[:hour] / 10;
-            if(zon.get(:hour2).hasChanged(tens))
-            {
-                zon.get(:hour).clear(dc);
-                TU.drawHours(dc, lay.cx, lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
-            }else{
-                zon.get(:hour2).clear(dc);
-                TU.drawHour(dc, lay.cx + sx(28), lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
-            }
-        }
-
-        if (zon.get(:min).hasChanged(timeData[:min])) {
-            var tens = timeData[:min] / 10;
-            if(zon.get(:min2).hasChanged(tens))
-            {
-                zon.get(:min).clear(dc);
-                TU.drawMinutes(dc, lay.cx, lay.cy - sy(5), timeData, DEGMIN, minCCache);
-            }else{
-                zon.get(:min2).clear(dc);
-                TU.drawMinute(dc, lay.cx + sx(28), lay.cy - sy(5), timeData, DEGMIN, minCCache);
-            }    
-        }
-
-        if (zon.get(:dateFi).hasChanged(timeData[:day])) {
-            zon.get(:dateFi).clear(dc);
-            zon.get(:sun).clear(dc);
-            zon.get(:moon).clear(dc);
-            zon.get(:birthday).clear(dc);
-
-            TU.drawDate(dc, lay.cx, lay.cy - sy(10), timeData);          // Date   
-            TU.drawSunTimes(dc, lay.cx, lay.cy + sy(90));                // SunTimes
-            MU.drawMoon(dc, dca, lay.cx + sx(68), lay.cy - sy(9));   // Moon
-            var names = BU.getBirthday(dc, timeData, lay, dca);   // BirthDay
-            //if(names){TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(80), names, 1, C.hexToColor("#e20e0e"), 3.5);}
-            if(names){dc.drawText(lay.cx - sx(70), lay.cy - sy(83), Fonts.tiny, names, G.TEXT_JUSTIFY_CENTER);}
-            // Draw Activity arcs
-            ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
-            ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
-            ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
-            ArcUtils.drawArcSegments(dc, lay, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
-        }
-        if(settings.clearBirth){ zon.get(:birthday).clear(dc); }
-
-        if (zon.getT(:weatherT).timer(timeData[:now])) { // Weather and temp 4h
-            WU.getCondition(); // higth cost
-
-            if(zon.get(:weatIco).hasChanged(WU.conditions.condition) ||
-            zon.get(:weatTmp).hasChanged(WU.conditions.temperature)){
-                zon.get(:weatIco).clear(dc);
-                WU.drawWeatherIco(dc, dca, lay.cx - sx(95), lay.cy - sy(10), G.COLOR_WHITE);
-                TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(5), WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
-            }
-        }
-
-        if (zon.getT(:activityT).timer(timeData[:now])) { // Move Activity
-            AD.getActivitySensor(); // higth cost
-            
-            var dirty = 0;
-            if(zon.get(:field1).hasChanged(AD.activitySensor.steps)){         dirty |= 0x01; zon.get(:field1).clear(dc);}
-            if(zon.get(:field2).hasChanged(AD.activitySensor.distance)){      dirty |= 0x02; zon.get(:field2).clear(dc);}
-            if(zon.get(:field5).hasChanged(AD.activitySensor.floorsClimbed)){ dirty |= 0x04; zon.get(:field5).clear(dc);}
-
-            AD.drawMoveActivity(dc, lay, dca, dirty);
-
-            // Activity arcs
-            ArcUtils.updateArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
-            ArcUtils.updateArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
-            ArcUtils.updateArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
-        }
-
-        if (zon.getT(:frecHRT).timer(timeData[:now])) { // Freq HR 10s
-            AD.getHRSensor(); // higth cost
-            
-            if(zon.get(:field3).hasChanged(AD.HRSensor)){ // Frecuencia cardiaca
-                zon.get(:field3).clear(dc);
-
-                AD.drawActivityData(dc, lay.rightX, lay.dataYU, AD.HRSensor, G.COLOR_RED);
-            }
-        }
-
-        if (zon.getT(:solarT).timer(timeData[:now])) {     //  1min
-            if(AD.hasSolarInt){     
-                AD.getStatsSensor(); // higth cost
-
-                if(zon.get(:solar).hasChanged(AD.statsSensor.solarIntensity)){ // Nivel intensidad solar
-                    zon.get(:solar).clear(dc);
-                    dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
-                    
-                    dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
-                }
-            }
-            
-            if(zon.get(:battChg).hasChanged(AD.statsSensor.charging)){ // Icono cargando         
-                if(AD.statsSensor.charging){
-                    AD.drawIcon(dc, lay.rightX + sx(8), lay.dataYD + sy(23), dca, G.COLOR_WHITE, 0, :bCharg);
-                }else{
-                    zon.get(:battChg).clear(dc);
-                }
-            }
-        }
-
-        if (zon.getT(:batteryT).timer(timeData[:now])) {  // Bateria 2min
-            if(!AD.hasSolarInt){ AD.getStatsSensor(); }   // higth cost
-
-            var batteryLevel = AD.statsSensor.battery;
-            
-            if(zon.get(:field4).hasChanged(batteryLevel)){ // Nivel de batería
-                zon.get(:field4).clear(dc);
-                AD.drawActivityData(dc, lay.rightX, lay.dataYD, batteryLevel, G.COLOR_WHITE);
-
-                if( zon.get(:field6).changed(batteryLevel, 10) ){
-                    zon.get(:field6).clear(dc);
-                    TF.drawBatteryV(dc, lay.rightX - sx(3), lay.dataYD + sy(23), batteryLevel, 2, G.COLOR_WHITE);
-                } 
-            }
-        }
-          
+        TU.drawHours(dc, lay.cx, lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
+        TU.drawMinutes(dc, lay.cx, lay.cy - sy(5), timeData, DEGMIN, minCCache);
+ 
         if (zon.getT(:bodybatT).timer(timeData[:now])) {  // Body Batt 5min
             AD.getBodyBattery(); // higth cost
-            ArcUtils.updateArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
         }
 
-        if(settings.clickDeb) {wfDelegate.drawZones(dc, G.COLOR_DK_RED);} else{ wfDelegate.clearZones(dc);}
-        if(settings.zonesDebug) {zon.drawZones(dc);}else{zon.clearZones(dc);}
+        // Suntimes
+        if (zon.get(:dateFi).hasChanged(timeData[:day])) {     
+            TU.calculateSunTimes();  
+            MU.calculateMoonPhase(dca);
+            reloadSettings();
+        }
+        TU.drawSunTimes(dc, lay.cx, lay.cy + sy(90));      // SunTimes
+        MU.drawMoon(dc, lay.cx + sx(68), lay.cy - sy(9));  // Moon
+
+        // Date
+        TU.drawDate(dc, lay.cx, lay.cy - sy(10), timeData);
+
+        // Birthday
+        var names = BU.getBirthday(dc, timeData, lay, dca, settings.clearBirth);
+        if(names && !settings.clearBirth){dc.drawText(lay.cx - sx(70), lay.cy - sy(83), Fonts.tiny, names, G.TEXT_JUSTIFY_CENTER);}
+        
+
+        //Weather and temp
+        if (zon.getT(:weatherT).timer(timeData[:now])) {
+            WU.getCondition(); // higth cost
+        }
+        WU.drawWeatherIco(dc, dca, lay.cx - sx(95), lay.cy - sy(10), G.COLOR_WHITE);
+        TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(5), WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
+
+        // Move Activity
+        if (zon.getT(:activityT).timer(timeData[:now])) { 
+            AD.getActivitySensor(); // higth cost
+        }
+        AD.drawMoveActivity(dc, lay, dca);
+        
+        // Freq HR 10s
+        if (zon.getT(:frecHRT).timer(timeData[:now])) { 
+            AD.getHRSensor(); // higth cost
+        }
+        AD.drawActivityData(dc, lay.rightX, lay.dataYU, AD.HRSensor, G.COLOR_RED);
+
+        // Solar Intensity and charging status
+        if (zon.getT(:solarT).timer(timeData[:now])) {  //  1min
+             AD.getStatsSensor(); // higth cost
+        }
+        
+        if(AD.hasSolarInt){     
+            dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
+            dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+        }
+                    
+        if(AD.statsSensor.charging){
+            AD.drawIcon(dc, lay.rightX + sx(8), lay.dataYD + sy(23), dca, G.COLOR_WHITE, 0, :bCharg);
+        }
+        
+        // Battery
+        var batteryLevel = AD.statsSensor.battery;
+        AD.drawActivityData(dc, lay.rightX, lay.dataYD, batteryLevel, G.COLOR_WHITE);
+        TF.drawBatteryV(dc, lay.rightX - sx(3), lay.dataYD + sy(23), batteryLevel, 2, G.COLOR_WHITE);
+
+
+        if(settings.clickDeb) {wfDelegate.drawZones(dc, G.COLOR_DK_RED);}
+        if(settings.zonesDebug) {zon.drawZones(dc);}
     }
 
     // Called when this View is removed from the screen. Save the
@@ -346,3 +290,136 @@ class JulyWatchView extends WatchUi.WatchFace {
         settings.readSettings();
     }
 }
+
+// function onUpdate(dc as Dc) as Void {
+//         layout(dc);
+
+//         var timeData = TU.getTimeData();
+        
+//         Main Structure
+//         if (zon.get(:hour).hasChanged(timeData[:hour])) {
+//             var tens = timeData[:hour] / 10;
+//             if(zon.get(:hour2).hasChanged(tens))
+//             {
+//                 zon.get(:hour).clear(dc);
+//                 TU.drawHours(dc, lay.cx, lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
+//             }else{
+//                zon.get(:hour2).clear(dc);
+//                TU.drawHour(dc, lay.cx + sx(28), lay.cy - sy(110), timeData, DIRHOUR, DEGHOUR, hourCCache);
+//             }
+//         }
+
+//         if (zon.get(:min).hasChanged(timeData[:min])) {
+//             var tens = timeData[:min] / 10;
+//             if(zon.get(:min2).hasChanged(tens))
+//             {
+//                 zon.get(:min).clear(dc);
+//                 TU.drawMinutes(dc, lay.cx, lay.cy - sy(5), timeData, DEGMIN, minCCache);
+//             }else{
+//                 zon.get(:min2).clear(dc);
+//                 TU.drawMinute(dc, lay.cx + sx(28), lay.cy - sy(5), timeData, DEGMIN, minCCache);
+//             }    
+//         }
+
+//         if (zon.get(:dateFi).hasChanged(timeData[:day])) {
+//             zon.get(:dateFi).clear(dc);
+//             zon.get(:sun).clear(dc);
+//             zon.get(:moon).clear(dc);
+//             zon.get(:birthday).clear(dc);
+
+//             TU.drawDate(dc, lay.cx, lay.cy - sy(10), timeData);          // Date   
+//             TU.drawSunTimes(dc, lay.cx, lay.cy + sy(90));                // SunTimes
+//             MU.drawMoon(dc, dca, lay.cx + sx(68), lay.cy - sy(9));   // Moon
+//             var names = BU.getBirthday(dc, timeData, lay, dca);   // BirthDay
+//             if(names){TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(80), names, 1, C.hexToColor("#e20e0e"), 3.5);}
+//             if(names){dc.drawText(lay.cx - sx(70), lay.cy - sy(83), Fonts.tiny, names, G.TEXT_JUSTIFY_CENTER);}
+//             Draw Activity arcs
+//             ArcUtils.drawArcSegments(dc, lay, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+//             ArcUtils.drawArcSegments(dc, lay, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+//             ArcUtils.drawArcSegments(dc, lay, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+//             ArcUtils.drawArcSegments(dc, lay, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+//         }
+//         if(settings.clearBirth){ zon.get(:birthday).clear(dc); }
+
+//         if (zon.getT(:weatherT).timer(timeData[:now])) { // Weather and temp 4h
+//             WU.getCondition(); // higth cost
+
+//             if(zon.get(:weatIco).hasChanged(WU.conditions.condition) ||
+//             zon.get(:weatTmp).hasChanged(WU.conditions.temperature)){
+//                 zon.get(:weatIco).clear(dc);
+//                 WU.drawWeatherIco(dc, dca, lay.cx - sx(95), lay.cy - sy(10), G.COLOR_WHITE);
+//                 TF.drawText(dc, lay.cx - sx(82), lay.cy - sy(5), WU.temp(), 1.8, G.COLOR_YELLOW, 2.5);
+//             }
+//         }
+
+//         if (zon.getT(:activityT).timer(timeData[:now])) { // Move Activity
+//             AD.getActivitySensor(); // higth cost
+            
+//             var dirty = 0;
+//             if(zon.get(:field1).hasChanged(AD.activitySensor.steps)){         dirty |= 0x01; zon.get(:field1).clear(dc);}
+//             if(zon.get(:field2).hasChanged(AD.activitySensor.distance)){      dirty |= 0x02; zon.get(:field2).clear(dc);}
+//             if(zon.get(:field5).hasChanged(AD.activitySensor.floorsClimbed)){ dirty |= 0x04; zon.get(:field5).clear(dc);}
+
+//             AD.drawMoveActivity(dc, lay, dca, dirty);
+
+//             Activity arcs
+//             ArcUtils.updateArcSegments(dc, G.COLOR_RED, C.hexToColor("#7a1b04"), AD.getActivityPercent(:steps), ArcUtils.quarter1(), false, arcSteps);
+//             ArcUtils.updateArcSegments(dc, G.COLOR_BLUE, C.hexToColor("#0f0d7c"), AD.getActivityPercent(:activeMinutes), ArcUtils.quarter2(), true, arcActMin);
+//             ArcUtils.updateArcSegments(dc, G.COLOR_YELLOW, C.hexToColor("#a8760a"), AD.getActivityPercent(:floor), ArcUtils.quarter4(), true, arcFloor);
+//         }
+
+//         if (zon.getT(:frecHRT).timer(timeData[:now])) { // Freq HR 10s
+//             AD.getHRSensor(); // higth cost
+            
+//             if(zon.get(:field3).hasChanged(AD.HRSensor)){ // Frecuencia cardiaca
+//                 zon.get(:field3).clear(dc);
+
+//                 AD.drawActivityData(dc, lay.rightX, lay.dataYU, AD.HRSensor, G.COLOR_RED);
+//             }
+//         }
+
+//         if (zon.getT(:solarT).timer(timeData[:now])) {     //  1min
+//             if(AD.hasSolarInt){     
+//                 AD.getStatsSensor(); // higth cost
+
+//                 if(zon.get(:solar).hasChanged(AD.statsSensor.solarIntensity)){ // Nivel intensidad solar
+//                     zon.get(:solar).clear(dc);
+//                     dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
+                    
+//                     dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+//                 }
+//             }
+            
+//             if(zon.get(:battChg).hasChanged(AD.statsSensor.charging)){ // Icono cargando         
+//                 if(AD.statsSensor.charging){
+//                     AD.drawIcon(dc, lay.rightX + sx(8), lay.dataYD + sy(23), dca, G.COLOR_WHITE, 0, :bCharg);
+//                 }else{
+//                     zon.get(:battChg).clear(dc);
+//                 }
+//             }
+//         }
+
+//         if (zon.getT(:batteryT).timer(timeData[:now])) {  // Bateria 2min
+//             if(!AD.hasSolarInt){ AD.getStatsSensor(); }   // higth cost
+
+//             var batteryLevel = AD.statsSensor.battery;
+            
+//             if(zon.get(:field4).hasChanged(batteryLevel)){ // Nivel de batería
+//                 zon.get(:field4).clear(dc);
+//                 AD.drawActivityData(dc, lay.rightX, lay.dataYD, batteryLevel, G.COLOR_WHITE);
+
+//                 if( zon.get(:field6).changed(batteryLevel, 10) ){
+//                     zon.get(:field6).clear(dc);
+//                     TF.drawBatteryV(dc, lay.rightX - sx(3), lay.dataYD + sy(23), batteryLevel, 2, G.COLOR_WHITE);
+//                 } 
+//             }
+//         }
+          
+//         if (zon.getT(:bodybatT).timer(timeData[:now])) {  // Body Batt 5min
+//             AD.getBodyBattery(); // higth cost
+//             ArcUtils.updateArcSegments(dc, G.COLOR_GREEN, G.COLOR_DK_GREEN, AD.getActivityPercent(:bodyBatt), ArcUtils.quarter3(), false, arcBody);
+//         }
+
+//         if(settings.clickDeb) {wfDelegate.drawZones(dc, G.COLOR_DK_RED);} else{ wfDelegate.clearZones(dc);}
+//         if(settings.zonesDebug) {zon.drawZones(dc);}else{zon.clearZones(dc);}
+//     }

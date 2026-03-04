@@ -52,15 +52,20 @@ module MoonUtils{
         return lunar_phase;
     }
 
-    function drawMoon(dc, dca, x, y) {
+    var moonIcon=null;
+
+    function calculateMoonPhase(dca){
         var moon = MoonUtils.lunarPhase(0);
         var iconIndex = Math.round(moon * 8).toNumber() % 8;
 
         var moonGroup = dca.getGroup(:moon);
-        
-        var icon = dca.icon(moonGroup[iconIndex]);
-        icon.setLocation(x, y);
-        icon.setColor(G.COLOR_WHITE);
-        icon.draw(dc);
+
+        moonIcon = dca.icon(moonGroup[iconIndex]);
+    }
+
+    function drawMoon(dc, x, y) {
+        moonIcon.setLocation(x, y);
+        moonIcon.setColor(G.COLOR_WHITE);
+        moonIcon.draw(dc);
     }
 }

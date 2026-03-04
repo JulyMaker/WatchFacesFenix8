@@ -26,7 +26,9 @@ module BirthdayUtils {
         12 => {} // Diciembre
     };
 
-    function getBirthday(dc, timeData, lay, dca) as String? {
+    function getBirthday(dc, timeData, lay, dca, clearBirth) as String? {
+        if (clearBirth) { return null; }
+        
         var month = timeData[:dateShort].month;
         var m = BIRTH[month] as Dictionary<Number, Array<String>>;
         if (m == null) { return null; }

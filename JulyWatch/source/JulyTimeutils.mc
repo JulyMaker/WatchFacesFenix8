@@ -284,15 +284,19 @@ module TimeUtils {
         return (infoSunR.hour < 10 ? "0" : "")+infoSunR.hour+":"+ (infoSunR.min < 10 ? "0" : "") + infoSunR.min;
     }
 
-    function drawSunTimes(dc, x, y) {
+    var sunrise = null;
+    var sunset = null;
+
+    function calculateSunTimes(){
         var curpos = P.getInfo().position; 
         if (curpos != null) {
-            var sunrise = W.getSunrise(curpos, T.now());
-            var sunset  = W.getSunset(curpos, T.now());
-            dc.drawText(x, y, G.FONT_XTINY, formatSunTime(sunrise) + " - " + formatSunTime(sunset), G.TEXT_JUSTIFY_CENTER);
+            sunrise = W.getSunrise(curpos, T.now());
+            sunset  = W.getSunset(curpos, T.now());
         }
-        //else{
-        //    dc.drawText(x, y, G.FONT_XTINY, "-- - --", G.TEXT_JUSTIFY_CENTER);
-        //}
+    }
+
+    function drawSunTimes(dc, x, y) {
+        dc.setColor(G.COLOR_WHITE, G.COLOR_TRANSPARENT);
+        dc.drawText(x, y, G.FONT_XTINY, formatSunTime(sunrise) + " - " + formatSunTime(sunset), G.TEXT_JUSTIFY_CENTER);
     }
 }

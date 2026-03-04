@@ -69,16 +69,10 @@ module ActivityData {
     function initialize(){
 
         //fakeBB = 100;
-
         hasHeartRate = ActivityMonitor has :getHeartRateHistory;
         hasBoddyBatt = H has :getBodyBatteryHistory;
         hasSolarInt  = S.getSystemStats() has :solarIntensity;
         distanceFont = WatchUi.loadResource(Rez.Fonts.distanceFont);
-
-        HRSensor = 0;
-        activitySensor = 0;
-        bodyBattSensor = 0;
-        statsSensor = 0;
     }
 
     // Sensors 
@@ -101,15 +95,13 @@ module ActivityData {
     }
 
     // Draw activities
-    function drawMoveActivity(dc, lay, dca, dirty){
-        if(dirty == 0) {return ;}
-
+    function drawMoveActivity(dc, lay, dca){
         // Pasos
-        if (dirty & 0x01){ drawActivityData(dc, lay.leftX, lay.dataYU, activitySensor.steps, G.COLOR_BLUE); }
+        drawActivityData(dc, lay.leftX, lay.dataYU, activitySensor.steps, G.COLOR_BLUE);
         // Distancia
-        if (dirty & 0x02){ drawUnitsData(dc, lay.cx, lay.dataYU - lay.sy(68), activitySensor.distance, C.hexToColor("#eeaa17")); }
+        drawUnitsData(dc, lay.cx, lay.dataYU - lay.sy(68), activitySensor.distance, C.hexToColor("#eeaa17"));
         // Escaleras
-        if (dirty & 0x04){ drawActivityData(dc, lay.leftX, lay.dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE); }
+        drawActivityData(dc, lay.leftX, lay.dataYD, activitySensor.floorsClimbed, G.COLOR_WHITE);
     }
 
     function drawIcon(dc, x, y, dca, color, iconPos, type)
@@ -122,7 +114,8 @@ module ActivityData {
 
     function drawActivityData(dc, x, y, data, color){
         dc.setColor(color, G.COLOR_TRANSPARENT);
-        var dataStr = data.format("%d");
+        var dataStr ="--";
+        if (data < 240) { dataStr = data.format("%d"); }
         dc.drawText(x, y, G.FONT_XTINY, dataStr, G.TEXT_JUSTIFY_CENTER);
     }
 
