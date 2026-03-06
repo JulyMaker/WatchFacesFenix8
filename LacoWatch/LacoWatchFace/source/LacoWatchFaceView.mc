@@ -15,6 +15,7 @@ class LacoWatchFaceView extends WatchUi.WatchFace {
 
     var lay;
     var lacoDelegate;
+    var fishLogo;
     var LUME = C.hexToColor("#D4DEBA");       // crema vintage
     var LUME_DIM = C.hexToColor("#c7b98b");   // Nigtht mode cream
     var BACKGROUND = C.hexToColor("#222121"); // Background color
@@ -25,6 +26,12 @@ class LacoWatchFaceView extends WatchUi.WatchFace {
         WatchFace.initialize();
 
         lacoDelegate = new LacoDelegate(self);
+
+        fishLogo = new WatchUi.Bitmap({
+            :rezId=>Rez.Drawables.fishLogo,
+            :locX=>0,
+            :locY=>0
+        });
     }
 
     // Load your resources here
@@ -38,6 +45,9 @@ class LacoWatchFaceView extends WatchUi.WatchFace {
         TU.initMinutes(lay.cx, lay.cy - lay.sy(18));
         TU.initArrow(lay);
         TU.initMinuteTicks(lay);
+
+        fishLogo[:locX] = lay.cx - (fishLogo.getDimensions())[0]/2;
+        fishLogo[:locY] = lay.cy - lay.cy * 0.25;
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -58,6 +68,9 @@ class LacoWatchFaceView extends WatchUi.WatchFace {
         var timeData = TU.getTimeData();
         if((timeData[:h] < 22) && (timeData[:h] > 8)) { color = LUME_DIM; } else { color = LUME; }
 
+        dc.setColor(G.COLOR_DK_RED, G.COLOR_TRANSPARENT);
+        fishLogo.draw(dc);                                // Fish logo
+        
         TU.drawHours(dc, color);                          // Hour numbers
         lay.drawCenterCircle(dc, lay.cx, lay.cy, color);  // Center Circle
 
