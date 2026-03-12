@@ -28,7 +28,7 @@ class LacoWatchFaceView extends WatchUi.WatchFace {
         lacoDelegate = new LacoDelegate(self);
 
         fishLogo = new WatchUi.Bitmap({
-            :rezId=>Rez.Drawables.fishLogo,
+            :rezId=>Rez.Drawables.fishBLogo,
             :locX=>0,
             :locY=>0
         });

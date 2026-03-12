@@ -171,13 +171,14 @@ class JulyWatchView extends WatchUi.WatchFace {
         AD.drawActivityData(dc, lay.rightX, lay.dataYU, AD.HRSensor, G.COLOR_RED);
 
         // Solar Intensity and charging status
-        if (zon.getT(:solarT).timer(timeData[:now])) {  //  1min
+        if (zon.getT(:solarT).timer(timeData[:now])) {  //  30s
              AD.getStatsSensor(); // higth cost
         }
         
         if(AD.hasSolarInt){     
             dc.setColor(G.COLOR_YELLOW, G.COLOR_TRANSPARENT);
-            dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, AD.statsSensor.solarIntensity, G.TEXT_JUSTIFY_CENTER);
+            var solarInt = (AD.statsSensor.solarIntensity < 0) ? 0 : AD.statsSensor.solarIntensity;
+            dc.drawText(lay.cx + sx(90), lay.cy - sy(10), Fonts.small, solarInt, G.TEXT_JUSTIFY_CENTER);
         }
                     
         if(AD.statsSensor.charging){
