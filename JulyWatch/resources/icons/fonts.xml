@@ -7,4 +7,7 @@
     <font id = "variousFont" filename = "various_30.0.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-"/>
     <font id = "weatherFont" filename = "weather_20.fnt" antialias="true" filter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890{}:~ #^$[]@*+_%=~.?,-|"/>
     <font id = "distanceFont" filename = "distance_20.0.fnt" antialias="true" filter = " #~0123456789km.,"/>
+    <font id = "id_raj_striped" filename="raj_striped.fnt" antialias="true" filter="0123456789:" />
+    <font id = "id_raj_outline" filename="raj_outline.fnt" antialias="true" filter="0123456789:" />
+    <font id = "id_monofonto_outline" filename="monofonto_outline.fnt" antialias="true" filter="0123456789:" />
 </fonts>

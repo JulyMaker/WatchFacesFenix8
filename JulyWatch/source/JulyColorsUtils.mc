@@ -18,7 +18,6 @@ module ColorsUtils {
         return (r << 16) | (g << 8) | b;
     }
 
-
     function gradientMulti(colors, t) {
         var n = colors.size() - 1;   // 4 tramos para 5 colores
         var scaled = t * n;
@@ -39,4 +38,45 @@ module ColorsUtils {
         
         return G.createColor( 0xFF, r, g, b);
     }
+
+    function drawGradient(dc, startColor, midColor, endColor, startX, startY, endX, endY) {
+		if (midColor < 0) {
+			var height = (endY - startY).toFloat();
+			for (var i=0; i<=height; i++) {
+				var color = lerpColorsCompact(startColor, endColor, i / height);
+				dc.setColor(color, 0);
+                dc.drawLine(startX, startY + i, endX, startY + i);
+			}
+			return;
+		}
+
+		var midY = (startY + endY) / 2;
+		drawGradient(dc, startColor, -1, midColor, startX, startY, endX, midY);
+		drawGradient(dc, midColor, -1, endColor, startX, midY, endX, endY);
+	}
+
+	// Draw the color gradient from left to right. Behaves like dc.DrawLine.
+	function drawGradientLR(dc, startColor, midColor, endColor, startX, startY, endX, endY) {
+		if (midColor < 0) {
+			var width = (endX - startX).toFloat();
+			for (var i=0; i<=width; i++) {
+                var color = lerpColorsCompact(startColor, endColor, i / width);
+				dc.setColor(color, 0);
+                dc.drawLine(startX + i, startY, startX + i, endY);
+			}
+			return;
+		}
+
+		var midX = (startX + endX) / 2;
+		drawGradientLR(dc, startColor, -1, midColor, startX, startY, midX, endY);
+		drawGradientLR(dc, midColor, -1, endColor, midX, startY, endX, endY);
+	}
+
+    function lerpColorsCompact(startColor, endColor, ratio){		
+		var mask1 = 0xff00ff;
+		var mask2 = 0x00ff00; // 0xff00ff00 if alpha is required
+		var f2 = (256 * ratio).toNumber();
+		var f1 = 256 - f2;
+		return (((((startColor & mask1) * f1) + ((endColor & mask1) * f2)) >> 8) & mask1) | (((((startColor & mask2) * f1) + ((endColor & mask2) * f2)) >> 8) & mask2);
+	}  
 }

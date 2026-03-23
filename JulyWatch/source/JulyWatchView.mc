@@ -39,6 +39,8 @@ class JulyWatchView extends WatchUi.WatchFace {
     var minCCache  ;
     var hourCCache ;
 
+    var _font;
+
     function initialize() {
         WatchFace.initialize();
         
@@ -59,6 +61,7 @@ class JulyWatchView extends WatchUi.WatchFace {
     // Load your resources here
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.WatchFace(dc));
+        _font = WatchUi.loadResource(Rez.Fonts.id_raj_outline);
 
         lay = new Layout(dc.getWidth(), dc.getHeight());
         wfDelegate.resolution(lay.w);
@@ -120,9 +123,44 @@ class JulyWatchView extends WatchUi.WatchFace {
     //    dc.fillRectangle(x, y, lay.w, lay.h);
     //}
 
+    function drawOutlineNumbers(dc as Dc) as Void {
+        		var clockTime = System.getClockTime();
+		var timeString = Lang.format("$1$$2$", [clockTime.hour.format("%02d"), clockTime.min.format("%02d"),]);	
+
+        var textDims = dc.getTextDimensions(timeString, _font);
+		var textW = textDims[0];
+		var textH = textDims[1];
+
+        var _devWidth = dc.getWidth();
+		var _devCenter = _devWidth / 2;
+
+		var startX = _devCenter - textW / 2;
+		var endX = _devCenter + textW / 2 -1;
+		var startY = _devCenter - textH / 2 + 1;
+		var endY = _devCenter + textH / 2;
+
+        var startColor = 0xFF0000;
+		var midColor = 0xffff00;
+		var endColor = 0x00FF00;
+
+		if (clockTime.sec %2 == 0) {
+			C.drawGradient(dc, startColor, midColor, endColor, startX, startY, endX, endY);
+		} else {
+			C.drawGradientLR(dc, startColor, midColor, endColor, startX, startY, endX, endY);
+		}
+
+        // create and draw the 'clipping mask'
+		dc.setColor(-1, 0);
+		dc.drawText(_devCenter, _devCenter, _font, timeString, G.TEXT_JUSTIFY_CENTER | G.TEXT_JUSTIFY_VCENTER);
+    }
+    
     // Update the view
     function onUpdate(dc as Dc) as Void {
+        // draw background using svg
+		// dc.drawBitmap(_devCenter,0,WatchUi.loadResource(Rez.Drawables.gradientBg));
+        // Get and format the current time
         layout(dc);
+        // drawOutlineNumbers(dc);
 
         var timeData = TU.getTimeData();
         
